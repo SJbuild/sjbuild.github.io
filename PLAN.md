@@ -94,12 +94,12 @@
 - [x] **Done:** footer pixel-faithful; scrollspy functionally tested (home/villas/location/contacts + footer coral rgb(255,127,80)/700); axe 0 both widths; commit `P8`
 
 ### P9 — SEO, meta, content audit (S–M)
-- [ ] `<head>`: title "Luxury Villas with a Sea View for Sale | Exclusive Investment Opportunities"; meta desc + keywords (Meta md Home); canonical; OG/Twitter tags; `og:image` 1200×630 from hero (sharp addendum); favicons from logo SVG (svg/32px/180px); `theme-color #1D1E22`
-- [ ] `public/robots.txt` + single-URL `public/sitemap.xml`
-- [ ] JSON-LD `RealEstateAgent` (footer contact data) + `WebSite`
-- [ ] Heading audit (one h1, sections h2, cards h3); landmarks (`header/nav/main/section[aria-labelledby]/footer`)
-- [ ] Gate: `grep -ri "lorem" index.html src/` → empty
-- [ ] **Done:** gates pass; JSON-LD parses; commit `P9`
+- [x] `<head>`: Meta-md title/description/keywords; canonical `https://sjbuild.bg/` (TODO(domain): assumed from sales@ email); OG + Twitter cards; `og:image` 1200×630 (123 KB, attention-cropped hero); favicon-32 + apple-touch-icon (white SJ mark on stygian, generated from wordmark crop); `theme-color #1d1e22`
+- [x] `public/robots.txt` + single-URL `public/sitemap.xml`
+- [x] JSON-LD `@graph`: `RealEstateAgent` (footer contact data) + `WebSite` — parse-verified
+- [x] Heading audit: exactly one h1 → 7×h2 (sections) → h3 only in villa cards + community panels; landmarks in place since section builds
+- [x] Gate: `grep -ri "lorem" index.html src/` → empty ✓
+- [x] **Done:** all gates pass; build clean; commit `P9`
 
 ### P10 — QA hardening & final gates (M–L)
 - [ ] `npm run build` 0 errors → preview
