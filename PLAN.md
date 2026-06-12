@@ -37,12 +37,12 @@
 - [x] **Done:** `npm run build` exits 0; shell screenshot verified (PT Serif heading + Noto Sans body + sand bg + token utilities working); commit `P0`
 
 ### P1 — Asset batch: download + optimize (M–L) — the ONLY phase calling `download_assets`
-- [ ] Photos → `_design/raw-assets/` (kebab names): hero `370:91`; intro-villa `371:99` (fallback inner `371:104`); complex-bg `372:94`; villa-card-1 `182:34`, villa-card-2 `182:63`, villa-card-3 `373:198`; arch-1 `182:197`, arch-2 `182:199`, arch-3 `167:897`; about-us `218:132` (fallback `376:277`); cta-bg `373:130`
-- [ ] SVGs: logo `167:605` + footer variant `167:857`; map `216:90`; spec icons `167:733/167:738/167:742/167:746`; social `167:866/167:868/167:870/167:874`; footer-contact `167:878/167:881/167:884`; bg-flag `373:154`; chevron `373:158`; check `373:169`; arrows `182:184/182:187`
-- [ ] Failure policy: retry once; then mark `MISSING` in manifest + fallback note (solid `--color-boxes` block) and continue
-- [ ] `npm run assets`; `npx svgo` over SVGs (keep viewBox). Map + logo → `public/images/`; small icons stay in `_design/raw-assets/icons/` for inlining
-- [ ] Write `_design/assets-manifest.md` (`node | raw | optimized | section | alt intent`); log total `public/images/` weight
-- [ ] **Done:** every manifest row resolves on disk; 3 spot-checks viewed; commit `P1`
+- [x] Photos → `_design/raw-assets/` — all 11 downloaded; visible fill identified per node by aspect-ratio match vs placed dims + contact-sheet view (renders + rejects in gitignored `_design/raw-staging/`)
+- [x] SVGs: map + social + footer-contact + flag + chevron + check + arrows + area icon OK. Logo nodes are IMAGE FILLS → took raw PNGs (dark + white variants) instead of raster-embedding SVG
+- [x] Failure policy applied: bed `167:738` / bath `167:742` / garage `167:746` icons return null export (retried + child-ID guesses) → marked MISSING in manifest; recover from P4 design-context inline SVG, fallback Lucide 16px
+- [x] `npm run assets` → 123 variants; svgo over icons; map.svg 58→30 KB → `public/images/map.svg`; logos → `public/images/logo-{white,dark}.png` @512w
+- [x] `_design/assets-manifest.md` written; public/images ≈ 9.5 MB total variants; hero AVIF 75–107 KB ≤ budget
+- [x] **Done:** manifest rows resolve; contact sheet + hero/cta sizes verified; commit `P1`
 
 ### P2 — Hero + Header/Nav — node `167:597` (L, solo)
 - [ ] `get_design_context 167:597` → save verbatim `_design/context/01-hero-header.md` BEFORE coding
