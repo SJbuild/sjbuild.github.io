@@ -56,6 +56,51 @@
           />
           <path fill="currentColor" d="M16 4.31V2.624L8.253.041a.8.8 0 0 0-.527.007L0 2.858V4.56l8.012-2.913z" />
         </symbol>
+        <symbol id="i-phone" viewBox="0 0 16 16">
+          <path
+            fill="currentColor"
+            stroke="currentColor"
+            d="M.856.5h3a.36.36 0 0 1 .357.356c0 1.122.179 2.202.51 3.21h.002c.04.13.011.268-.091.37L2.748 6.322l-.257.257.165.323a13.48 13.48 0 0 0 5.865 5.866l.324.166 2.142-2.143a.35.35 0 0 1 .359-.086l.005.002c1.01.334 2.1.514 3.215.514a.36.36 0 0 1 .358.356v2.99a.36.36 0 0 1-.358.358C6.796 14.924.5 8.626.5.856A.36.36 0 0 1 .785.508z"
+          />
+        </symbol>
+        <symbol id="i-email" viewBox="0 0 18 15">
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+            <path
+              d="M2.523 1H14.71c.838 0 1.523.685 1.523 1.523v9.14c0 .838-.685 1.524-1.523 1.524H2.523A1.53 1.53 0 0 1 1 11.663v-9.14C1 1.685 1.685 1 2.523 1"
+            />
+            <path d="M16.233 2.523 8.617 7.855 1 2.523" />
+          </g>
+        </symbol>
+        <symbol id="i-location" viewBox="0 0 11 15">
+          <path
+            fill="currentColor"
+            fill-rule="evenodd"
+            d="M0 5.332A5.33 5.33 0 0 1 5.332 0a5.33 5.33 0 0 1 5.331 5.332c0 3.176-3.366 7.555-4.745 9.223a.756.756 0 0 1-1.165 0C3.367 12.887 0 8.508 0 5.332m3.427 0a1.905 1.905 0 1 0 3.81-.002 1.905 1.905 0 0 0-3.81.002"
+            clip-rule="evenodd"
+          />
+        </symbol>
+        <symbol id="i-facebook" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M9.046 5.865v2.748H7.032v3.36h2.014v9.986h4.134v-9.985h2.775s.26-1.611.386-3.373h-3.144V6.303c0-.343.45-.805.896-.805h2.254V2h-3.064c-4.34 0-4.237 3.363-4.237 3.865"
+          />
+        </symbol>
+        <symbol id="i-instagram" viewBox="0 0 24 24">
+          <g fill="currentColor">
+            <path
+              d="M16.017 2h-8.07A5.954 5.954 0 0 0 2 7.948v8.07a5.954 5.954 0 0 0 5.948 5.947h8.07a5.954 5.954 0 0 0 5.947-5.948v-8.07A5.954 5.954 0 0 0 16.017 2m3.94 14.017a3.94 3.94 0 0 1-3.94 3.94h-8.07a3.94 3.94 0 0 1-3.939-3.94v-8.07a3.94 3.94 0 0 1 3.94-3.939h8.07a3.94 3.94 0 0 1 3.939 3.94v8.07z"
+            />
+            <path
+              d="M11.982 6.82a5.17 5.17 0 0 0-5.162 5.162 5.17 5.17 0 0 0 5.163 5.164 5.17 5.17 0 0 0 5.164-5.164 5.17 5.17 0 0 0-5.165-5.162m0 8.318a3.155 3.155 0 1 1 0-6.31 3.155 3.155 0 0 1 0 6.31M17.156 8.095a1.237 1.237 0 1 0 0-2.474 1.237 1.237 0 0 0 0 2.474"
+            />
+          </g>
+        </symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24">
+          <path
+            fill="currentColor"
+            d="M21.959 13.72v7.378h-4.278v-6.885c0-1.73-.619-2.91-2.167-2.91-1.182 0-1.886.796-2.195 1.565-.113.275-.142.658-.142 1.043v7.187h-4.28s.058-11.66 0-12.869h4.28v1.824l-.028.042h.028v-.042c.568-.875 1.583-2.126 3.856-2.126 2.815 0 4.926 1.84 4.926 5.792M4.421 2.025C2.958 2.026 2 2.986 2 4.25c0 1.235.93 2.224 2.365 2.224h.028c1.493 0 2.42-.989 2.42-2.224-.026-1.263-.926-2.223-2.391-2.223zM2.254 21.098h4.278V8.23H2.254z"
+          />
+        </symbol>
         <symbol id="i-flag-bg" viewBox="0 0 16 11">
           <path fill="#e6e7e8" d="M13.5 0h-11C.843 0 0 1.231 0 2.75v1h16v-1C16 1.231 15.157 0 13.5 0" />
           <path fill="#137a08" d="M0 3.75h16v3.5H0z" />
@@ -228,7 +273,7 @@
       </section>
       <!-- @section:intro -->
       <section id="intro" aria-labelledby="intro-title" class="mt-section px-4 sm:px-6 xl:px-13">
-        <div class="mx-auto grid max-w-(--container-box) overflow-hidden rounded-box bg-linear-to-l from-peach to-ice lg:grid-cols-[1.08fr_1fr]">
+        <div data-reveal class="mx-auto grid max-w-(--container-box) overflow-hidden rounded-box bg-linear-to-l from-peach to-ice lg:grid-cols-[1.08fr_1fr]">
           <div class="order-2 px-6 pt-8 pb-10 sm:px-10 lg:order-1 lg:py-14 lg:pr-8 lg:pl-23">
             <h2 id="intro-title" class="relative z-10 max-w-[15ch] text-display-xl lg:w-[120%] lg:max-w-none">
               Where Privacy Meets Modern Luxury
@@ -270,7 +315,7 @@
       <!-- @section:villas -->
       <section id="villas" aria-labelledby="villas-title" class="mt-section">
         <div class="mx-auto max-w-content px-gutter">
-          <div class="grid gap-7 lg:grid-cols-2 lg:items-start">
+          <div data-reveal class="grid gap-7 lg:grid-cols-2 lg:items-start">
             <h2 id="villas-title" class="max-w-[12ch] text-display-lg">Explore Our Luxury Villas</h2>
             <div class="flex flex-col items-start gap-6 lg:items-end">
               <p class="max-w-(--container-measure) text-leadlg lg:mt-2">
@@ -297,7 +342,7 @@
           data-carousel-track
           tabindex="0"
           aria-label="Villas"
-          class="bleed-track no-scrollbar mt-9 flex snap-x snap-mandatory gap-7 overflow-x-auto"
+          data-reveal class="bleed-track no-scrollbar mt-9 flex snap-x snap-mandatory gap-7 overflow-x-auto"
         >
           <li class="w-(--villa-card-w) shrink-0 snap-start">
             <article class="overflow-hidden rounded-card">
@@ -476,6 +521,7 @@
         <div class="mx-auto max-w-content px-gutter">
           <div class="relative -mt-14 lg:mt-0 lg:flex lg:justify-end lg:py-17">
             <div
+              data-reveal
               class="w-full max-w-(--container-card) rounded-card bg-linear-[58deg] from-ice/91 to-peach/91 p-7 backdrop-blur-frost sm:p-10 lg:p-14"
             >
               <h2 id="complex-title" class="text-display-lg">About the complex</h2>
@@ -513,7 +559,7 @@
       <section id="location" aria-labelledby="location-title" class="mt-section lg:mt-0">
         <div class="mx-auto max-w-content px-gutter">
           <div class="lg:grid lg:grid-cols-[1fr_1.33fr] lg:items-end lg:gap-x-8">
-            <div class="lg:pb-2">
+            <div data-reveal class="lg:pb-2">
               <h2 id="location-title" class="max-w-[14ch] text-display-lg">A Prime Location with a Sea View</h2>
               <p class="mt-12 max-w-(--container-measure) text-bodysm text-nevada">
                 Located just 1 km away from the center of Lozenets, the complex is in a prime location with stunning sea
@@ -523,7 +569,7 @@
               <!-- TODO(page): location subpage -->
               <a href="#" class="btn btn-dark mt-6">Learn more</a>
             </div>
-            <div class="mt-10 lg:mt-0 lg:bleed-right">
+            <div data-reveal style="--reveal-delay: 0.15s" class="mt-10 lg:mt-0 lg:bleed-right">
               <img
                 src="/images/map.svg"
                 alt="Illustrated map of the Lozenets coastline on the Black Sea: the SJ Build complex sits 1 km southwest of Lozenets city center, between Central Beach and Oasis Beach"
@@ -540,7 +586,7 @@
       <!-- @section:community -->
       <section id="community" aria-labelledby="community-title" class="mt-section">
         <div class="mx-auto max-w-content px-gutter">
-          <div class="lg:grid lg:grid-cols-[21.375rem_1fr] lg:gap-12">
+          <div data-reveal class="lg:grid lg:grid-cols-[21.375rem_1fr] lg:gap-12">
             <h2 id="community-title" class="text-display-lg leading-[1.21] lg:order-2 lg:-mr-24">
               Community Designed for Comfort and Privacy
             </h2>
@@ -575,6 +621,7 @@
 
         <div
           id="community-gallery"
+          data-reveal
           data-gallery
           class="mx-auto mt-12 flex max-w-content flex-col gap-14 px-gutter lg:mt-16 lg:grid lg:grid-cols-3 lg:gap-7"
         >
@@ -695,7 +742,7 @@
         <div class="mx-auto max-w-content px-gutter pt-8 pb-12 lg:min-h-(--aboutus-h) lg:pt-0 lg:pb-0">
           <div class="lg:grid lg:grid-cols-2 lg:gap-8">
             <div class="hidden lg:block" aria-hidden="true"></div>
-            <div>
+            <div data-reveal>
               <h2 id="aboutus-title" class="text-display-lg">About Us</h2>
               <p class="mt-6 max-w-[31rem] text-lead">
                 We are a team of industry professionals with a long-standing commitment to delivering exceptional homes.
@@ -757,15 +804,17 @@
         ></div>
 
         <div class="mx-auto max-w-content px-gutter pt-9 pb-12 lg:pb-17">
-          <h2 id="contacts-title" class="max-w-[51rem] text-display-2xl leading-[1.33] font-bold text-sand">
+          <h2 id="contacts-title" data-reveal class="max-w-[51rem] text-display-2xl leading-[1.33] font-bold text-sand">
             Contact Us for More Information
           </h2>
-          <p class="mt-11 max-w-[42.5rem] text-leadxl text-sand">
+          <p data-reveal style="--reveal-delay: 0.1s" class="mt-11 max-w-[42.5rem] text-leadxl text-sand">
             Schedule a viewing today and experience luxury firsthand.
           </p>
 
           <form
             data-contact-form
+            data-reveal
+            style="--reveal-delay: 0.15s"
             novalidate
             class="mt-8 w-full max-w-[28.75rem] rounded-card bg-linear-[58deg] from-white to-hairline p-7 backdrop-blur-frost sm:p-13 sm:pt-10"
           >
@@ -867,6 +916,83 @@
       </section>
     </main>
 
-    <!-- @section:footer (P8) -->
+    <!-- @section:footer -->
+    <footer class="bg-stygian text-sand">
+      <div class="mx-auto max-w-content px-gutter pt-8 pb-9">
+        <div class="flex flex-col gap-8 lg:flex-row lg:items-center">
+          <a href="#home" class="shrink-0">
+            <img src="/images/logo-white.png" alt="SJ Build" width="512" height="167" class="h-8.5 w-auto" />
+          </a>
+          <nav aria-label="Footer" class="lg:ml-auto">
+            <ul class="flex flex-wrap gap-x-8 gap-y-3 xl:gap-x-14">
+              <li><a href="#home" data-nav-link class="text-sm whitespace-nowrap transition-colors hover:text-white">Home</a></li>
+              <li>
+                <a href="#complex" data-nav-link class="text-sm whitespace-nowrap transition-colors hover:text-white"
+                  >About the complex</a
+                >
+              </li>
+              <li><a href="#villas" data-nav-link class="text-sm whitespace-nowrap transition-colors hover:text-white">Villas</a></li>
+              <li>
+                <a href="#location" data-nav-link class="text-sm whitespace-nowrap transition-colors hover:text-white">Location</a>
+              </li>
+              <li>
+                <a href="#about-us" data-nav-link class="text-sm whitespace-nowrap transition-colors hover:text-white">About us</a>
+              </li>
+              <li>
+                <a href="#contacts" data-nav-link class="text-sm whitespace-nowrap transition-colors hover:text-white">Contacts</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="mt-12 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
+          <address class="not-italic">
+            <ul class="space-y-2.5 text-base">
+              <li class="flex items-center gap-4">
+                <svg aria-hidden="true" class="h-4 w-4 shrink-0"><use href="#i-phone" /></svg>
+                <a href="tel:+359897700770" class="transition-colors hover:text-white">+359 897 700 770</a>
+              </li>
+              <li class="flex items-center gap-4">
+                <svg aria-hidden="true" class="h-3.5 w-4 shrink-0"><use href="#i-email" /></svg>
+                <a href="mailto:sales@sjbuild.bg" class="transition-colors hover:text-white">sales@sjbuild.bg</a>
+              </li>
+              <li class="flex items-center gap-4">
+                <svg aria-hidden="true" class="h-4 w-3 shrink-0"><use href="#i-location" /></svg>
+                <span>Varna, str. Kiril i Metodii 43</span>
+              </li>
+            </ul>
+          </address>
+
+          <div class="flex flex-wrap items-center gap-x-8 gap-y-5">
+            <ul class="flex items-center gap-6 text-sm text-white">
+              <!-- TODO(page): privacy + cookie policy pages -->
+              <li><a href="#" class="transition-colors hover:underline">Privacy policy</a></li>
+              <li aria-hidden="true">|</li>
+              <li><a href="#" class="transition-colors hover:underline">Cookie Policy</a></li>
+            </ul>
+            <ul class="flex items-center gap-4">
+              <!-- TODO(social): real profile URLs — Contacts.md names "SG Build Villas" / @sgbuild_villas / SG Build (brand mismatch flagged) -->
+              <li>
+                <a href="#" aria-label="SJ Build on Facebook" class="block text-white transition-opacity hover:opacity-75">
+                  <svg aria-hidden="true" class="h-6 w-6"><use href="#i-facebook" /></svg>
+                </a>
+              </li>
+              <li>
+                <a href="#" aria-label="SJ Build on Instagram" class="block text-white transition-opacity hover:opacity-75">
+                  <svg aria-hidden="true" class="h-6 w-6"><use href="#i-instagram" /></svg>
+                </a>
+              </li>
+              <li>
+                <a href="#" aria-label="SJ Build on LinkedIn" class="block text-white transition-opacity hover:opacity-75">
+                  <svg aria-hidden="true" class="h-6 w-6"><use href="#i-linkedin" /></svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="mt-9 text-center text-sm text-white">© 2025 SJ Build. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>

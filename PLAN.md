@@ -86,12 +86,12 @@
 - [x] **Done:** Playwright functional test (5 errors + focus to first invalid; blur clears; valid submit → status, 0 errors; phone error border rgb(194,65,12) settled); axe 0 both widths; 1440+390 shots; commit `P7`
 
 ### P8 — Footer + global behaviors — node `167:852` (M)
-- [ ] Fetch `167:852` → `_design/context/09-footer.md` (last of 9 budgeted calls)
-- [ ] `<footer>` stygian: white logo; `<nav aria-label="Footer">` same anchors; `<address>`: `tel:+359897700770`, `mailto:sales@sjbuild.bg`, "Varna, str. Kiril i Metodii 43" + icons (design copy wins — Contacts.md conflict logged); social links w/ aria-labels (FB/IG/LinkedIn hrefs from Contacts.md, Twitter TODO); Privacy/Cookie stubs; "© 2025 SJ Build. All rights reserved." ("@"→© logged)
-- [ ] `src/modules/reveal.ts`: IO toggles `is-visible` on `[data-reveal]`; transform/opacity only; hidden state only under `html.js`; skipped under reduced-motion; sweep page adding `data-reveal`
-- [ ] `nav.ts` scrollspy → `aria-current` on active link
-- [ ] `src/modules/lang.ts`: BG stub `aria-disabled` + `// TODO(i18n)` referencing `website-docs/bg/*`
-- [ ] **Done:** footer matches; scrollspy tracks 6 anchors; reveal honors reduced-motion/no-JS; commit `P8`
+- [x] Context 9/9 → `_design/context/09-footer.md`. Footer: stygian, white logo, footer nav w/ design's CORAL+BOLD active state; `<address>` w/ sprite icons + tel/mailto links (design copy; Contacts.md conflict stands logged); Privacy/Cookie stubs; "© 2025…" fixed
+- [x] Socials: Twitter DROPPED — its design export is empty (no glyph) and Contacts.md omits it; ships FB/IG/LinkedIn w/ aria-labels + TODO(social) for real URLs
+- [x] `reveal.ts`: IO + 12 `[data-reveal]` blocks w/ `--reveal-delay` staggers; `html.js`-gated; reduced-motion exempt (CSS + JS)
+- [x] `nav.ts#initScrollspy`: middle-band IO → `aria-current`; header = layout-stable underline, footer = coral bold (per design)
+- [x] `lang.ts` BG stub (preventDefault + TODO(i18n) → website-docs/bg)
+- [x] **Done:** footer pixel-faithful; scrollspy functionally tested (home/villas/location/contacts + footer coral rgb(255,127,80)/700); axe 0 both widths; commit `P8`
 
 ### P9 — SEO, meta, content audit (S–M)
 - [ ] `<head>`: title "Luxury Villas with a Sea View for Sale | Exclusive Investment Opportunities"; meta desc + keywords (Meta md Home); canonical; OG/Twitter tags; `og:image` 1200×630 from hero (sharp addendum); favicons from logo SVG (svg/32px/180px); `theme-color #1D1E22`

@@ -147,6 +147,16 @@
     display: none;
   }
 
+  /* Scrollspy active states: subtle underline in the header pill,
+     the design's bold coral in the footer */
+  [data-nav-link][aria-current="true"] {
+    @apply underline decoration-stygian/40 underline-offset-8;
+  }
+
+  footer [data-nav-link][aria-current="true"] {
+    @apply font-bold text-coral no-underline;
+  }
+
   /* Fixed header: transparent over hero, solid once scrolled */
   #site-header.is-scrolled {
     @apply bg-sand/90 shadow-md backdrop-blur-md;

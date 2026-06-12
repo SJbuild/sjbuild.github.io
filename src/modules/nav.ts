@@ -65,3 +65,29 @@ export function initNav(): void {
     if (desktop.matches && open) setOpen(false);
   });
 }
+
+/** Marks the nav link of the section currently in the viewport's middle band. */
+export function initScrollspy(): void {
+  const links = [...document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]")];
+  if (links.length === 0) return;
+
+  const sections = [...new Set(links.map((a) => a.hash.slice(1)))]
+    .map((id) => document.getElementById(id))
+    .filter((el): el is HTMLElement => el !== null);
+
+  const setActive = (id: string): void => {
+    for (const link of links) {
+      if (link.hash === `#${id}`) link.setAttribute("aria-current", "true");
+      else link.removeAttribute("aria-current");
+    }
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries.find((entry) => entry.isIntersecting);
+      if (visible) setActive(visible.target.id);
+    },
+    { rootMargin: "-45% 0px -50% 0px", threshold: 0 },
+  );
+  for (const section of sections) observer.observe(section);
+}
