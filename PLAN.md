@@ -45,13 +45,13 @@
 - [x] **Done:** manifest rows resolve; contact sheet + hero/cta sizes verified; commit `P1`
 
 ### P2 — Hero + Header/Nav — node `167:597` (L, solo)
-- [ ] `get_design_context 167:597` → save verbatim `_design/context/01-hero-header.md` BEFORE coding
-- [ ] Token calibration: lock H1/H2/nav/button real sizes, radii, header height into `@theme`; log in Decisions Log (all later sections reuse)
-- [ ] Contrast decision: stygian text on coral (6.7:1) vs `--color-coral-deep`; record; applies site-wide
-- [ ] Fixed transparent `<header>`: inline logo SVG, `<nav aria-label="Main">` → `#home #complex #villas #location #about-us #contacts`, BG toggle stub, coral Get a Quote → `#contacts`; `<lg`: hamburger (`aria-expanded`/`aria-controls`) + drawer (focus trap, Esc, scroll lock, closes on anchor click)
-- [ ] `src/modules/nav.ts` (drawer + scrolled solid-bg state)
-- [ ] Hero `<section id="home">`: `<picture>` AVIF/WebP/JPEG `sizes="100vw"` `fetchpriority="high"` not lazy; stygian gradient scrim (subtitle ≥4.5:1); `<h1>` "Own a Luxury Private Seaview Villa"; subtitle per Content Map; ghost Learn more → `#intro`
-- [ ] **Done:** pixel-faithful 1440, clean 390, drawer keyboard-operable, tokens locked, context saved; commit `P2`
+- [x] Context fetched → `_design/context/01-hero-header.md` (distilled facts + all measurements)
+- [x] Tokens locked: display-2xl 89px/1.19 bold; lead 17px/1.7; `--color-mist #f7f7f7` (nav pill); `--spacing-header 6rem`; `--hero-h`; hero-title/measure containers; `--radius-btn` dropped → pills are `rounded-full` (`.btn`/`.btn-dark` components)
+- [x] Contrast: moot — design buttons are stygian bg + white text (16:1). Coral appears nowhere in header/hero
+- [x] Fixed header: dark logo PNG (logo is an image fill, not vector), pill nav (bg-mist), BG stub, `.btn-dark` Get a quote; mobile hamburger + full-screen drawer (focus trap, Esc, scroll lock, closes on anchor click, auto-reset at ≥lg)
+- [x] `src/modules/nav.ts` (drawer + `.is-scrolled` sand/blur/shadow state)
+- [x] Hero: design is WHITE gradient over photo w/ DARK text (not dark scrim). Visible photo layer = `hero-raw1` dusk villa row (P1 pick corrected, variants regenerated 480–2560). Desktop: absolute composite + white fade top 2/3. Mobile: restructured to text-on-white above in-flow `aspect-4/3` photo with seam fade (readability). Preload + fetchpriority on hero image
+- [x] **Done:** 1440 matches comp; 390 clean; axe 0 violations @1440+390; context saved; commit `P2`
 
 ### P3 — Intro box + About the complex — nodes `167:623`, `167:750` (M)
 - [ ] Fetch `167:623` → `_design/context/02-intro-box.md` → build `#intro`: rounded `bg-boxes` box; ≥lg 2-col (text | image bleeding to edge); H2 "Where Privacy Meets Modern Luxury"; copy per Map; coral button → `#contacts`; mobile: image above text
@@ -149,6 +149,10 @@ Conventions: Tailwind default breakpoints, mobile-first (`md` first 2-col, `lg` 
 | plan | Footer contact = design copy (+359 897 700 770 / sales@sjbuild.bg / Varna) | Design-copy-wins rule; conflicts with Contacts.md (+359 889 173 654 / sgbuildbg@gmail.com / Lozenets) — **client must confirm** |
 | plan | S5 title Cyrillic "А/а" → Latin; footer "@ 2025" → "© 2025" | Design typos |
 | plan | No manual font preload (fontsource hashed files); `font-display: swap` | Revisit at P10 if LCP suffers |
+| P2 | Hero = white gradient + dark text; primary buttons = stygian pills (white text). Coral unused so far | Design context contradicted the screenshot-based assumption of dark scrim/coral CTAs |
+| P2 | Hero photo corrected to `hero-raw1` (dusk villa row, 3050×2593) | Layer-order misread in P1; aspect-ratio math + render comparison proved raw1 is the visible fill |
+| P2 | Mobile hero restructured: text on white, photo in flow below w/ seam fade | Desktop absolute composite made subtitle unreadable over dark building at 390px |
+| P2 | Logo stays PNG (512w) — Figma logo node is an image fill; its SVG export embeds a 300KB raster | Crisp at 2.5×, 16KB |
 | plan | Progress tracked in this file only (no harness task list) | Survives session death; single source of truth |
 
 ## Content Map (final string ← source)

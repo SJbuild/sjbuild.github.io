@@ -11,6 +11,20 @@
     <script>
       document.documentElement.classList.replace("no-js", "js");
     </script>
+    <link
+      rel="preload"
+      as="image"
+      type="image/avif"
+      imagesrcset="
+        /images/hero-480.avif   480w,
+        /images/hero-768.avif   768w,
+        /images/hero-1024.avif 1024w,
+        /images/hero-1440.avif 1440w,
+        /images/hero-1920.avif 1920w,
+        /images/hero-2560.avif 2560w
+      "
+      imagesizes="100vw"
+    />
     <script type="module" src="/src/main.ts"></script>
   </head>
   <body>
@@ -20,11 +34,136 @@
       >Skip to content</a
     >
 
-    <!-- @section:header (P2) -->
-    <header id="site-header"></header>
+    <!-- @section:header -->
+    <header id="site-header" class="fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow] duration-300">
+      <div class="mx-auto flex max-w-content items-center gap-5 px-gutter py-5 lg:gap-9">
+        <a href="#home" class="shrink-0">
+          <img src="/images/logo-dark.png" alt="SJ Build" width="512" height="168" class="h-8.5 w-auto" />
+        </a>
+
+        <nav aria-label="Main" class="mx-auto hidden lg:block">
+          <ul class="flex items-center gap-9 rounded-full bg-mist px-10 py-4.5 xl:gap-14 xl:px-12">
+            <li><a href="#home" data-nav-link class="text-sm whitespace-nowrap text-stygian transition-colors hover:text-nevada">Home</a></li>
+            <li><a href="#complex" data-nav-link class="text-sm whitespace-nowrap text-stygian transition-colors hover:text-nevada">About the complex</a></li>
+            <li><a href="#villas" data-nav-link class="text-sm whitespace-nowrap text-stygian transition-colors hover:text-nevada">Villas</a></li>
+            <li><a href="#location" data-nav-link class="text-sm whitespace-nowrap text-stygian transition-colors hover:text-nevada">Location</a></li>
+            <li><a href="#about-us" data-nav-link class="text-sm whitespace-nowrap text-stygian transition-colors hover:text-nevada">About us</a></li>
+            <li><a href="#contacts" data-nav-link class="text-sm whitespace-nowrap text-stygian transition-colors hover:text-nevada">Contacts</a></li>
+          </ul>
+        </nav>
+
+        <a
+          href="#"
+          data-lang-toggle
+          aria-disabled="true"
+          title="Български — скоро"
+          class="hidden text-sm text-stygian transition-colors hover:text-nevada lg:block"
+          >BG</a
+        >
+        <a href="#contacts" class="btn btn-dark hidden sm:inline-flex">Get a quote</a>
+
+        <button
+          type="button"
+          data-menu-toggle
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          class="ml-auto flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full sm:ml-0 lg:hidden"
+        >
+          <span class="sr-only">Menu</span>
+          <span aria-hidden="true" class="bar-1"></span>
+          <span aria-hidden="true" class="bar-2"></span>
+          <span aria-hidden="true" class="bar-3"></span>
+        </button>
+      </div>
+
+      <div id="mobile-menu" class="fixed inset-0 -z-10 hidden bg-sand lg:hidden">
+        <div class="flex h-full flex-col gap-10 overflow-y-auto px-gutter pt-(--spacing-header) pb-10">
+          <nav aria-label="Main menu">
+            <ul class="flex flex-col gap-7">
+              <li><a href="#home" class="font-display text-2xl text-stygian">Home</a></li>
+              <li><a href="#complex" class="font-display text-2xl text-stygian">About the complex</a></li>
+              <li><a href="#villas" class="font-display text-2xl text-stygian">Villas</a></li>
+              <li><a href="#location" class="font-display text-2xl text-stygian">Location</a></li>
+              <li><a href="#about-us" class="font-display text-2xl text-stygian">About us</a></li>
+              <li><a href="#contacts" class="font-display text-2xl text-stygian">Contacts</a></li>
+            </ul>
+          </nav>
+          <div class="mt-auto flex items-center gap-6">
+            <a href="#contacts" class="btn btn-dark flex-1">Get a quote</a>
+            <a href="#" data-lang-toggle aria-disabled="true" title="Български — скоро" class="text-sm text-stygian">BG</a>
+          </div>
+        </div>
+      </div>
+    </header>
 
     <main id="main">
-      <!-- @section:hero #home (P2) -->
+      <!-- @section:hero -->
+      <section id="home" aria-labelledby="hero-title" class="relative isolate overflow-hidden bg-white lg:h-(--hero-h)">
+        <div class="relative z-10 mx-auto max-w-content px-gutter pt-(--spacing-header) text-center">
+          <h1 id="hero-title" class="mx-auto max-w-(--container-hero-title) pt-8 text-display-2xl font-bold lg:pt-12">
+            Own a Luxury Private Seaview Villa
+          </h1>
+          <p class="mx-auto mt-7 max-w-(--container-measure) text-lead lg:mt-10">
+            Our exclusive collection of luxury villas offers the perfect blend of privacy, direct sea view, elegance, and
+            premium investment value.
+          </p>
+          <a href="#intro" class="btn btn-dark mt-8 lg:mt-9">Learn more</a>
+        </div>
+
+        <div class="relative mt-8 lg:static lg:mt-0">
+          <picture>
+            <source
+              type="image/avif"
+              srcset="
+                /images/hero-480.avif   480w,
+                /images/hero-768.avif   768w,
+                /images/hero-1024.avif 1024w,
+                /images/hero-1440.avif 1440w,
+                /images/hero-1920.avif 1920w,
+                /images/hero-2560.avif 2560w
+              "
+              sizes="100vw"
+            />
+            <source
+              type="image/webp"
+              srcset="
+                /images/hero-480.webp   480w,
+                /images/hero-768.webp   768w,
+                /images/hero-1024.webp 1024w,
+                /images/hero-1440.webp 1440w,
+                /images/hero-1920.webp 1920w,
+                /images/hero-2560.webp 2560w
+              "
+              sizes="100vw"
+            />
+            <img
+              src="/images/hero-1440.jpg"
+              srcset="
+                /images/hero-480.jpg   480w,
+                /images/hero-768.jpg   768w,
+                /images/hero-1024.jpg 1024w,
+                /images/hero-1440.jpg 1440w,
+                /images/hero-1920.jpg 1920w,
+                /images/hero-2560.jpg 2560w
+              "
+              sizes="100vw"
+              alt=""
+              width="3050"
+              height="2593"
+              fetchpriority="high"
+              decoding="async"
+              class="aspect-4/3 w-full object-cover object-[50%_45%] lg:absolute lg:inset-0 lg:-z-20 lg:aspect-auto lg:h-full"
+            />
+          </picture>
+          <!-- Mobile: soft seam between the white text area and the photo -->
+          <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 bg-linear-to-b from-white to-white/0 lg:hidden"></div>
+          <!-- Desktop: design's white sky fade over the top 2/3 of the composite -->
+          <div
+            aria-hidden="true"
+            class="hidden lg:absolute lg:inset-x-0 lg:top-0 lg:-z-10 lg:block lg:h-2/3 lg:bg-linear-to-b lg:from-white lg:from-[18%] lg:to-white/0"
+          ></div>
+        </div>
+      </section>
       <!-- @section:intro (P3) -->
       <!-- @section:villas (P4) -->
       <!-- @section:complex (P3) -->

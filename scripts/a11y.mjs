@@ -31,7 +31,8 @@ const browser = await chromium.launch();
 let failed = false;
 try {
   for (const width of [1440, 390]) {
-    const page = await browser.newPage({ viewport: { width, height: 900 } });
+    const context = await browser.newContext({ viewport: { width, height: 900 } });
+    const page = await context.newPage();
     await page.goto(url, { waitUntil: "networkidle" });
     const { violations } = await new AxeBuilder({ page }).analyze();
     console.log(`\n=== axe @ ${width}px — ${violations.length} violation type(s) ===`);
@@ -40,7 +41,7 @@ try {
       for (const n of v.nodes.slice(0, 5)) console.log(`   ${n.target.join(" ")}`);
       if (v.impact === "critical" || v.impact === "serious") failed = true;
     }
-    await page.close();
+    await context.close();
   }
 } finally {
   await browser.close();
