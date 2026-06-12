@@ -73,11 +73,10 @@
 - [x] **Done:** 1440 faithful both sections; 390 stacked; axe 0 both widths; context files 05+06; commit `P5`
 
 ### P6 — Community expanding gallery — node `167:781` (M–L)
-- [ ] Fetch `167:781` → `_design/context/07-community.md`
-- [ ] `#community`: centered H2; intro per Map; 3 panels (Architectural Excellence / Exclusive Amenities / More freedom) each heading-button + paragraph + photo
-- [ ] `src/modules/gallery.ts`: ≥lg expanding gallery (active ~555px photo, inactive ~120px); `aria-expanded` heading buttons; arrows cycle; collapsed text untabbable + `aria-hidden`. Exception to transform-only rule: animates `grid-template-columns` ≤400ms, disabled under reduced-motion — log
-- [ ] Baseline (mobile AND no-JS): all panels stacked fully expanded
-- [ ] **Done:** click/keyboard/arrows work; stacked baseline verified; reduced-motion shot; commit `P6`
+- [x] Context → `_design/context/07-community.md`. Actual layout: intro LEFT + title RIGHT (70/85, overlaps container edge `lg:-mr-24` — browser PT Serif metrics wider than Figma's); panels STAGGERED (panel 2 photo-first in DOM); horizontal accordion with one panel collapsed to `--gallery-collapsed` 7.5rem sliver (design default: panel 3, ending at viewport edge)
+- [x] `src/modules/gallery.ts`: collapsed-index state machine; arrows slide the open window (right pulls hidden right content open; disabled at ends — reproduces design's pearl/stygian default); heading buttons `aria-expanded`, collapse-self; collapsed text `visibility:hidden` (untabbable + SR-hidden); `grid-template-columns` transition 0.4s — logged exception, off under reduced-motion and <lg
+- [x] Baseline verified: <lg and no-JS = stacked, all content visible, controls hidden (JS+lg reveals)
+- [x] **Done:** interaction tested live via Playwright (state JSON + screenshots of both states); axe 0 both widths; commit `P6`
 
 ### P7 — CTA + Contact form — node `373:129` (L, solo)
 - [ ] Fetch `373:129` → `_design/context/08-cta-form.md`
@@ -161,6 +160,8 @@ Conventions: Tailwind default breakpoints, mobile-first (`md` first 2-col, `lg` 
 | P4 | Spec icons = coral (their real role); carousel arrows = stygian/pearl pair per design exports | Extracted from design context + arrow SVGs |
 | P5 | Location body = design copy verbatim (real, names Lozenets/1 km); Location.md kept for future subpage | Design-copy-wins rule |
 | P5 | `html { overflow-x: clip }` global guard + screenshot crop-to-viewport | Chrome inflates scrollWidth from snap-track end padding; clip blocks any real h-scroll, crop fixes captures |
+| P6 | Community = horizontal accordion (1 collapsed sliver), grid-template-columns animated ≤400ms | Conscious exception to transform-only rule — inherent to the pattern; disabled under reduced-motion and <lg |
+| P6 | Big serif titles get `lg:-mr-*` overlap room (intro, community) | Web PT Serif renders ~3% wider than Figma; design itself overflows title boxes past the container |
 | plan | Progress tracked in this file only (no harness task list) | Survives session death; single source of truth |
 
 ## Content Map (final string ← source)
