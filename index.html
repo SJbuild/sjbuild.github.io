@@ -164,9 +164,103 @@
           ></div>
         </div>
       </section>
-      <!-- @section:intro (P3) -->
+      <!-- @section:intro -->
+      <section id="intro" aria-labelledby="intro-title" class="mt-section px-4 sm:px-6 xl:px-13">
+        <div class="mx-auto grid max-w-(--container-box) overflow-hidden rounded-box bg-linear-to-l from-peach to-ice lg:grid-cols-[1.08fr_1fr]">
+          <div class="order-2 px-6 pt-8 pb-10 sm:px-10 lg:order-1 lg:py-14 lg:pr-8 lg:pl-23">
+            <h2 id="intro-title" class="relative z-10 max-w-[15ch] text-display-xl lg:w-[120%] lg:max-w-none">
+              Where Privacy Meets Modern Luxury
+            </h2>
+            <p class="mt-5 max-w-md text-lead">
+              The villas combine contemporary design with natural materials, creating a timeless aesthetic and an inviting
+              atmosphere. The spacious interior layouts provide the ultimate escape for families, vacationers, and
+              investors.
+            </p>
+            <a href="#contacts" class="btn btn-dark mt-7">Get a Quote</a>
+          </div>
+          <div class="order-1 lg:order-2">
+            <picture>
+              <source
+                type="image/avif"
+                srcset="/images/intro-villa-480.avif 480w, /images/intro-villa-768.avif 768w, /images/intro-villa-929.avif 929w"
+                sizes="(min-width: 64rem) 48vw, 100vw"
+              />
+              <source
+                type="image/webp"
+                srcset="/images/intro-villa-480.webp 480w, /images/intro-villa-768.webp 768w, /images/intro-villa-929.webp 929w"
+                sizes="(min-width: 64rem) 48vw, 100vw"
+              />
+              <img
+                src="/images/intro-villa-929.jpg"
+                srcset="/images/intro-villa-480.jpg 480w, /images/intro-villa-768.jpg 768w, /images/intro-villa-929.jpg 929w"
+                sizes="(min-width: 64rem) 48vw, 100vw"
+                alt="Villa exterior combining white volumes with natural wood cladding"
+                width="929"
+                height="823"
+                loading="lazy"
+                decoding="async"
+                class="h-full max-h-72 w-full -scale-x-100 object-cover object-[70%_55%] sm:max-h-96 lg:max-h-none"
+              />
+            </picture>
+          </div>
+        </div>
+      </section>
       <!-- @section:villas (P4) -->
-      <!-- @section:complex (P3) -->
+      <!-- @section:complex -->
+      <section id="complex" aria-labelledby="complex-title" class="relative isolate mt-section">
+        <img
+          src="/images/complex-bg-1440.jpg"
+          srcset="
+            /images/complex-bg-480.jpg   480w,
+            /images/complex-bg-768.jpg   768w,
+            /images/complex-bg-1024.jpg 1024w,
+            /images/complex-bg-1440.jpg 1440w,
+            /images/complex-bg-1491.jpg 1491w
+          "
+          sizes="100vw"
+          alt=""
+          width="1491"
+          height="1055"
+          loading="lazy"
+          decoding="async"
+          class="aspect-3/2 w-full object-cover lg:absolute lg:inset-0 lg:-z-10 lg:aspect-auto lg:h-full"
+        />
+        <div class="mx-auto max-w-content px-gutter">
+          <div class="relative -mt-14 lg:mt-0 lg:flex lg:justify-end lg:py-17">
+            <div
+              class="w-full max-w-(--container-card) rounded-card bg-linear-[58deg] from-ice/91 to-peach/91 p-7 backdrop-blur-frost sm:p-10 lg:p-14"
+            >
+              <h2 id="complex-title" class="text-display-lg">About the complex</h2>
+              <p class="mt-8 text-bodysm text-nevada">
+                The villa complex was envisioned as a serene retreat with a direct sea view, where sophisticated design
+                meets natural beauty. Every detail has been selected to elevate the residential experience. Situated only
+                1km away from Lozenets&rsquo; downtown area, the complex is the perfect choice for a residential or
+                holiday home.
+              </p>
+              <dl class="mt-9">
+                <div class="flex items-baseline justify-between gap-6 border-b border-hairline py-5">
+                  <dt class="text-base text-nevada">Land area</dt>
+                  <dd class="font-display text-stat text-lagoon">110 000 m²</dd>
+                </div>
+                <div class="flex items-baseline justify-between gap-6 border-b border-hairline py-5">
+                  <dt class="text-base text-nevada">Park environment and green areas</dt>
+                  <dd class="font-display text-stat text-lagoon">92 decares</dd>
+                </div>
+                <div class="flex items-baseline justify-between gap-6 border-b border-hairline py-5">
+                  <dt class="text-base text-nevada">Properties</dt>
+                  <dd class="font-display text-stat text-lagoon">145</dd>
+                </div>
+                <div class="flex items-baseline justify-between gap-6 py-5">
+                  <dt class="text-base text-nevada">Start of construction</dt>
+                  <dd class="font-display text-stat text-lagoon">20.12.2025</dd>
+                </div>
+              </dl>
+              <!-- TODO(page): link to the "About the complex" subpage once it exists -->
+              <a href="#" class="btn btn-dark mt-6">Learn more</a>
+            </div>
+          </div>
+        </div>
+      </section>
       <!-- @section:location (P5) -->
       <!-- @section:community (P6) -->
       <!-- @section:about-us (P5) -->

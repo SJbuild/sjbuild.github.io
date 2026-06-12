@@ -54,9 +54,9 @@
 - [x] **Done:** 1440 matches comp; 390 clean; axe 0 violations @1440+390; context saved; commit `P2`
 
 ### P3 — Intro box + About the complex — nodes `167:623`, `167:750` (M)
-- [ ] Fetch `167:623` → `_design/context/02-intro-box.md` → build `#intro`: rounded `bg-boxes` box; ≥lg 2-col (text | image bleeding to edge); H2 "Where Privacy Meets Modern Luxury"; copy per Map; coral button → `#contacts`; mobile: image above text
-- [ ] Fetch `167:750` → `_design/context/03-complex.md` → build `#complex`: full-bleed photo + right white card: H2 "About the complex", intro copy, `<dl>` spec table (Land area 110 000 m² / Park environment and green areas 92 decares / Properties 145 / Start of construction 20.12.2025) hairline dividers; Learn more stub; mobile: photo then full-width card
-- [ ] **Done:** both match 1440 / stack at 390; real copy; 2 context files; commit `P3`
+- [x] `#intro`: box is peach→ice GRADIENT (`--color-peach/ice`), radius 61 (`--radius-box` clamp), title PT Serif Regular 94 (`--text-display-xl`) overlapping into photo col (`lg:w-[120%]`, design overlaps layers), photo flipped `-scale-x-100`, Get a Quote → `#contacts`; mobile image-first stack
+- [x] `#complex`: visible bg = `complex-bg-raw1` aerial (pano was covered layer — asset swapped + regenerated); frosted card (ice/peach /91 + `backdrop-blur-frost` 30px, `--radius-card` 22px); title 70px (`--text-display-lg`); body = About the complex.md intro (`--text-bodysm` 14/26); `<dl>` spec table w/ `--color-hairline` dividers + PT Serif 34 lagoon values (`--text-stat`); Learn more stub TODO(page); mobile photo + `-mt-14` overlapping card
+- [x] **Done:** 1440 matches comp (3-line title wrap exact); 390 stacks clean; real copy, no lorem; context files 02+03 saved; commit `P3`
 
 ### P4 — Villas carousel — node `167:635` (L, solo)
 - [ ] Fetch `167:635` → `_design/context/04-villas.md`
@@ -153,6 +153,9 @@ Conventions: Tailwind default breakpoints, mobile-first (`md` first 2-col, `lg` 
 | P2 | Hero photo corrected to `hero-raw1` (dusk villa row, 3050×2593) | Layer-order misread in P1; aspect-ratio math + render comparison proved raw1 is the visible fill |
 | P2 | Mobile hero restructured: text on white, photo in flow below w/ seam fade | Desktop absolute composite made subtitle unreadable over dark building at 390px |
 | P2 | Logo stays PNG (512w) — Figma logo node is an image fill; its SVG export embeds a 300KB raster | Crisp at 2.5×, 16KB |
+| P3 | complex-bg corrected to raw1 (aerial street view); pano was a covered layer | Same z-order trap as hero; render comparison decides |
+| P3 | "110 000 m2" rendered as "m²"; box/section radii + section rhythm (92px) + display-xl/lg/stat/bodysm type tokens calibrated | Typographic correctness; design-context measurements |
+| P3 | Intro/complex surfaces use peach↔ice gradients + frosted blur, not flat `--color-boxes` | Design context superseded the variables list; `--color-boxes` kept for villa cards (P4 confirms) |
 | plan | Progress tracked in this file only (no harness task list) | Survives session death; single source of truth |
 
 ## Content Map (final string ← source)

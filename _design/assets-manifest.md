@@ -5,9 +5,9 @@ Renders + unchosen candidates: `_design/raw-staging/` (gitignored, disposable). 
 
 | Figma node | Raw file | Source px | Section | Alt intent | Notes |
 |---|---|---|---|---|---|
-| 370:91 (fill "Image-2 1") | hero.jpg | 1808×1600 | Hero bg | decorative (alt="") — heading carries meaning | visible fill; ~1.25× at 1440, acceptable. Scrim done in CSS, not baked |
+| 370:91 (fill "Group 1 copy") | hero.png | 3050×2593 | Hero bg | decorative (alt="") — heading carries meaning | CORRECTED P2: visible layer is the dusk villa row (raw1), not Image-2. White gradient done in CSS |
 | 371:99 (fill "Image-3-1 1") | intro-villa.png | 929×823 | Intro box photo | "Modern villa with natural materials" | only source available; ~1.2× of placed size — slightly soft on retina |
-| 372:94 (fill "AdobeStock_281394108") | complex-bg.jpg | 4096×1422 | Complex section bg | decorative (alt="") | wide pano, crop via object-cover/position |
+| 372:94 (fill "Rectangle 17") | complex-bg.png | 1491×1055 | Complex section bg | decorative (alt="") | CORRECTED P3: visible layer is the aerial street view (raw1); pano was covered |
 | 182:34 (fill) | villa-1.png | 556×527 | Villa card 1 | "Beach Lux Villa 1 exterior" | exact design crop, 1× only — soft on retina (no larger source exists) |
 | 182:63 (fill) | villa-2.png | 1552×975 | Villa card 2 | "Villa 2 exterior" | good res |
 | 373:198 (fill) | villa-3.png | 1724×912 | Villa card 3 | "Villa 3 exterior" | good res |
