@@ -1,0 +1,14 @@
+{
+  "name": "sjbuild-website",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "assets": "node scripts/optimize-images.mjs",
+    "shoot": "node scripts/screenshot.mjs",
+    "a11y": "node scripts/a11y.mjs"
+  }
+}

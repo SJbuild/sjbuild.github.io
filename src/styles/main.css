@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Colors (Figma variable names) ─────────────────────────────── */
+  --color-stygian: #1d1e22; /* Stygian Primary — headings, header/footer bg, scrims */
+  --color-nevada: #666a7a; /* Grey Nevada — body text */
+  --color-boxes: #f2f5f8; /* Boxes — light card/panel bg */
+  --color-coral: #ff7f50; /* Coral Secondary — accent. White text on it fails AA */
+  --color-lagoon: #2774d9; /* Lagoon Blue Secondary — inline links */
+  --color-sand: #f4f4f4; /* Wild Sand Primary — page bg */
+
+  /* ── Typography ────────────────────────────────────────────────── */
+  --font-display: "PT Serif", Georgia, "Times New Roman", serif;
+  --font-sans: "Noto Sans", system-ui, -apple-system, sans-serif;
+
+  /* Fluid type scale — provisional clamps, locked to Figma values in P2 */
+  --text-display-2xl: clamp(2.75rem, 1.4rem + 5.4vw, 5.5rem);
+  --text-display-2xl--line-height: 1.12;
+  --text-display-xl: clamp(2rem, 1.36rem + 2.55vw, 3.5rem);
+  --text-display-xl--line-height: 1.18;
+  --text-display-lg: clamp(1.5rem, 1.27rem + 0.9vw, 1.875rem);
+  --text-display-lg--line-height: 1.25;
+  --text-lead: clamp(1.0625rem, 0.98rem + 0.35vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+
+  /* ── Layout ────────────────────────────────────────────────────── */
+  --container-content: 71.25rem; /* 1140px = 1440 − 2×150 design margins */
+  --spacing-gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --spacing-section: clamp(4.5rem, 3rem + 5.5vw, 8rem); /* Figma 90–130px rhythm */
+  --spacing-header: 5.5rem; /* confirm in P2 */
+
+  /* ── Shape & media ─────────────────────────────────────────────── */
+  --radius-box: 1.5rem; /* confirm in P3 */
+  --radius-btn: 0.5rem; /* confirm in P2 */
+  --aspect-hero: 1440 / 1040;
+  --aspect-card-img: 556 / 527;
+
+  /* ── Motion ────────────────────────────────────────────────────── */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-padding-top: calc(var(--spacing-header) + 1rem);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    @apply bg-sand font-sans text-nevada antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-stygian;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-lagoon;
+  }
+}
+
+@layer components {
+  /* Reveal-on-scroll: hidden only when JS is available; reduced-motion opts out */
+  html.js [data-reveal] {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition:
+      opacity 0.7s var(--ease-out-soft),
+      transform 0.7s var(--ease-out-soft);
+    transition-delay: var(--reveal-delay, 0s);
+  }
+
+  html.js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html.js [data-reveal] {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}
