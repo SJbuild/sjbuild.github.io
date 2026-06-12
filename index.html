@@ -28,6 +28,55 @@
     <script type="module" src="/src/main.ts"></script>
   </head>
   <body>
+    <svg aria-hidden="true" class="hidden">
+      <defs>
+        <symbol id="i-area" viewBox="0 0 16 16">
+          <path
+            fill="currentColor"
+            d="M0 1.75V14c0 .965.785 1.75 1.75 1.75H14c.965 0 1.75-.785 1.75-1.75V1.75C15.75.785 14.965 0 14 0H1.75C.785 0 0 .785 0 1.75M14.002 14H1.75V1.75H14z"
+          />
+          <path fill="currentColor" d="M10.5 7.875h1.75V3.5H7.875v1.75H10.5zM7.875 10.5H5.25V7.875H3.5v4.375h4.375z" />
+        </symbol>
+        <symbol id="i-bed" viewBox="0 0 16 11">
+          <path
+            fill="currentColor"
+            d="M0 11V6.286q0-.531.22-.963t.58-.766v-2.2q0-.982.7-1.67A2.34 2.34 0 0 1 3.2 0h3.2q.46 0 .86.167.4.168.74.462.34-.295.74-.462.4-.165.86-.167h3.2q1 0 1.7.688.7.686.7 1.67v2.2q.36.333.58.765.22.433.22.963V11h-1.6V9.429H1.6V11zm8.8-7.071h4.8V2.357a.75.75 0 0 0-.23-.56.79.79 0 0 0-.57-.226H9.6a.78.78 0 0 0-.8.786zm-6.4 0h4.8V2.357a.75.75 0 0 0-.23-.56.79.79 0 0 0-.57-.226H3.2a.78.78 0 0 0-.8.786zm-.8 3.928h12.8V6.286a.75.75 0 0 0-.23-.56.79.79 0 0 0-.57-.226H2.4a.78.78 0 0 0-.8.786z"
+          />
+        </symbol>
+        <symbol id="i-bath" viewBox="0 0 18 16">
+          <path
+            fill="currentColor"
+            d="M17.182 7.997H3.272V3.523a1.56 1.56 0 0 1 .226-.82c.15-.247.366-.45.626-.588.287-.151.614-.215.939-.184a2.74 2.74 0 0 0-.068 1.517c.12.502.381.962.753 1.328l.867.848a.82.82 0 0 0 .579.235.83.83 0 0 0 .579-.235l2.892-2.83a.79.79 0 0 0 0-1.13l-.867-.85A2.905 2.905 0 0 0 6.092.54a3.33 3.33 0 0 0-3.034.34 3.2 3.2 0 0 0-1.046 1.15c-.248.46-.377.974-.376 1.494v4.474H.818a.83.83 0 0 0-.578.234.79.79 0 0 0 0 1.132c.153.15.361.235.578.235h.818v2.4c.002.495.16.978.453 1.381.293.404.706.709 1.184.873v.948c0 .212.086.416.24.566a.827.827 0 0 0 1.156 0 .8.8 0 0 0 .24-.566v-.8h8.182v.8c0 .212.086.416.24.566a.83.83 0 0 0 1.157 0 .8.8 0 0 0 .24-.566v-.948c.476-.164.89-.47 1.183-.873s.451-.886.453-1.38V9.596h.818a.83.83 0 0 0 .578-.234.79.79 0 0 0 0-1.132.83.83 0 0 0-.578-.234M6.905 1.947c.23-.225.542-.352.868-.352s.637.127.867.352l.29.282-1.736 1.697-.29-.282a1.2 1.2 0 0 1-.36-.85 1.18 1.18 0 0 1 .36-.848zm7.822 10.051a.8.8 0 0 1-.24.566.83.83 0 0 1-.578.235H4.091a.83.83 0 0 1-.579-.235.8.8 0 0 1-.24-.566v-2.4h11.455z"
+          />
+        </symbol>
+        <symbol id="i-garage" viewBox="0 0 16 16">
+          <path
+            fill="currentColor"
+            d="M.8 14.179V15.2a.8.8 0 0 0 .8.8h.8a.8.8 0 0 0 .8-.8v-.8h9.6v.8a.8.8 0 0 0 .8.8h.8a.8.8 0 0 0 .8-.8V14.18A1.59 1.59 0 0 0 16 12.8v-2.4a1.6 1.6 0 0 0-.982-1.476l-1.095-3.283a2.4 2.4 0 0 0-2.276-1.64H4.353a2.4 2.4 0 0 0-2.276 1.64L.982 8.924A1.6 1.6 0 0 0 0 10.4v2.4c0 .59.323 1.101.8 1.379m2-1.379a1.203 1.203 0 0 1-1.2-1.2 1.2 1.2 0 1 1 1.2 1.2m10.4 0a1.2 1.2 0 1 1 0-2.4 1.2 1.2 0 0 1 0 2.4M4.353 5.6h7.293a.8.8 0 0 1 .76.547L13.29 8.8H2.71l.884-2.653a.8.8 0 0 1 .759-.547"
+          />
+          <path fill="currentColor" d="M16 4.31V2.624L8.253.041a.8.8 0 0 0-.527.007L0 2.858V4.56l8.012-2.913z" />
+        </symbol>
+        <symbol id="i-arrow-left" viewBox="0 0 35 35">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="square"
+            stroke-width="2"
+            d="m16.343 23-5.448-5.5 5.448-5.5m-4.21 5.5H25.01"
+          />
+        </symbol>
+        <symbol id="i-arrow-right" viewBox="0 0 35 35">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="square"
+            stroke-width="2"
+            d="m18.324 23 5.447-5.5-5.448-5.5m4.21 5.5H9.657"
+          />
+        </symbol>
+      </defs>
+    </svg>
+
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-btn focus:bg-stygian focus:px-6 focus:py-3 focus:text-white"
@@ -205,7 +254,193 @@
           </div>
         </div>
       </section>
-      <!-- @section:villas (P4) -->
+      <!-- @section:villas -->
+      <section id="villas" aria-labelledby="villas-title" class="mt-section">
+        <div class="mx-auto max-w-content px-gutter">
+          <div class="grid gap-7 lg:grid-cols-2 lg:items-start">
+            <h2 id="villas-title" class="max-w-[12ch] text-display-lg">Explore Our Luxury Villas</h2>
+            <div class="flex flex-col items-start gap-6 lg:items-end">
+              <p class="max-w-(--container-measure) text-leadlg lg:mt-2">
+                Each residence is crafted for discerning buyers seeking a serene lifestyle paired with exceptional
+                long-term returns.
+              </p>
+              <!-- TODO(page): villas listing page -->
+              <a href="#" class="btn btn-dark">View all Villas</a>
+            </div>
+          </div>
+          <div data-carousel-controls class="mt-8 flex justify-end gap-2.5">
+            <button type="button" data-carousel-prev class="btn-arrow" aria-label="Previous villa" aria-controls="villas-track">
+              <svg aria-hidden="true" class="h-9 w-9"><use href="#i-arrow-left" /></svg>
+            </button>
+            <button type="button" data-carousel-next class="btn-arrow" aria-label="Next villa" aria-controls="villas-track">
+              <svg aria-hidden="true" class="h-9 w-9"><use href="#i-arrow-right" /></svg>
+            </button>
+          </div>
+        </div>
+
+        <ul
+          role="list"
+          id="villas-track"
+          data-carousel-track
+          tabindex="0"
+          aria-label="Villas"
+          class="bleed-track no-scrollbar mt-9 flex snap-x snap-mandatory gap-7 overflow-x-auto"
+        >
+          <li class="w-(--villa-card-w) shrink-0 snap-start">
+            <article class="overflow-hidden rounded-card">
+              <img
+                src="/images/villa-1-556.jpg"
+                srcset="/images/villa-1-480.jpg 480w, /images/villa-1-556.jpg 556w"
+                sizes="(min-width: 64rem) 34.75rem, 85vw"
+                alt="Beach Lux Villa 1 — exterior with driveway and garage"
+                width="556"
+                height="527"
+                loading="lazy"
+                decoding="async"
+                class="aspect-card-img w-full object-cover"
+              />
+              <div class="bg-boxes px-7 pt-4.5 pb-7 sm:px-9">
+                <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+                  <h3 class="text-display-md">Beach Lux Villa 1</h3>
+                  <a href="#contacts" class="btn btn-dark shrink-0" aria-label="Get a quote for Beach Lux Villa 1"
+                    >Get a quote</a
+                  >
+                </div>
+                <p class="mt-5 text-caption text-nevada">
+                  Clean lines and open spaces, built with high-end materials, energy-efficient systems, and smart home
+                  technology throughout.
+                  <!-- TODO(page): villa detail page -->
+                  <a href="#" class="font-bold underline" aria-label="Learn more about Beach Lux Villa 1">Learn more</a>
+                </p>
+                <ul role="list" class="mt-4.5 flex items-center gap-6 text-caption text-stygian">
+                  <li class="flex items-center gap-1.5">
+                    <svg aria-hidden="true" class="h-4 w-4 text-coral"><use href="#i-area" /></svg>
+                    <span>250m²<span class="sr-only"> built-up area</span></span>
+                  </li>
+                  <li class="flex items-center gap-1.5">
+                    <svg aria-hidden="true" class="h-3 w-4 text-coral"><use href="#i-bed" /></svg>
+                    <span>3<span class="sr-only"> bedrooms</span></span>
+                  </li>
+                  <li class="flex items-center gap-1.5">
+                    <svg aria-hidden="true" class="h-4 w-4.5 text-coral"><use href="#i-bath" /></svg>
+                    <span>2<span class="sr-only"> bathrooms</span></span>
+                  </li>
+                  <li class="flex items-center gap-1.5">
+                    <svg aria-hidden="true" class="h-4 w-4 text-coral"><use href="#i-garage" /></svg>
+                    <span>1<span class="sr-only"> garage</span></span>
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </li>
+
+          <li class="w-(--villa-card-w) shrink-0 snap-start">
+            <article class="overflow-hidden rounded-card">
+              <img
+                src="/images/villa-2-1024.jpg"
+                srcset="
+                  /images/villa-2-480.jpg   480w,
+                  /images/villa-2-768.jpg   768w,
+                  /images/villa-2-1024.jpg 1024w,
+                  /images/villa-2-1440.jpg 1440w
+                "
+                sizes="(min-width: 64rem) 34.75rem, 85vw"
+                alt="Beach Lux Villa 2 — exterior with wood-slat facade and garden"
+                width="1552"
+                height="975"
+                loading="lazy"
+                decoding="async"
+                class="aspect-card-img w-full object-cover"
+              />
+              <div class="bg-boxes px-7 pt-4.5 pb-7 sm:px-9">
+                <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+                  <h3 class="text-display-md">Beach Lux Villa 2</h3>
+                  <a href="#contacts" class="btn btn-dark shrink-0" aria-label="Get a quote for Beach Lux Villa 2"
+                    >Get a quote</a
+                  >
+                </div>
+                <p class="mt-5 text-caption text-nevada">
+                  A private yard, designated parking, and a summer garden with a rooftop jacuzzi — made for effortless
+                  coastal living.
+                  <!-- TODO(page): villa detail page -->
+                  <a href="#" class="font-bold underline" aria-label="Learn more about Beach Lux Villa 2">Learn more</a>
+                </p>
+                <ul role="list" class="mt-4.5 flex items-center gap-6 text-caption text-stygian">
+                  <li class="flex items-center gap-1.5">
+                    <svg aria-hidden="true" class="h-4 w-4 text-coral"><use href="#i-area" /></svg>
+                    <span>250m²<span class="sr-only"> built-up area</span></span>
+                  </li>
+                  <li class="flex items-center gap-1.5">
+                    <svg aria-hidden="true" class="h-3 w-4 text-coral"><use href="#i-bed" /></svg>
+                    <span>3<span class="sr-only"> bedrooms</span></span>
+                  </li>
+                  <li class="flex items-center gap-1.5">
+                    <svg aria-hidden="true" class="h-4 w-4.5 text-coral"><use href="#i-bath" /></svg>
+                    <span>2<span class="sr-only"> bathrooms</span></span>
+                  </li>
+                  <li class="flex items-center gap-1.5">
+                    <svg aria-hidden="true" class="h-4 w-4 text-coral"><use href="#i-garage" /></svg>
+                    <span>1<span class="sr-only"> garage</span></span>
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </li>
+
+          <li class="w-(--villa-card-w) shrink-0 snap-start">
+            <article class="overflow-hidden rounded-card">
+              <img
+                src="/images/villa-3-1024.jpg"
+                srcset="
+                  /images/villa-3-480.jpg   480w,
+                  /images/villa-3-768.jpg   768w,
+                  /images/villa-3-1024.jpg 1024w,
+                  /images/villa-3-1440.jpg 1440w
+                "
+                sizes="(min-width: 64rem) 34.75rem, 85vw"
+                alt="Beach Lux Villa 3 — exterior with landscaped entrance"
+                width="1724"
+                height="912"
+                loading="lazy"
+                decoding="async"
+                class="aspect-card-img w-full object-cover"
+              />
+              <div class="bg-boxes px-7 pt-4.5 pb-7 sm:px-9">
+                <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+                  <h3 class="text-display-md">Beach Lux Villa 3</h3>
+                  <a href="#contacts" class="btn btn-dark shrink-0" aria-label="Get a quote for Beach Lux Villa 3"
+                    >Get a quote</a
+                  >
+                </div>
+                <p class="mt-5 text-caption text-nevada">
+                  Spacious interiors with a direct sea view, a barbecue area, and a serene park environment steps from
+                  the beach.
+                  <!-- TODO(page): villa detail page -->
+                  <a href="#" class="font-bold underline" aria-label="Learn more about Beach Lux Villa 3">Learn more</a>
+                </p>
+                <ul role="list" class="mt-4.5 flex items-center gap-6 text-caption text-stygian">
+                  <li class="flex items-center gap-1.5">
+                    <svg aria-hidden="true" class="h-4 w-4 text-coral"><use href="#i-area" /></svg>
+                    <span>250m²<span class="sr-only"> built-up area</span></span>
+                  </li>
+                  <li class="flex items-center gap-1.5">
+                    <svg aria-hidden="true" class="h-3 w-4 text-coral"><use href="#i-bed" /></svg>
+                    <span>3<span class="sr-only"> bedrooms</span></span>
+                  </li>
+                  <li class="flex items-center gap-1.5">
+                    <svg aria-hidden="true" class="h-4 w-4.5 text-coral"><use href="#i-bath" /></svg>
+                    <span>2<span class="sr-only"> bathrooms</span></span>
+                  </li>
+                  <li class="flex items-center gap-1.5">
+                    <svg aria-hidden="true" class="h-4 w-4 text-coral"><use href="#i-garage" /></svg>
+                    <span>1<span class="sr-only"> garage</span></span>
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </section>
       <!-- @section:complex -->
       <section id="complex" aria-labelledby="complex-title" class="relative isolate mt-section">
         <img

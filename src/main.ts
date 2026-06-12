@@ -6,7 +6,9 @@ import "@fontsource/pt-serif/700.css";
 import "./styles/main.css";
 
 import { initNav } from "./modules/nav";
+import { initCarousel } from "./modules/carousel";
 
 // Feature modules are initialized here as sections land (see PLAN.md):
-// carousel.ts (P4), gallery.ts (P6), form.ts (P7), reveal.ts + lang.ts (P8)
+// gallery.ts (P6), form.ts (P7), reveal.ts + lang.ts (P8)
 initNav();
+initCarousel();

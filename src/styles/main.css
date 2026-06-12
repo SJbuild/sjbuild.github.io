@@ -12,6 +12,7 @@
   --color-peach: #ffe5dc; /* box gradient warm stop */
   --color-ice: #e9f3ff; /* box gradient cool stop */
   --color-hairline: #f8f8f8; /* 1px dividers on frosted cards */
+  --color-pearl: #b4bbd4; /* disabled carousel arrows */
 
   /* ── Typography ────────────────────────────────────────────────── */
   --font-display: "PT Serif", Georgia, "Times New Roman", serif;
@@ -24,8 +25,12 @@
   --text-display-xl--line-height: 1.3;
   --text-display-lg: clamp(2.25rem, 1rem + 3.75vw, 4.375rem); /* section titles 70px */
   --text-display-lg--line-height: 1.33;
-  --text-display-md: clamp(1.375rem, 1.2rem + 0.8vw, 1.875rem); /* card H3, confirm P4 */
-  --text-display-md--line-height: 1.3;
+  --text-display-md: clamp(1.375rem, 1.25rem + 0.55vw, 1.75rem); /* card H3 28px */
+  --text-display-md--line-height: 1.25;
+  --text-leadlg: clamp(1.125rem, 1rem + 0.85vw, 1.5rem); /* large intro 24px/38px */
+  --text-leadlg--line-height: 1.58;
+  --text-caption: 0.8125rem; /* card descriptions 13px/23px */
+  --text-caption--line-height: 1.77;
   --text-stat: clamp(1.5rem, 1.1rem + 1.2vw, 2.125rem); /* spec values 34px, PT Serif lagoon */
   --text-stat--line-height: 1.25;
   --text-lead: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem); /* body/lead 17px/29px */
@@ -43,6 +48,7 @@
   --spacing-section: clamp(4rem, 2.4rem + 4.4vw, 5.75rem); /* Figma ~92px rhythm */
   --spacing-header: 6rem; /* 43px offset + 55px bar */
   --hero-h: clamp(42rem, 72.25vw, 65rem); /* 1040/1440 */
+  --villa-card-w: min(34.75rem, 85vw); /* 556px card, mobile peek */
 
   /* ── Shape & media ─────────────────────────────────────────────── */
   --radius-box: clamp(1.75rem, 4.25vw, 3.8125rem); /* intro box 61px */
@@ -94,6 +100,33 @@
 
   .btn-dark:hover {
     @apply bg-stygian/80;
+  }
+
+  /* Carousel arrow buttons — design: 35px circle, stygian active / pearl disabled */
+  .btn-arrow {
+    @apply flex h-9 w-9 items-center justify-center rounded-full bg-stygian text-white transition-colors duration-200;
+  }
+
+  .btn-arrow:hover:not(:disabled) {
+    @apply bg-stygian/80;
+  }
+
+  .btn-arrow:disabled {
+    @apply bg-pearl;
+  }
+
+  /* Full-bleed scroll track whose content aligns with the page container */
+  .bleed-track {
+    padding-inline: max(var(--spacing-gutter), calc((100vw - var(--container-content)) / 2));
+    scroll-padding-inline: max(var(--spacing-gutter), calc((100vw - var(--container-content)) / 2));
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 
   /* Fixed header: transparent over hero, solid once scrolled */

@@ -59,12 +59,12 @@
 - [x] **Done:** 1440 matches comp (3-line title wrap exact); 390 stacks clean; real copy, no lorem; context files 02+03 saved; commit `P3`
 
 ### P4 — Villas carousel — node `167:635` (L, solo)
-- [ ] Fetch `167:635` → `_design/context/04-villas.md`
-- [ ] `#villas`: H2 + right-aligned intro; `<ul role="list">` scroll-snap track; 3 `<li><article>` cards from ONE pattern: image (aspect token, lazy) / `<h3>` name + Get a quote → `#contacts` / clamped description + Learn more stub / spec row (inline SVG `aria-hidden` + sr-only expansions: "250 m² built-up area", "3 bedrooms", "2 bathrooms", "1 garage")
-- [ ] Cards are static HTML (SEO/no-JS); `src/data/villas.ts` = canonical data consumed by carousel.ts (markup generated once, pasted static) — log decision
-- [ ] `src/modules/carousel.ts`: scroll-snap base; JS adds prev/next (aria-label, scrollBy one card, disabled at ends), arrow keys, auto-hide when no overflow. No autoplay. View all Villas stub
-- [ ] Responsive: mobile ~85vw cards with peek + snap; ≥xl three visible
-- [ ] **Done:** matches design; touch/wheel/buttons/keyboard all work; plain scroll without JS; commit `P4`
+- [x] Context fetched → `_design/context/04-villas.md`; missing bed/bath/garage icons RECOVERED from context asset URLs (svgo'd; coral fills)
+- [x] `#villas`: header grid (title 70px left; 24/38 `--text-leadlg` intro + View all stub right); SVG sprite (`#i-area/bed/bath/garage/arrow-left/right`) at body start; 3 `<li><article>` cards: aspect-card-img image / `<h3>` 28px + Get a quote (per-villa aria-labels) / real-copy description + bold underline Learn more stub ("Leran more" typo fixed) / coral icon spec row with sr-only expansions
+- [x] Deviation logged: `src/data/villas.ts` SKIPPED — static markup is the single source; a data file consumed by nothing is dead weight. Villa names numbered 1/2/3 (design repeats "Beach Lux Villa 1" via instances)
+- [x] `src/modules/carousel.ts`: snap-scroll base (track `tabindex=0`, native keyboard/touch/wheel); JS prev/next `.btn-arrow` (stygian active / `--color-pearl` disabled — the design's own arrow pair), scrollBy one card+gap, smooth only when motion allowed, controls hidden when no overflow, ResizeObserver re-sync
+- [x] Responsive: `--villa-card-w: min(34.75rem, 85vw)` peek at all widths; `.bleed-track` full-bleed container-aligned padding
+- [x] **Done:** 1440 + 390 verified (disabled states live); axe 0 violations both widths; commit `P4`
 
 ### P5 — Location + About Us — nodes `167:772`, `216:128` (M)
 - [ ] Fetch `167:772` → `_design/context/05-location.md` → `#location`: 2-col ≥lg; H2 "A Prime Location with a Sea View" (normalize Cyrillic А→Latin — log); Location.md intro; Learn more stub; map = `public/images/map.svg` `<img>` explicit dims lazy descriptive alt
@@ -155,7 +155,9 @@ Conventions: Tailwind default breakpoints, mobile-first (`md` first 2-col, `lg` 
 | P2 | Logo stays PNG (512w) — Figma logo node is an image fill; its SVG export embeds a 300KB raster | Crisp at 2.5×, 16KB |
 | P3 | complex-bg corrected to raw1 (aerial street view); pano was a covered layer | Same z-order trap as hero; render comparison decides |
 | P3 | "110 000 m2" rendered as "m²"; box/section radii + section rhythm (92px) + display-xl/lg/stat/bodysm type tokens calibrated | Typographic correctness; design-context measurements |
-| P3 | Intro/complex surfaces use peach↔ice gradients + frosted blur, not flat `--color-boxes` | Design context superseded the variables list; `--color-boxes` kept for villa cards (P4 confirms) |
+| P3 | Intro/complex surfaces use peach↔ice gradients + frosted blur, not flat `--color-boxes` | Design context superseded the variables list; `--color-boxes` confirmed as villa-card panel bg in P4 |
+| P4 | villas.ts data file skipped; villa names numbered 1/2/3; descriptions authored from About-the-complex.md (design lorem) | YAGNI — no consumer for the data; design instances repeat one name; never ship lorem |
+| P4 | Spec icons = coral (their real role); carousel arrows = stygian/pearl pair per design exports | Extracted from design context + arrow SVGs |
 | plan | Progress tracked in this file only (no harness task list) | Survives session death; single source of truth |
 
 ## Content Map (final string ← source)
