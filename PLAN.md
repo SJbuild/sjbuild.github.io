@@ -28,13 +28,13 @@
 ## Phases
 
 ### P0 — Scaffold, toolchain, tokens (M)
-- [ ] `git init` + `.gitignore` (`node_modules/`, `dist/`, `.DS_Store`, `_design/verify/`)
-- [ ] Scaffold by hand (no `npm create vite` — dir not empty): `package.json`, `tsconfig.json` (strict, bundler resolution, noEmit), `vite.config.ts` (tailwindcss plugin), `index.html` shell, `src/main.ts`, `src/styles/main.css`
-- [ ] `npm i -D vite typescript tailwindcss @tailwindcss/vite sharp playwright @axe-core/playwright svgo html-validate` + `npm i @fontsource/pt-serif @fontsource/noto-sans` + `npx playwright install chromium`
-- [ ] `main.css`: `@import "tailwindcss"` + full `@theme` (see Token Architecture) + base layer (fonts incl. cyrillic subsets, body sand/nevada/sans, h1–h3 display/stygian, global `:focus-visible`, smooth scroll under `prefers-reduced-motion: no-preference`, `scroll-padding-top`, `html.js [data-reveal]` hidden state)
-- [ ] `index.html` shell: `lang="en"`, provisional title/desc, skip link, fixed `<header>` placeholder, `<main>` with 8 section placeholder comments, footer placeholder, module script
-- [ ] `scripts/optimize-images.mjs` (sharp → AVIF/WebP/JPEG at 2560/1920/1440/1024/768/480 capped at source width), `scripts/screenshot.mjs` (Playwright → `_design/verify/`, width + reduced-motion flags), `scripts/a11y.mjs` (axe, fail on critical/serious). npm scripts: dev/build/preview/assets/shoot/a11y
-- [ ] **Done:** `npm run build` exits 0; shell screenshot renders sand bg + PT Serif heading; commit `P0`
+- [x] `git init` + `.gitignore` (`node_modules/`, `dist/`, `.DS_Store`, `_design/verify/`)
+- [x] Scaffold by hand (no `npm create vite` — dir not empty): `package.json`, `tsconfig.json` (strict, bundler resolution, noEmit), `vite.config.ts` (tailwindcss plugin), `index.html` shell, `src/main.ts`, `src/styles/main.css` (+ `src/vite-env.d.ts` — TS6 requires vite/client types for CSS side-effect imports)
+- [x] `npm i -D vite typescript tailwindcss @tailwindcss/vite sharp playwright @axe-core/playwright svgo html-validate` + `npm i @fontsource/pt-serif @fontsource/noto-sans` + `npx playwright install chromium` (installed: vite 8, tailwind 4.3, ts 6.0)
+- [x] `main.css`: `@import "tailwindcss"` + full `@theme` (see Token Architecture) + base layer (fonts incl. cyrillic subsets, body sand/nevada/sans, h1–h3 display/stygian, global `:focus-visible`, smooth scroll under `prefers-reduced-motion: no-preference`, `scroll-padding-top`, `html.js [data-reveal]` hidden state). Fonts imported in `src/main.ts` (fontsource files include cyrillic unicode-range subsets)
+- [x] `index.html` shell: `lang="en"`, provisional title/desc, skip link, fixed `<header>` placeholder, `<main>` with 8 section placeholder comments, footer placeholder, module script
+- [x] `scripts/optimize-images.mjs` (sharp → AVIF/WebP/JPEG at 2560/1920/1440/1024/768/480 capped at source width), `scripts/screenshot.mjs` (Playwright → `_design/verify/`, builds+previews itself on port 4317, default emulates reduced-motion for determinism, `--motion` to opt out), `scripts/a11y.mjs` (axe @1440+390, fail on critical/serious, port 4319). npm scripts: dev/build/preview/assets/shoot/a11y
+- [x] **Done:** `npm run build` exits 0; shell screenshot verified (PT Serif heading + Noto Sans body + sand bg + token utilities working); commit `P0`
 
 ### P1 — Asset batch: download + optimize (M–L) — the ONLY phase calling `download_assets`
 - [ ] Photos → `_design/raw-assets/` (kebab names): hero `370:91`; intro-villa `371:99` (fallback inner `371:104`); complex-bg `372:94`; villa-card-1 `182:34`, villa-card-2 `182:63`, villa-card-3 `373:198`; arch-1 `182:197`, arch-2 `182:199`, arch-3 `167:897`; about-us `218:132` (fallback `376:277`); cta-bg `373:130`
