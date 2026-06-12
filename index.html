@@ -496,9 +496,91 @@
           </div>
         </div>
       </section>
-      <!-- @section:location (P5) -->
+      <!-- @section:location -->
+      <section id="location" aria-labelledby="location-title" class="mt-section lg:mt-0">
+        <div class="mx-auto max-w-content px-gutter">
+          <div class="lg:grid lg:grid-cols-[1fr_1.33fr] lg:items-end lg:gap-x-8">
+            <div class="lg:pb-2">
+              <h2 id="location-title" class="max-w-[14ch] text-display-lg">A Prime Location with a Sea View</h2>
+              <p class="mt-12 max-w-(--container-measure) text-bodysm text-nevada">
+                Located just 1 km away from the center of Lozenets, the complex is in a prime location with stunning sea
+                views. The perfect choice for people looking to combine privacy, comfort, and, at the same time, have
+                easy access to local attractions.
+              </p>
+              <!-- TODO(page): location subpage -->
+              <a href="#" class="btn btn-dark mt-6">Learn more</a>
+            </div>
+            <div class="mt-10 lg:mt-0 lg:bleed-right">
+              <img
+                src="/images/map.svg"
+                alt="Illustrated map of the Lozenets coastline on the Black Sea: the SJ Build complex sits 1 km southwest of Lozenets city center, between Central Beach and Oasis Beach"
+                width="738"
+                height="616"
+                loading="lazy"
+                decoding="async"
+                class="h-auto w-full"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
       <!-- @section:community (P6) -->
-      <!-- @section:about-us (P5) -->
+      <!-- @section:about-us -->
+      <section id="about-us" aria-labelledby="aboutus-title" class="relative isolate mt-section overflow-hidden bg-white">
+        <img
+          src="/images/about-ground.svg"
+          alt=""
+          aria-hidden="true"
+          width="1976"
+          height="427"
+          loading="lazy"
+          decoding="async"
+          class="absolute bottom-0 left-[-9%] -z-30 hidden w-[137%] max-w-none lg:block"
+        />
+        <picture>
+          <source
+            type="image/avif"
+            srcset="/images/about-us-480.avif 480w, /images/about-us-768.avif 768w, /images/about-us-1024.avif 1024w, /images/about-us-1278.avif 1278w"
+            sizes="(min-width: 64rem) 89vw, 100vw"
+          />
+          <source
+            type="image/webp"
+            srcset="/images/about-us-480.webp 480w, /images/about-us-768.webp 768w, /images/about-us-1024.webp 1024w, /images/about-us-1278.webp 1278w"
+            sizes="(min-width: 64rem) 89vw, 100vw"
+          />
+          <img
+            src="/images/about-us-1024.jpg"
+            srcset="/images/about-us-480.jpg 480w, /images/about-us-768.jpg 768w, /images/about-us-1024.jpg 1024w, /images/about-us-1278.jpg 1278w"
+            sizes="(min-width: 64rem) 89vw, 100vw"
+            alt="Aerial view of a villa with rooftop terraces, summer garden, and jacuzzi"
+            width="1278"
+            height="874"
+            loading="lazy"
+            decoding="async"
+            class="w-full lg:absolute lg:top-48 lg:left-[-13%] lg:-z-20 lg:w-[min(89vw,80rem)] lg:max-w-none"
+          />
+        </picture>
+        <div
+          aria-hidden="true"
+          class="absolute inset-0 -z-10 hidden bg-linear-[-70deg] from-white from-0% to-white/0 to-[69%] lg:block"
+        ></div>
+
+        <div class="mx-auto max-w-content px-gutter pt-8 pb-12 lg:min-h-(--aboutus-h) lg:pt-0 lg:pb-0">
+          <div class="lg:grid lg:grid-cols-2 lg:gap-8">
+            <div class="hidden lg:block" aria-hidden="true"></div>
+            <div>
+              <h2 id="aboutus-title" class="text-display-lg">About Us</h2>
+              <p class="mt-6 max-w-[31rem] text-lead">
+                We are a team of industry professionals with a long-standing commitment to delivering exceptional homes.
+                With decades of combined expertise in architecture, construction, and real estate development, we
+                specialize in creating high-end villas that stand the test of time.
+              </p>
+              <!-- TODO(page): about-us subpage -->
+              <a href="#" class="btn btn-dark mt-10">Learn more</a>
+            </div>
+          </div>
+        </div>
+      </section>
       <!-- @section:contacts CTA+form (P7) -->
     </main>
 

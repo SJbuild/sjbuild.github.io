@@ -49,6 +49,7 @@
   --spacing-header: 6rem; /* 43px offset + 55px bar */
   --hero-h: clamp(42rem, 72.25vw, 65rem); /* 1040/1440 */
   --villa-card-w: min(34.75rem, 85vw); /* 556px card, mobile peek */
+  --aboutus-h: 60rem; /* about-us photo zone (design 1076px, tail hidden under CTA) */
 
   /* ── Shape & media ─────────────────────────────────────────────── */
   --radius-box: clamp(1.75rem, 4.25vw, 3.8125rem); /* intro box 61px */
@@ -64,6 +65,9 @@
 @layer base {
   html {
     scroll-padding-top: calc(var(--spacing-header) + 1rem);
+    /* Decorative bleeds (carousel track, map, about-us photo) must never
+       create page-level horizontal scroll; clip keeps sticky/snap intact. */
+    overflow-x: clip;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -86,6 +90,11 @@
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-lagoon;
   }
+}
+
+/* Pull an element to the right viewport edge from inside the page container */
+@utility bleed-right {
+  margin-right: calc(-1 * max(var(--spacing-gutter), (100vw - var(--container-content)) / 2));
 }
 
 @layer components {

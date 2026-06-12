@@ -11,6 +11,7 @@ import { mkdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
+import sharp from "sharp";
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const outDir = path.join(root, "_design", "verify");
@@ -61,7 +62,12 @@ try {
     });
     await page.waitForTimeout(400);
     const file = path.join(outDir, `${name}-${width}${withMotion ? "-motion" : ""}.png`);
-    await page.screenshot({ path: file, fullPage: true });
+    // fullPage, then crop to the viewport width: scroll-snap end-padding
+    // inflates Chrome's scrollWidth, which would otherwise widen the capture.
+    const buf = await page.screenshot({ fullPage: true });
+    const img = sharp(buf);
+    const meta = await img.metadata();
+    await img.extract({ left: 0, top: 0, width: Math.min(width, meta.width), height: meta.height }).toFile(file);
     console.log(`✓ ${file}`);
     await page.close();
   }

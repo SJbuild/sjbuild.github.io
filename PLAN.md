@@ -67,9 +67,10 @@
 - [x] **Done:** 1440 + 390 verified (disabled states live); axe 0 violations both widths; commit `P4`
 
 ### P5 — Location + About Us — nodes `167:772`, `216:128` (M)
-- [ ] Fetch `167:772` → `_design/context/05-location.md` → `#location`: 2-col ≥lg; H2 "A Prime Location with a Sea View" (normalize Cyrillic А→Latin — log); Location.md intro; Learn more stub; map = `public/images/map.svg` `<img>` explicit dims lazy descriptive alt
-- [ ] Fetch `216:128` → `_design/context/06-about-us.md` → `#about-us`: photo bleeding off-canvas left + curved white overlay (inline SVG or CSS mask, `aria-hidden`); right: H2 "About Us", About us.md intro, Learn more stub; mobile: photo above text, curve simplified
-- [ ] **Done:** faithful 1440 / stacked 390; map <150 KB; 2 context files; commit `P5`
+- [x] `#location`: 2-col items-end ≥lg; H2 Cyrillic А→Latin fixed; body = design's REAL copy ("Located just 1 km…"); Learn more stub; map.svg (30 KB) right col bleeding to viewport edge via new `@utility bleed-right`; mobile text-then-map
+- [x] `#about-us`: white section; photo cutout absolute lg (left −13%, w min(89vw,80rem), top-48) over `about-ground.svg` (recovered from context URL — actually SVG, 1.3 KB) under `−70deg` white gradient; right col title/lead/Learn more stub; mobile in-flow photo then text; `--aboutus-h: 60rem` (design tail hidden under CTA)
+- [x] Overflow hardening: root `overflow-x: clip` (decorative bleeds must never h-scroll the page — verified `canScrollX: 0`); screenshot script now crops fullPage captures to viewport width (Chrome scroll-snap end-padding inflates scrollWidth — tool artifact, users unaffected)
+- [x] **Done:** 1440 faithful both sections; 390 stacked; axe 0 both widths; context files 05+06; commit `P5`
 
 ### P6 — Community expanding gallery — node `167:781` (M–L)
 - [ ] Fetch `167:781` → `_design/context/07-community.md`
@@ -158,6 +159,8 @@ Conventions: Tailwind default breakpoints, mobile-first (`md` first 2-col, `lg` 
 | P3 | Intro/complex surfaces use peach↔ice gradients + frosted blur, not flat `--color-boxes` | Design context superseded the variables list; `--color-boxes` confirmed as villa-card panel bg in P4 |
 | P4 | villas.ts data file skipped; villa names numbered 1/2/3; descriptions authored from About-the-complex.md (design lorem) | YAGNI — no consumer for the data; design instances repeat one name; never ship lorem |
 | P4 | Spec icons = coral (their real role); carousel arrows = stygian/pearl pair per design exports | Extracted from design context + arrow SVGs |
+| P5 | Location body = design copy verbatim (real, names Lozenets/1 km); Location.md kept for future subpage | Design-copy-wins rule |
+| P5 | `html { overflow-x: clip }` global guard + screenshot crop-to-viewport | Chrome inflates scrollWidth from snap-track end padding; clip blocks any real h-scroll, crop fixes captures |
 | plan | Progress tracked in this file only (no harness task list) | Survives session death; single source of truth |
 
 ## Content Map (final string ← source)
