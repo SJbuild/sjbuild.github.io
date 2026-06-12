@@ -56,6 +56,19 @@
           />
           <path fill="currentColor" d="M16 4.31V2.624L8.253.041a.8.8 0 0 0-.527.007L0 2.858V4.56l8.012-2.913z" />
         </symbol>
+        <symbol id="i-flag-bg" viewBox="0 0 16 11">
+          <path fill="#e6e7e8" d="M13.5 0h-11C.843 0 0 1.231 0 2.75v1h16v-1C16 1.231 15.157 0 13.5 0" />
+          <path fill="#137a08" d="M0 3.75h16v3.5H0z" />
+          <path fill="#ec1c24" d="M0 8.25C0 9.769.843 11 2.5 11h11c1.657 0 2.5-1.231 2.5-2.75v-1H0z" />
+        </symbol>
+        <symbol id="i-chevron" viewBox="0 0 9 5">
+          <path
+            fill="currentColor"
+            fill-rule="evenodd"
+            d="M3.771 4.714 0 .943.943 0l3.3 3.3 3.3-3.3.942.943-3.771 3.771a.667.667 0 0 1-.943 0"
+            clip-rule="evenodd"
+          />
+        </symbol>
         <symbol id="i-arrow-left" viewBox="0 0 35 35">
           <path
             fill="none"
@@ -695,7 +708,163 @@
           </div>
         </div>
       </section>
-      <!-- @section:contacts CTA+form (P7) -->
+      <!-- @section:contacts -->
+      <section id="contacts" aria-labelledby="contacts-title" class="relative isolate mt-section overflow-hidden">
+        <picture>
+          <source
+            type="image/avif"
+            srcset="
+              /images/cta-bg-480.avif   480w,
+              /images/cta-bg-768.avif   768w,
+              /images/cta-bg-1024.avif 1024w,
+              /images/cta-bg-1440.avif 1440w,
+              /images/cta-bg-1647.avif 1647w
+            "
+            sizes="100vw"
+          />
+          <source
+            type="image/webp"
+            srcset="
+              /images/cta-bg-480.webp   480w,
+              /images/cta-bg-768.webp   768w,
+              /images/cta-bg-1024.webp 1024w,
+              /images/cta-bg-1440.webp 1440w,
+              /images/cta-bg-1647.webp 1647w
+            "
+            sizes="100vw"
+          />
+          <img
+            src="/images/cta-bg-1440.jpg"
+            srcset="
+              /images/cta-bg-480.jpg   480w,
+              /images/cta-bg-768.jpg   768w,
+              /images/cta-bg-1024.jpg 1024w,
+              /images/cta-bg-1440.jpg 1440w,
+              /images/cta-bg-1647.jpg 1647w
+            "
+            sizes="100vw"
+            alt=""
+            width="1647"
+            height="955"
+            loading="lazy"
+            decoding="async"
+            class="absolute inset-0 -z-20 h-full w-full object-cover"
+          />
+        </picture>
+        <div
+          aria-hidden="true"
+          class="absolute inset-0 -z-10 bg-linear-[-55deg] from-black/0 from-[1%] to-black/45 to-[70%]"
+        ></div>
+
+        <div class="mx-auto max-w-content px-gutter pt-9 pb-12 lg:pb-17">
+          <h2 id="contacts-title" class="max-w-[51rem] text-display-2xl leading-[1.33] font-bold text-sand">
+            Contact Us for More Information
+          </h2>
+          <p class="mt-11 max-w-[42.5rem] text-leadxl text-sand">
+            Schedule a viewing today and experience luxury firsthand.
+          </p>
+
+          <form
+            data-contact-form
+            novalidate
+            class="mt-8 w-full max-w-[28.75rem] rounded-card bg-linear-[58deg] from-white to-hairline p-7 backdrop-blur-frost sm:p-13 sm:pt-10"
+          >
+            <div class="relative">
+              <label for="f-name" class="field-label">Full name<span aria-hidden="true">*</span></label>
+              <input
+                id="f-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                required
+                aria-describedby="err-name"
+                placeholder="ex. Name Surname"
+                class="input-pill rounded-full"
+              />
+              <p id="err-name" class="form-error hidden"></p>
+            </div>
+
+            <div class="relative mt-8">
+              <label for="f-email" class="field-label">Email<span aria-hidden="true">*</span></label>
+              <input
+                id="f-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                aria-describedby="err-email"
+                placeholder="ex. myemail@mail.com"
+                class="input-pill rounded-full"
+              />
+              <p id="err-email" class="form-error hidden"></p>
+            </div>
+
+            <div class="relative mt-8">
+              <label for="f-phone" class="field-label">Phone<span aria-hidden="true">*</span></label>
+              <div data-phone-wrap class="phone-pill">
+                <!-- TODO(intl): static decorative prefix — replace with a country selector when more markets open -->
+                <span class="flex shrink-0 items-center gap-1.5 py-4.5 pl-7" aria-hidden="true">
+                  <svg class="h-3 w-4"><use href="#i-flag-bg" /></svg>
+                  <svg class="h-1.5 w-2 text-stygian"><use href="#i-chevron" /></svg>
+                  <span class="text-sm text-stygian">+359</span>
+                </span>
+                <input
+                  id="f-phone"
+                  name="phone"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel-national"
+                  required
+                  aria-describedby="phone-hint err-phone"
+                  placeholder="898 411 707"
+                  class="w-full bg-transparent py-4.5 pr-6 pl-1.5 text-sm text-stygian placeholder:text-stygian/30"
+                />
+              </div>
+              <span id="phone-hint" class="sr-only">Bulgarian phone number; the +359 prefix is added automatically</span>
+              <p id="err-phone" class="form-error hidden"></p>
+            </div>
+
+            <div class="relative mt-8">
+              <label for="f-message" class="field-label">Message<span aria-hidden="true">*</span></label>
+              <textarea
+                id="f-message"
+                name="message"
+                rows="4"
+                required
+                aria-describedby="err-message"
+                placeholder="Write your message"
+                class="input-pill h-33 resize-none rounded-area"
+              ></textarea>
+              <p id="err-message" class="form-error hidden"></p>
+            </div>
+
+            <div class="sr-only" aria-hidden="true">
+              <label for="f-website">Leave this field empty</label>
+              <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <div class="mt-7 flex items-start gap-3">
+              <input
+                id="f-consent"
+                name="consent"
+                type="checkbox"
+                required
+                aria-describedby="err-consent"
+                class="mt-0.5 h-4.5 w-4.5 shrink-0 accent-stygian"
+              />
+              <label for="f-consent" class="text-label text-ash">
+                I agree that my personal data will be processed with the accordance to
+                <!-- TODO(page): privacy policy page -->
+                <a href="#" class="underline">Privacy Policy</a>.
+              </label>
+            </div>
+            <p id="err-consent" class="form-error hidden"></p>
+
+            <button type="submit" class="btn btn-dark mt-6 w-full">Get a quote</button>
+            <p data-form-status role="status" class="mt-4 hidden text-bodysm text-stygian"></p>
+          </form>
+        </div>
+      </section>
     </main>
 
     <!-- @section:footer (P8) -->

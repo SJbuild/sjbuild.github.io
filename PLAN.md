@@ -79,11 +79,11 @@
 - [x] **Done:** interaction tested live via Playwright (state JSON + screenshots of both states); axe 0 both widths; commit `P6`
 
 ### P7 — CTA + Contact form — node `373:129` (L, solo)
-- [ ] Fetch `373:129` → `_design/context/08-cta-form.md`
-- [ ] `#contacts`: full-bleed dusk photo + stygian scrim; H2 "Contact Us for More Information"; sub "Schedule a viewing today and experience luxury firsthand."
-- [ ] White card `<form novalidate>`: Full name* (`autocomplete=name`) / Email* (`type=email`) / Phone* — static decorative flag+"+359" prefix (chevron `aria-hidden`; multi-country = TODO(intl)) + `type=tel` `autocomplete=tel-national` `inputmode=tel` / Message* textarea / required consent checkbox w/ Privacy Policy stub link / honeypot / coral submit per P2 contrast decision
-- [ ] `src/modules/form.ts`: submit-time validation, per-field on blur after first attempt; inline errors via `aria-describedby` + `aria-invalid`, focus first invalid. No backend (honest): `console.table(payload)` + `mailto:sales@sjbuild.bg` prefilled + success note that does NOT claim server delivery (mention phone fallback). `// TODO(backend):` block + Handover entry
-- [ ] **Done:** accessible inline errors; valid submit → mailto + honest confirmation; AA contrast; commit `P7`
+- [x] Context → `_design/context/08-cta-form.md`. CTA: dusk aerial bg + `−55deg` black/45 scrim; title PT Serif Bold 89/118 in SAND; subtitle 26/42 (`--text-leadxl`)
+- [x] Form card: white→hairline gradient + blur-frost, p-13; pill inputs (55px, nevada border) w/ floating 11px labels on white chips (`--text-label`, `--color-slate`); phone = `.phone-pill` w/ sprite flag+chevron+static "+359" (TODO(intl)); textarea `--radius-area`; native checkbox `accent-stygian` (design's checked stygian box, robust over custom — logged); honeypot; full-width `.btn-dark` submit (design buttons are stygian, not coral)
+- [x] `src/modules/form.ts`: submit validation + blur-revalidation after first attempt; errors `--color-error #c2410c` (authored — design has no error spec) wired `aria-describedby`/`aria-invalid`, focus first invalid; honest no-backend path: console.table + prefilled mailto + role=status success naming email/phone fallback; TODO(backend) block
+- [x] Cascade-layer gotcha fixed: wrapper utilities beat components-layer `:has()` — phone wrapper styles moved into `.phone-pill` class
+- [x] **Done:** Playwright functional test (5 errors + focus to first invalid; blur clears; valid submit → status, 0 errors; phone error border rgb(194,65,12) settled); axe 0 both widths; 1440+390 shots; commit `P7`
 
 ### P8 — Footer + global behaviors — node `167:852` (M)
 - [ ] Fetch `167:852` → `_design/context/09-footer.md` (last of 9 budgeted calls)
@@ -162,6 +162,8 @@ Conventions: Tailwind default breakpoints, mobile-first (`md` first 2-col, `lg` 
 | P5 | `html { overflow-x: clip }` global guard + screenshot crop-to-viewport | Chrome inflates scrollWidth from snap-track end padding; clip blocks any real h-scroll, crop fixes captures |
 | P6 | Community = horizontal accordion (1 collapsed sliver), grid-template-columns animated ≤400ms | Conscious exception to transform-only rule — inherent to the pattern; disabled under reduced-motion and <lg |
 | P6 | Big serif titles get `lg:-mr-*` overlap room (intro, community) | Web PT Serif renders ~3% wider than Figma; design itself overflows title boxes past the container |
+| P7 | Error color `#c2410c` authored (no design spec); native checkbox w/ `accent-stygian`; consent copy kept verbatim incl. "with the accordance to" | AA-compliant error (coral fails 2.9:1); robustness over pixel-cloning a checkbox; design-copy rule |
+| P7 | Form has no backend: mailto compose + honest status + honeypot; payload logged | TODO(backend) in form.ts + Handover register |
 | plan | Progress tracked in this file only (no harness task list) | Survives session death; single source of truth |
 
 ## Content Map (final string ← source)

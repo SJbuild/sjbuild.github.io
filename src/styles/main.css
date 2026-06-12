@@ -13,6 +13,9 @@
   --color-ice: #e9f3ff; /* box gradient cool stop */
   --color-hairline: #f8f8f8; /* 1px dividers on frosted cards */
   --color-pearl: #b4bbd4; /* disabled carousel arrows */
+  --color-slate: #54565c; /* form field labels */
+  --color-ash: #757575; /* consent fine print */
+  --color-error: #c2410c; /* form validation errors (5.4:1 on white) */
 
   /* ── Typography ────────────────────────────────────────────────── */
   --font-display: "PT Serif", Georgia, "Times New Roman", serif;
@@ -29,6 +32,10 @@
   --text-display-md--line-height: 1.25;
   --text-leadlg: clamp(1.125rem, 1rem + 0.85vw, 1.5rem); /* large intro 24px/38px */
   --text-leadlg--line-height: 1.58;
+  --text-leadxl: clamp(1.25rem, 1.05rem + 0.95vw, 1.625rem); /* CTA subtitle 26px/42px */
+  --text-leadxl--line-height: 1.615;
+  --text-label: 0.6875rem; /* form labels & fine print 11px */
+  --text-label--line-height: 1.55;
   --text-caption: 0.8125rem; /* card descriptions 13px/23px */
   --text-caption--line-height: 1.77;
   --text-stat: clamp(1.5rem, 1.1rem + 1.2vw, 2.125rem); /* spec values 34px, PT Serif lagoon */
@@ -55,6 +62,7 @@
   /* ── Shape & media ─────────────────────────────────────────────── */
   --radius-box: clamp(1.75rem, 4.25vw, 3.8125rem); /* intro box 61px */
   --radius-card: 1.375rem; /* frosted/villa cards 22px */
+  --radius-area: 1.625rem; /* textarea 26px */
   --blur-frost: 1.875rem; /* 30px frosted-glass backdrop blur */
   --aspect-hero: 1440 / 1040;
   --aspect-card-img: 556 / 527;
@@ -159,6 +167,39 @@
 
   [data-menu-toggle][aria-expanded="true"] .bar-3 {
     transform: translateY(-0.5rem) rotate(-45deg);
+  }
+
+  /* Contact form fields */
+  .input-pill {
+    @apply w-full border border-nevada bg-transparent py-4.5 pr-6 pl-7 text-sm text-stygian transition-colors placeholder:text-stygian/30;
+  }
+
+  .input-pill:focus-visible {
+    @apply border-stygian;
+  }
+
+  .input-pill[aria-invalid="true"] {
+    @apply border-error;
+  }
+
+  .phone-pill {
+    @apply flex items-center rounded-full border border-nevada transition-colors;
+  }
+
+  .phone-pill:focus-within {
+    @apply border-stygian;
+  }
+
+  .phone-pill:has([aria-invalid="true"]) {
+    @apply border-error;
+  }
+
+  .field-label {
+    @apply absolute -top-2 left-7 z-10 bg-white px-1 text-label text-slate;
+  }
+
+  .form-error {
+    @apply mt-1.5 pl-7 text-label text-error;
   }
 
   /* Community accordion: JS drives grid-template-columns on lg.
