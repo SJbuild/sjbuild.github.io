@@ -10,7 +10,6 @@ import { initCarousel } from "./modules/carousel";
 import { initGallery } from "./modules/gallery";
 import { initForm } from "./modules/form";
 import { initReveal } from "./modules/reveal";
-import { initLang } from "./modules/lang";
 
 initNav();
 initScrollspy();
@@ -18,4 +17,3 @@ initCarousel();
 initGallery();
 initForm();
 initReveal();
-initLang();

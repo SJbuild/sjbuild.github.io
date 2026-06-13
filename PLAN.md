@@ -112,7 +112,18 @@
 - [x] **Done:** all gates green; tag `v1.0.0`
 
 ## ✅ DONE — homepage shipped (2026-06-12)
-All 11 phases complete. Resume protocol remains valid for follow-up work (subpages, BG locale, backend).
+All 11 phases complete. Resume protocol remains valid for follow-up work (subpages, backend).
+
+### P11 — Bilingual (BG primary) — added 2026-06-13
+- [x] **Bulgarian is now the primary site at `/`**; English moved to `/en/` (Vite multi-page: `main` + `en` inputs in `vite.config.ts`)
+- [x] Root `index.html` fully translated from `website-docs/bg/*` (103 verified replacements: meta, nav, all section copy, ARIA labels, alts, form labels/placeholders/consent, footer). `lang="bg"`; address localized ("гр. Варна, ул. „Кирил и Методий“ 43"); phone/email unchanged
+- [x] `en/index.html` = the prior English page, `lang="en"`, links to `/` for BG
+- [x] Language toggle is now a real link (header + mobile): BG↔EN, `hreflang` set; old `lang.ts` stub deleted, `[data-lang-toggle]` removed
+- [x] `form.ts` made bilingual — reads `document.documentElement.lang`, picks BG/EN strings for validation errors, mailto subject/body, and success message (verified: BG page shows "Моля, въведете вашето име и фамилия.")
+- [x] SEO: per-page canonical + `hreflang` alternates (bg / en / x-default) + `og:locale` (+alternate); BG meta title/description/keywords from `website-docs/bg/`; `sitemap.xml` lists both URLs with alternates; JSON-LD `inLanguage` per page
+- [x] Verified: toggle navigates / ↔ /en/, both render correct lang/H1, Cyrillic glyphs load (fontsource subsets), nav pill + stat table + form hold the longer BG strings
+- [x] Gates: build clean (both pages), axe 0 violations (BG @1440+390), html-validate clean (both), **Lighthouse BG desktop 100/100/100/100**
+- [x] Handover #10 (BG locale) CLOSED. Note: privacy/cookie/subpage stubs now exist in BOTH locales — when built, create `/bg` + `/en` versions
 
 ---
 
@@ -200,5 +211,5 @@ Conventions: Tailwind default breakpoints, mobile-first (`md` first 2-col, `lg` 
 | 7 | Social profile URLs | `index.html:1031` | Contacts.md brands them "SG Build…" — **client must resolve SJ/SG naming** |
 | 8 | Contact data conflict | footer vs `Contacts.md` | design: +359 897 700 770 / sales@sjbuild.bg / Varna; docs: +359 889 173 654 / sgbuildbg@gmail.com / Lozenets — **client confirm** |
 | 9 | Intl phone selector | `index.html:911` | static +359 prefix today |
-| 10 | BG locale | `src/modules/lang.ts:3` | full BG copy ready in `website-docs/bg/*`; needs `/bg/` page + hreflang pair |
+| 10 | ~~BG locale~~ ✅ DONE (P11) | `/` = BG, `/en/` = EN | bilingual toggle + hreflang + bilingual form live |
 | 11 | Twitter/X social | dropped | design export empty + absent from Contacts.md; re-add if client provides URL |
