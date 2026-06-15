@@ -189,6 +189,11 @@ Two P2 mistakes caught by the client comparing against Figma:
 ## P13 — title sizes −2pt (2026-06-15, client request)
 All four title tokens (`--text-display-2xl/xl/lg/md`) shifted down 0.167rem (2pt) at min, preferred constant, and max — uniform reduction at every viewport so the longer Bulgarian titles fit their containers. Hero ~89→86px, intro ~94→91px, section H2 ~70→67px, card/panel H3 ~28→25px. Verified: no genuine title overflow at 390 or 1440 (the carousel's off-screen card titles are expected, not overflow); CTA "Свържете се с нас за повече информация" wraps cleanly on mobile. Shared CSS → applies to both locales. Existing overflow hacks (`lg:-mr-24` community, `lg:w-[120%]` intro) still in place and still fit.
 
+## P14 — more design-fidelity fixes (2026-06-15, client review)
+- **"View all villas" button was dark, should be coral.** Same P4 over-generalization as the Learn-more bug: never fetched the `Button View all Villas` component (170:1183) — it's `#FF7F50` + `#F4F4F4` text. Now `.btn-coral` in both locales. Button rule is now consistent: **Get-a-quote = dark stygian; Learn more / View all = coral.** (5 coral buttons total.)
+- **92px gap between About Us and Contact sections.** It was the `mt-section` margin on `#contacts`; the design has the About-Us photo flow straight into the CTA with no gap. Removed `mt-section` from `#contacts` in both locales (page is 92px shorter; boundary now matches design).
+- Contrast note still open: the coral buttons (now 5) use white/sand text = ~2.5:1, fails AA → axe flags them. Still pending the client's A/B/C choice (see P12); whatever they pick applies to `.btn-coral` globally.
+
 ## Content Map (final string ← source)
 
 | Location | Copy | Source |
