@@ -181,6 +181,9 @@ Conventions: Tailwind default breakpoints, mobile-first (`md` first 2-col, `lg` 
 | plan | Progress tracked in this file only (no harness task list) | Survives session death; single source of truth |
 | P18 | Community accordion replaced with villas-pattern carousel; `carousel.ts` generalized to multi-instance via `aria-controls` lookup | Accordion's `visibility:hidden` collapsed-panel text reserved layout height → blank-gap bug; carousel reuses a proven, accessible pattern |
 | P18 | 4th community card added (new `arch-4` image, Figma node `373:261`); "Exclusive Amenities" amenity bullets split across panels 2 (BBQ+parking) and 4 (yard+jacuzzi) instead of duplicated | Both decisions pre-approved by client; avoids literal content duplication while surfacing all 4 amenities from About-the-complex.md |
+| P19 | Footer contact data switched to Contacts.md (+359 889 173 654 / sgbuildbg@gmail.com / с. Лозенец, обл. Бургас, България); supersedes the `plan`-phase "design copy" row | User resolved the long-open conflict in favor of Contacts.md; "design-copy-wins" was provisional pending this confirmation |
+| P19 | Footer social `aria-label`s updated to Contacts.md's profile names (SG Build Villas / @sgbuild_villas / SG Build); `href="#"` unchanged (no URLs given) | Resolves the SJ/SG mismatch for the *labels*; site branding (logo, copyright, JSON-LD) still says "SJ Build" — wider naming question remains open (Handover #7) |
+| P19 | `#contacts` CTA gained a new supporting paragraph (Contacts.md's "Get in Touch" greeting + "Location" blurb + closing line, merged into one) below the existing subtitle, `--reveal-delay: 0.12s`; form delay shifted 0.15s→0.2s | Distributes Contacts.md content without duplication: footer keeps contact details, CTA section gets the welcoming/location copy it previously lacked |
 
 ## P12 — design-fidelity fixes (2026-06-15, from client review)
 Two P2 mistakes caught by the client comparing against Figma:
@@ -244,6 +247,32 @@ disabled-at-ends; `npm run a11y` shows only the pre-existing coral-contrast viol
 index.html en/index.html` passes; grep confirms `data-gallery`/`gallery.ts`/`--gallery-collapsed` no longer appear
 anywhere in the codebase.
 
+## P19 — Footer + Contact CTA copy from Contacts.md (2026-06-16, client decision)
+
+Resolves the long-open "Footer contact = design copy vs Contacts.md" conflict (`plan` Decisions Log,
+Handover #8): the user confirmed Contacts.md's data is correct. The footer's `<address>` now shows
+**+359 889 173 654** / **sgbuildbg@gmail.com** / **с. Лозенец, обл. Бургас, България** (EN: "Lozenets
+Village, Burgas Province, Bulgaria") in both locales — replacing the design-copy placeholders
+(+359 897 700 770 / sales@sjbuild.bg / Varna address).
+
+Footer social icons' `aria-label`s switched from "SJ Build on …" to the profile names Contacts.md
+actually gives — "SG Build Villas" (Facebook), "@sgbuild_villas" (Instagram), "SG Build" (LinkedIn).
+`href="#"` and the "add real profile URLs" TODO remain (Contacts.md gives names, not links); the wider
+SJ-vs-SG brand-name question (logo, copyright, JSON-LD all say "SJ Build") is unchanged and still open
+— see Handover #7.
+
+To cover the rest of Contacts.md's content **without duplicating** the footer's contact block, the
+`#contacts` CTA section gained one new paragraph below its existing subtitle: the "Get in Touch"
+greeting + the "Location" paragraph (office in the heart of Lozenets, near the beach, inviting a visit
+to discuss preferences/arrange a viewing) + the closing "We look forward to connecting with you!" —
+merged into a single `text-lead text-sand/85` paragraph (`--reveal-delay: 0.12s`; form's delay shifted
+0.15s→0.2s to keep the stagger). This pairs naturally with the existing "Schedule a viewing today…"
+subtitle and surfaces info (the Lozenets office/location story) that wasn't on the page anywhere else.
+
+Verified: `npm run build` clean; `npx html-validate index.html en/index.html` passes; `npm run a11y`
+shows only the pre-existing coral-contrast violation; screenshots at 1440/390 for both locales show the
+new paragraph reading cleanly above the form and the footer's updated phone/email/address.
+
 ## Content Map (final string ← source)
 
 | Location | Copy | Source |
@@ -259,7 +288,8 @@ anywhere in the codebase.
 | About Us body | "We are a team of industry professionals…" | design (= About us.md) |
 | CTA | "Contact Us for More Information" / "Schedule a viewing today and experience luxury firsthand." | design (= Home.md) |
 | Form | labels/consent verbatim from design | design |
-| Footer | contact per design (conflict logged); "© 2025 SJ Build. All rights reserved." | design (fixed) |
+| Footer | contact = Contacts.md (P19); "© 2025 SJ Build. All rights reserved." | Contacts.md (P19, supersedes design) |
+| Contacts CTA | extra paragraph = "Get in Touch" + "Location" + closing line, merged | Contacts.md (P19) |
 | Meta | Home entries | Meta Titles…md |
 
 ## Handover register (P10 — every open item, with code locations)
@@ -272,8 +302,9 @@ anywhere in the codebase.
 | 4 | Villa detail pages ×3 | `index.html:427/480/533` ("Learn more") | stubs |
 | 5 | Complex / Location / About-us subpages | `index.html:609/626/809` | stubs; long-form copy ready in `website-docs/en/` |
 | 6 | Privacy + Cookie policy pages | `index.html:963/1025` | legally required before the form goes live |
-| 7 | Social profile URLs | `index.html:1031` | Contacts.md brands them "SG Build…" — **client must resolve SJ/SG naming** |
-| 8 | Contact data conflict | footer vs `Contacts.md` | design: +359 897 700 770 / sales@sjbuild.bg / Varna; docs: +359 889 173 654 / sgbuildbg@gmail.com / Lozenets — **client confirm** |
+| 7 | Social profile URLs | `index.html:1073-1087` | P19: `aria-label`s now use Contacts.md's names (SG Build Villas / @sgbuild_villas / SG Build); `href="#"` still needs real URLs — **client must also resolve the wider SJ/SG site-brand naming** |
+| 8 | ~~Contact data conflict~~ ✅ DONE (P19) | footer vs `Contacts.md` | Resolved in favor of Contacts.md: +359 889 173 654 / sgbuildbg@gmail.com / с. Лозенец, обл. Бургас, България |
 | 9 | Intl phone selector | `index.html:911` | static +359 prefix today |
 | 10 | ~~BG locale~~ ✅ DONE (P11) | `/` = BG, `/en/` = EN | bilingual toggle + hreflang + bilingual form live |
 | 11 | Twitter/X social | dropped | design export empty + absent from Contacts.md; re-add if client provides URL |
+| 12 | JSON-LD telephone/email/address | `index.html`/`en/index.html` `<head>` (TODO(seo) comment before the `application/ld+json` block) | P19 updated the *visible* footer to Contacts.md data but left structured data on the old design-copy values + Varna street address — reconcile together with #2 |
