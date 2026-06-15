@@ -15,6 +15,7 @@ Renders + unchosen candidates: `_design/raw-staging/` (gitignored, disposable). 
 | 182:197 (fill) | arch-1.png | 556×400 | Community panel 1 | "Architectural detail" | 1× only |
 | 182:199 (fill) | arch-2.png | 556×400 | Community panel 2 | 〃 | 1× only |
 | 167:897 (fill) | arch-3.png | 556×400 | Community panel 3 | 〃 | 1× only (render was collapsed 120px state; raw is full) |
+| 373:261 (fill, "Box Image 4" / 373:256) | arch-4.png | 556×400 | Community panel 4 | "Rooftop terrace with jacuzzi, lounge seating and garden planting" | NEW in P18 — community carousel 4th card |
 | 218:132 (fill "Image-6-1 1") | about-us.png | 1278×874 | About Us photo | "Villa at dusk with lit interior" | matches placed size exactly |
 | 373:130 (fill "Image 7 1") | cta-bg.png | 1647×955 | CTA bg | decorative (alt="") | ratio 1.724 matches placed 1880×1090; scrim in CSS |
 | 167:605 / 167:857 | brand/logo-dark.png, brand/logo-white.png | 4096×~1340 | Header / Footer logo | "SJ Build" | image fills (not vector); emitted as `public/images/logo-{dark,white}.png` @512w. SVG exports were raster-embedding (300KB) — rejected |

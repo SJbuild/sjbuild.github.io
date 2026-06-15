@@ -682,10 +682,10 @@
             </p>
           </div>
 
-          <div data-gallery-controls class="mt-10 hidden justify-end gap-2.5 lg:flex">
+          <div data-carousel-controls class="mt-10 flex justify-end gap-2.5">
             <button
               type="button"
-              data-gallery-prev
+              data-carousel-prev
               class="btn-arrow"
               aria-label="Show previous community panel"
               aria-controls="community-gallery"
@@ -694,7 +694,7 @@
             </button>
             <button
               type="button"
-              data-gallery-next
+              data-carousel-next
               class="btn-arrow"
               aria-label="Show next community panel"
               aria-controls="community-gallery"
@@ -704,85 +704,98 @@
           </div>
         </div>
 
-        <div
+        <ul
+          role="list"
           id="community-gallery"
+          data-carousel-track
+          tabindex="0"
+          aria-label="Community"
           data-reveal
-          data-gallery
-          class="mx-auto mt-12 flex max-w-content flex-col gap-14 px-gutter lg:mt-16 lg:grid lg:grid-cols-3 lg:gap-7"
+          class="bleed-track no-scrollbar mt-12 flex snap-x snap-mandatory gap-7 overflow-x-auto lg:mt-16"
         >
-          <div data-gallery-panel data-state="expanded" class="lg:overflow-hidden">
-            <div class="panel-text">
-              <h3 class="text-display-md">
-                <button type="button" data-gallery-heading aria-expanded="true" class="text-left">
-                  Architectural Excellence
-                </button>
-              </h3>
+          <li class="w-(--gallery-card-w) shrink-0 snap-start">
+            <div>
+              <h3 class="text-display-md">Architectural Excellence</h3>
               <p class="mt-2.5 text-caption text-nevada lg:min-h-12">
                 The complex features clean lines and open spaces. High-end materials, energy-efficient systems, and
                 smart home technology ensure long-term durability and convenience.
               </p>
+              <img
+                src="/images/arch-1-556.jpg"
+                srcset="/images/arch-1-480.jpg 480w, /images/arch-1-556.jpg 556w"
+                sizes="(min-width: 64rem) 37vw, 85vw"
+                alt="Villa facade with floor-to-ceiling glazing and warm evening lighting"
+                width="556"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="mt-5 aspect-[139/100] w-full rounded-card object-cover lg:aspect-auto lg:h-100"
+              />
             </div>
-            <img
-              src="/images/arch-1-556.jpg"
-              srcset="/images/arch-1-480.jpg 480w, /images/arch-1-556.jpg 556w"
-              sizes="(min-width: 64rem) 37vw, 100vw"
-              alt="Villa facade with floor-to-ceiling glazing and warm evening lighting"
-              width="556"
-              height="400"
-              loading="lazy"
-              decoding="async"
-              class="mt-5 aspect-[139/100] w-full object-cover lg:aspect-auto lg:h-100"
-            />
-          </div>
+          </li>
 
-          <div data-gallery-panel data-state="expanded" class="lg:overflow-hidden">
-            <img
-              src="/images/arch-2-556.jpg"
-              srcset="/images/arch-2-480.jpg 480w, /images/arch-2-556.jpg 556w"
-              sizes="(min-width: 64rem) 37vw, 100vw"
-              alt="Private yard with barbecue zone and landscaped garden"
-              width="556"
-              height="400"
-              loading="lazy"
-              decoding="async"
-              class="mb-5 aspect-[139/100] w-full object-cover lg:aspect-auto lg:h-100"
-            />
-            <div class="panel-text">
-              <h3 class="text-display-md">
-                <button type="button" data-gallery-heading aria-expanded="true" class="text-left">
-                  Exclusive Amenities
-                </button>
-              </h3>
+          <li class="w-(--gallery-card-w) shrink-0 snap-start">
+            <div>
+              <img
+                src="/images/arch-2-556.jpg"
+                srcset="/images/arch-2-480.jpg 480w, /images/arch-2-556.jpg 556w"
+                sizes="(min-width: 64rem) 37vw, 85vw"
+                alt="Private yard with barbecue zone and landscaped garden"
+                width="556"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="mb-5 aspect-[139/100] w-full rounded-card object-cover lg:aspect-auto lg:h-100"
+              />
+              <h3 class="text-display-md">Exclusive Amenities</h3>
               <p class="mt-2.5 text-caption text-nevada lg:min-h-12">
-                Amenities include perks such as a barbecue zone, a designated parking spot, a summer garden with a
-                jacuzzi on the roof of each villa, and a private yard.
+                Amenities include a barbecue zone and a designated parking spot for every villa.
               </p>
             </div>
-          </div>
+          </li>
 
-          <div data-gallery-panel data-state="expanded" class="lg:overflow-hidden">
-            <div class="panel-text">
-              <h3 class="text-display-md">
-                <button type="button" data-gallery-heading aria-expanded="true" class="text-left">More freedom</button>
-              </h3>
+          <li class="w-(--gallery-card-w) shrink-0 snap-start">
+            <div>
+              <h3 class="text-display-md">More freedom</h3>
               <p class="mt-2.5 text-caption text-nevada lg:min-h-12">
                 Whether you&rsquo;re seeking tranquility, a vibrant holiday hub, or a future-focused investment, this
                 complex was designed to deliver on all fronts.
               </p>
+              <img
+                src="/images/arch-3-556.jpg"
+                srcset="/images/arch-3-480.jpg 480w, /images/arch-3-556.jpg 556w"
+                sizes="(min-width: 64rem) 37vw, 85vw"
+                alt="Resident walking through the complex's green communal spaces"
+                width="556"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="mt-5 aspect-[139/100] w-full rounded-card object-cover lg:aspect-auto lg:h-100"
+              />
             </div>
-            <img
-              src="/images/arch-3-556.jpg"
-              srcset="/images/arch-3-480.jpg 480w, /images/arch-3-556.jpg 556w"
-              sizes="(min-width: 64rem) 37vw, 100vw"
-              alt="Resident walking through the complex's green communal spaces"
-              width="556"
-              height="400"
-              loading="lazy"
-              decoding="async"
-              class="mt-5 aspect-[139/100] w-full object-cover lg:aspect-auto lg:h-100"
-            />
-          </div>
-        </div>
+          </li>
+
+          <li class="w-(--gallery-card-w) shrink-0 snap-start">
+            <div>
+              <img
+                src="/images/arch-4-556.jpg"
+                srcset="/images/arch-4-480.jpg 480w, /images/arch-4-556.jpg 556w"
+                sizes="(min-width: 64rem) 37vw, 85vw"
+                alt="Rooftop terrace with a jacuzzi, lounge seating, and landscaped planting overlooking the complex"
+                width="556"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="mb-5 aspect-[139/100] w-full rounded-card object-cover lg:aspect-auto lg:h-100"
+              />
+              <h3 class="text-display-md">Private Outdoor Living</h3>
+              <p class="mt-2.5 text-caption text-nevada lg:min-h-12">
+                Each villa also comes with a private yard and a summer garden featuring a rooftop jacuzzi &mdash; your
+                own outdoor retreat.
+              </p>
+            </div>
+          </li>
+        </ul>
       </section>
       <!-- @section:about-us -->
       <section id="about-us" aria-labelledby="aboutus-title" class="relative isolate overflow-hidden bg-white">

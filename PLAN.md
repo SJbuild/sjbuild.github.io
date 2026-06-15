@@ -179,6 +179,8 @@ Conventions: Tailwind default breakpoints, mobile-first (`md` first 2-col, `lg` 
 | P7 | Error color `#c2410c` authored (no design spec); native checkbox w/ `accent-stygian`; consent copy kept verbatim incl. "with the accordance to" | AA-compliant error (coral fails 2.9:1); robustness over pixel-cloning a checkbox; design-copy rule |
 | P7 | Form has no backend: mailto compose + honest status + honeypot; payload logged | TODO(backend) in form.ts + Handover register |
 | plan | Progress tracked in this file only (no harness task list) | Survives session death; single source of truth |
+| P18 | Community accordion replaced with villas-pattern carousel; `carousel.ts` generalized to multi-instance via `aria-controls` lookup | Accordion's `visibility:hidden` collapsed-panel text reserved layout height → blank-gap bug; carousel reuses a proven, accessible pattern |
+| P18 | 4th community card added (new `arch-4` image, Figma node `373:261`); "Exclusive Amenities" amenity bullets split across panels 2 (BBQ+parking) and 4 (yard+jacuzzi) instead of duplicated | Both decisions pre-approved by client; avoids literal content duplication while surfacing all 4 amenities from About-the-complex.md |
 
 ## P12 — design-fidelity fixes (2026-06-15, from client review)
 Two P2 mistakes caught by the client comparing against Figma:
@@ -207,6 +209,40 @@ Gallery had 3 cards; design has 4 (client gave nodes 170:1016 / 170:1081 / 182:1
 
 ## P17 — unify Location/Community/About-Us background (2026-06-15, client request)
 About Us was `bg-white` while Location & Community fell through to the body sand (`#f4f4f4`). Client wants all three to match About Us. Added `bg-white` to Location & Community; converted the inter-section `mt-section` sand margins to white padding so the three form ONE continuous white band (Community `mt-section`→`pt-section pb-section`; About-Us `mt-section` removed — its absolute photo is unaffected since margin ≠ internal positioning). Verified: all three `rgb(255,255,255)`, gaps between them = 0. Bonus: nevada body text on white is 5.4:1 (was 4.9:1 on sand) — slightly better contrast.
+
+## P18 — Community gallery: accordion → carousel + 4th card (2026-06-15, client-reported bug + 2 approved decisions)
+The Community accordion (`[data-gallery]`, `src/modules/gallery.ts`) collapsed one of its 3 panels to a 120px sliver via
+`grid-template-columns`, but `[data-gallery-panel][data-state="collapsed"] .panel-text { visibility: hidden }` still
+reserved the text block's full height — producing a tall blank gap above a heavily-cropped image sliver. Client reported
+this as broken.
+
+**Decision 1 — replace the accordion with the villas' horizontal scroll-snap carousel pattern.** Deleted
+`src/modules/gallery.ts` and its `main.ts` wiring; removed `--gallery-collapsed` and the accordion CSS block
+(`[data-gallery]`/`[data-gallery-panel][data-state="collapsed"]`). `src/modules/carousel.ts` refactored from a
+single-instance `querySelector` to iterate every `[data-carousel-controls]` block, resolving each track via its
+buttons' `aria-controls` → `getElementById` — same step/update/scrollByCard/ResizeObserver/reduced-motion logic, now
+shared by villas AND community. Community gallery markup converted `<div data-gallery>` → `<ul data-carousel-track
+id="community-gallery">`, each panel → `<li class="w-(--gallery-card-w) shrink-0 snap-start">`; new token
+`--gallery-card-w: min(34.75rem, 85vw)` (named separately from `--villa-card-w` per the project's one-token-per-context
+convention, same value). Controls converted `data-gallery-*` → `data-carousel-*`; removed `hidden lg:flex` so arrows
+show at all widths (hidden automatically via `update()`'s `maxScroll<=1` check when nothing overflows).
+
+**Decision 2 — add a 4th gallery card**, splitting "Exclusive Amenities" (4 amenity bullets from About-the-complex.md:
+private yard, BBQ area, parking, summer garden + rooftop jacuzzi) across two panels instead of literal duplication.
+Panel 2 narrowed to BBQ + parking; new panel 4 "Private Outdoor Living" / "Лично външно пространство" covers private
+yard + summer garden/rooftop jacuzzi. New image `arch-4` sourced from Figma node `373:261` (file `pclbSnXjtzUlphc2DN1koQ`,
+the "Box Image 4" fill, metadata id `373:256`) — a rooftop terrace with jacuzzi, lounge seating, and garden planting,
+556×400 (matches arch-1/2/3 exactly); saved to `_design/raw-assets/arch-4.png`, optimized via `npm run assets` →
+`public/images/arch-4-{480,556}.{avif,webp,jpg}`; manifest row added.
+
+Also fixed in this pass: all 4 community images now get `rounded-card` (22px, `--radius-card`) — the Figma reference
+(node `373:274`) shows rounded corners on every gallery image, which arch-1/2/3 were previously missing entirely.
+
+Verified: `npm run build` clean; `npm run shoot` @ 1440/768/390 shows no blank-gap artifact, all 4 cards render with
+rounded images, ~85vw peeking cards on mobile with horizontal swipe; prev/next arrows scroll by one card+gap,
+disabled-at-ends; `npm run a11y` shows only the pre-existing coral-contrast violation (no new ones); `npx html-validate
+index.html en/index.html` passes; grep confirms `data-gallery`/`gallery.ts`/`--gallery-collapsed` no longer appear
+anywhere in the codebase.
 
 ## Content Map (final string ← source)
 

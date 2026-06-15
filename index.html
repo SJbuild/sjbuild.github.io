@@ -682,10 +682,10 @@
             </p>
           </div>
 
-          <div data-gallery-controls class="mt-10 hidden justify-end gap-2.5 lg:flex">
+          <div data-carousel-controls class="mt-10 flex justify-end gap-2.5">
             <button
               type="button"
-              data-gallery-prev
+              data-carousel-prev
               class="btn-arrow"
               aria-label="Покажи предишния панел"
               aria-controls="community-gallery"
@@ -694,7 +694,7 @@
             </button>
             <button
               type="button"
-              data-gallery-next
+              data-carousel-next
               class="btn-arrow"
               aria-label="Покажи следващия панел"
               aria-controls="community-gallery"
@@ -704,85 +704,98 @@
           </div>
         </div>
 
-        <div
+        <ul
+          role="list"
           id="community-gallery"
+          data-carousel-track
+          tabindex="0"
+          aria-label="Общност"
           data-reveal
-          data-gallery
-          class="mx-auto mt-12 flex max-w-content flex-col gap-14 px-gutter lg:mt-16 lg:grid lg:grid-cols-3 lg:gap-7"
+          class="bleed-track no-scrollbar mt-12 flex snap-x snap-mandatory gap-7 overflow-x-auto lg:mt-16"
         >
-          <div data-gallery-panel data-state="expanded" class="lg:overflow-hidden">
-            <div class="panel-text">
-              <h3 class="text-display-md">
-                <button type="button" data-gallery-heading aria-expanded="true" class="text-left">
-                  Архитектурно съвършенство
-                </button>
-              </h3>
+          <li class="w-(--gallery-card-w) shrink-0 snap-start">
+            <div>
+              <h3 class="text-display-md">Архитектурно съвършенство</h3>
               <p class="mt-2.5 text-caption text-nevada lg:min-h-12">
                 Комплексът се отличава с изчистени линии и отворени пространства. Висококачествените материали, енергийно
                 ефективните системи и технологията за интелигентен дом осигуряват дългосрочна издръжливост и удобство.
               </p>
+              <img
+                src="/images/arch-1-556.jpg"
+                srcset="/images/arch-1-480.jpg 480w, /images/arch-1-556.jpg 556w"
+                sizes="(min-width: 64rem) 37vw, 85vw"
+                alt="Фасада на вила с остъкляване от пода до тавана и топло вечерно осветление"
+                width="556"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="mt-5 aspect-[139/100] w-full rounded-card object-cover lg:aspect-auto lg:h-100"
+              />
             </div>
-            <img
-              src="/images/arch-1-556.jpg"
-              srcset="/images/arch-1-480.jpg 480w, /images/arch-1-556.jpg 556w"
-              sizes="(min-width: 64rem) 37vw, 100vw"
-              alt="Фасада на вила с остъкляване от пода до тавана и топло вечерно осветление"
-              width="556"
-              height="400"
-              loading="lazy"
-              decoding="async"
-              class="mt-5 aspect-[139/100] w-full object-cover lg:aspect-auto lg:h-100"
-            />
-          </div>
+          </li>
 
-          <div data-gallery-panel data-state="expanded" class="lg:overflow-hidden">
-            <img
-              src="/images/arch-2-556.jpg"
-              srcset="/images/arch-2-480.jpg 480w, /images/arch-2-556.jpg 556w"
-              sizes="(min-width: 64rem) 37vw, 100vw"
-              alt="Собствен двор с барбекю зона и озеленена градина"
-              width="556"
-              height="400"
-              loading="lazy"
-              decoding="async"
-              class="mb-5 aspect-[139/100] w-full object-cover lg:aspect-auto lg:h-100"
-            />
-            <div class="panel-text">
-              <h3 class="text-display-md">
-                <button type="button" data-gallery-heading aria-expanded="true" class="text-left">
-                  Ексклузивни удобства
-                </button>
-              </h3>
+          <li class="w-(--gallery-card-w) shrink-0 snap-start">
+            <div>
+              <img
+                src="/images/arch-2-556.jpg"
+                srcset="/images/arch-2-480.jpg 480w, /images/arch-2-556.jpg 556w"
+                sizes="(min-width: 64rem) 37vw, 85vw"
+                alt="Собствен двор с барбекю зона и озеленена градина"
+                width="556"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="mb-5 aspect-[139/100] w-full rounded-card object-cover lg:aspect-auto lg:h-100"
+              />
+              <h3 class="text-display-md">Ексклузивни удобства</h3>
               <p class="mt-2.5 text-caption text-nevada lg:min-h-12">
-                Удобствата включват барбекю зона, обособено място за паркиране, лятна градина с джакузи на покрива на
-                всяка вила и собствен двор.
+                Удобствата включват барбекю зона и обособено място за паркиране за всяка вила.
               </p>
             </div>
-          </div>
+          </li>
 
-          <div data-gallery-panel data-state="expanded" class="lg:overflow-hidden">
-            <div class="panel-text">
-              <h3 class="text-display-md">
-                <button type="button" data-gallery-heading aria-expanded="true" class="text-left">Повече свобода</button>
-              </h3>
+          <li class="w-(--gallery-card-w) shrink-0 snap-start">
+            <div>
+              <h3 class="text-display-md">Повече свобода</h3>
               <p class="mt-2.5 text-caption text-nevada lg:min-h-12">
                 Независимо дали търсите спокойствие, оживен ваканционен дом или ориентирана към бъдещето инвестиция, този
                 комплекс е проектиран да отговори на всички ваши очаквания.
               </p>
+              <img
+                src="/images/arch-3-556.jpg"
+                srcset="/images/arch-3-480.jpg 480w, /images/arch-3-556.jpg 556w"
+                sizes="(min-width: 64rem) 37vw, 85vw"
+                alt="Жител, разхождащ се в зелените общи пространства на комплекса"
+                width="556"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="mt-5 aspect-[139/100] w-full rounded-card object-cover lg:aspect-auto lg:h-100"
+              />
             </div>
-            <img
-              src="/images/arch-3-556.jpg"
-              srcset="/images/arch-3-480.jpg 480w, /images/arch-3-556.jpg 556w"
-              sizes="(min-width: 64rem) 37vw, 100vw"
-              alt="Жител, разхождащ се в зелените общи пространства на комплекса"
-              width="556"
-              height="400"
-              loading="lazy"
-              decoding="async"
-              class="mt-5 aspect-[139/100] w-full object-cover lg:aspect-auto lg:h-100"
-            />
-          </div>
-        </div>
+          </li>
+
+          <li class="w-(--gallery-card-w) shrink-0 snap-start">
+            <div>
+              <img
+                src="/images/arch-4-556.jpg"
+                srcset="/images/arch-4-480.jpg 480w, /images/arch-4-556.jpg 556w"
+                sizes="(min-width: 64rem) 37vw, 85vw"
+                alt="Покривна тераса с джакузи, кът за отдих и озеленена градина с изглед към комплекса"
+                width="556"
+                height="400"
+                loading="lazy"
+                decoding="async"
+                class="mb-5 aspect-[139/100] w-full rounded-card object-cover lg:aspect-auto lg:h-100"
+              />
+              <h3 class="text-display-md">Лично външно пространство</h3>
+              <p class="mt-2.5 text-caption text-nevada lg:min-h-12">
+                Всяка вила разполага и със собствен двор, както и лятна градина с джакузи на покрива — собствено убежище
+                на открито.
+              </p>
+            </div>
+          </li>
+        </ul>
       </section>
       <!-- @section:about-us -->
       <section id="about-us" aria-labelledby="aboutus-title" class="relative isolate overflow-hidden bg-white">
