@@ -194,6 +194,9 @@ All four title tokens (`--text-display-2xl/xl/lg/md`) shifted down 0.167rem (2pt
 - **92px gap between About Us and Contact sections.** It was the `mt-section` margin on `#contacts`; the design has the About-Us photo flow straight into the CTA with no gap. Removed `mt-section` from `#contacts` in both locales (page is 92px shorter; boundary now matches design).
 - Contrast note still open: the coral buttons (now 5) use white/sand text = ~2.5:1, fails AA → axe flags them. Still pending the client's A/B/C choice (see P12); whatever they pick applies to `.btn-coral` globally.
 
+## P15 — Location map gap (2026-06-15, client review)
+The Location grid used `lg:items-end`, but the text column is taller than the map at every desktop width, so bottom-aligning dropped the map 57–97px down, leaving a gap above it. The design has the map top level with the title top (the map is the taller element there). Changed to `lg:items-start` in both locales → gap above the map is now 0 at 1440/1024, matching the design.
+
 ## Content Map (final string ← source)
 
 | Location | Copy | Source |
