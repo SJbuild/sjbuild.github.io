@@ -186,6 +186,9 @@ Two P2 mistakes caught by the client comparing against Figma:
 - **"Learn more" buttons were dark, not coral.** P2 fetched only the "Get a quote" button (dark `#1d1e22`) and wrongly generalized "no coral buttons." The real `Button Learn more` component (170:1171) is `#FF7F50` + white. Added `.btn-coral`; the 4 Learn-more pills now coral in both locales (Get-a-quote/View-all/submit stay dark, per design).
 - **OPEN — contrast tradeoff:** white on `#FF7F50` = 2.5:1, fails WCAG AA → axe now reports 1 serious color-contrast node. Shipped design-exact (coral+white) pending client choice: (A) keep exact, (B) coral bg + stygian text [AA pass, recommended], (C) darken coral + white [AA pass]. **Lesson: never silently deviate from the design to satisfy a gate — surface the conflict instead.**
 
+## P13 — title sizes −2pt (2026-06-15, client request)
+All four title tokens (`--text-display-2xl/xl/lg/md`) shifted down 0.167rem (2pt) at min, preferred constant, and max — uniform reduction at every viewport so the longer Bulgarian titles fit their containers. Hero ~89→86px, intro ~94→91px, section H2 ~70→67px, card/panel H3 ~28→25px. Verified: no genuine title overflow at 390 or 1440 (the carousel's off-screen card titles are expected, not overflow); CTA "Свържете се с нас за повече информация" wraps cleanly on mobile. Shared CSS → applies to both locales. Existing overflow hacks (`lg:-mr-24` community, `lg:w-[120%]` intro) still in place and still fit.
+
 ## Content Map (final string ← source)
 
 | Location | Copy | Source |
