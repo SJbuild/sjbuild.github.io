@@ -184,6 +184,8 @@ Conventions: Tailwind default breakpoints, mobile-first (`md` first 2-col, `lg` 
 | P19 | Footer contact data switched to Contacts.md (+359 889 173 654 / sgbuildbg@gmail.com / с. Лозенец, обл. Бургас, България); supersedes the `plan`-phase "design copy" row | User resolved the long-open conflict in favor of Contacts.md; "design-copy-wins" was provisional pending this confirmation |
 | P19 | Footer social `aria-label`s updated to Contacts.md's profile names (SG Build Villas / @sgbuild_villas / SG Build); `href="#"` unchanged (no URLs given) | Resolves the SJ/SG mismatch for the *labels*; site branding (logo, copyright, JSON-LD) still says "SJ Build" — wider naming question remains open (Handover #7) |
 | P19 | `#contacts` CTA gained a new supporting paragraph (Contacts.md's "Get in Touch" greeting + "Location" blurb + closing line, merged into one) below the existing subtitle, `--reveal-delay: 0.12s`; form delay shifted 0.15s→0.2s | Distributes Contacts.md content without duplication: footer keeps contact details, CTA section gets the welcoming/location copy it previously lacked |
+| P20 | EN intro body "The villas" → "Our villas" (parity w/ BG + Home.md + Content Map) | Drift from documented Content Map string, caught during full content audit |
+| P20 | Community panel 3 heading "More freedom"/"Повече свобода" → "Lifestyle & Investment"/"Начин на живот и инвестиция" | Heading was leftover lorem per `07-community.md`; client chose to replace it now, derived from "A Community Made for Lifestyle & Investment" to match panel body + other headings' length |
 
 ## P12 — design-fidelity fixes (2026-06-15, from client review)
 Two P2 mistakes caught by the client comparing against Figma:
@@ -273,6 +275,27 @@ Verified: `npm run build` clean; `npx html-validate index.html en/index.html` pa
 shows only the pre-existing coral-contrast violation; screenshots at 1440/390 for both locales show the
 new paragraph reading cleanly above the form and the footer's updated phone/email/address.
 
+## P20 — Full content audit vs. website-docs (2026-06-16, client request)
+
+Checked every homepage section in both locales against `website-docs/{bg,en}/*.md` and the Content Map.
+Most sections matched their documented source exactly (Hero, Complex, Community headers/panels 1-2/4,
+Villas, About Us, CTA, Footer, Meta — all per existing Decisions Log rows). Two real drifts found and fixed:
+
+- **EN Intro body said "The villas" instead of "Our villas"** (`en/index.html`) — Home.md EN and the
+  Content Map both specify "Our villas combine contemporary design…", and the BG version already
+  correctly read "Нашите вили" (= "Our villas"). One-word fix to restore parity.
+- **Community panel 3 heading was stale lorem.** `_design/context/07-community.md` recorded that
+  "More freedom"/"Повече свобода" was lorem slated for replacement by an *About the complex.md*
+  "A Community Made for Lifestyle & Investment" derivation — only the panel's body text was ever
+  updated, not its heading. Client chose to replace the heading now: **"Lifestyle & Investment"** /
+  **"Начин на живот и инвестиция"** (both ~2-3 words, matching the other panels' heading lengths).
+
+Everything else audited as either an exact `.md` match, an authored paraphrase already covered by
+P4/P16/P18, or content reserved for a future subpage (Location.md's "Coastal Haven"/amenities list,
+Inquiries.md's detailed form fields — consistent with Handover #5's subpage stubs).
+
+Verified: `npm run build` clean; `npx html-validate index.html en/index.html` passes.
+
 ## Content Map (final string ← source)
 
 | Location | Copy | Source |
@@ -284,7 +307,7 @@ new paragraph reading cleanly above the form and the footer's updated phone/emai
 | Villa cards | names + specs from design; descriptions: replace lorem w/ About the complex.md amenity copy | design + md |
 | Complex H2/body/table | "About the complex" / About the complex.md intro / design table verbatim | design + md |
 | Location H2/body | "A Prime Location with a Sea View" (fixed А) / design body (real) else Location.md | design / md |
-| Community | title + 3 headings from design; intro from About the complex.md; "More freedom" body from "A Community Made for Lifestyle & Investment" | design + md |
+| Community | title + headings 1/2/4 from design; intro from About the complex.md; panel 3 heading "Lifestyle & Investment"/"Начин на живот и инвестиция" + body, both derived from "A Community Made for Lifestyle & Investment" (P20) | design + md |
 | About Us body | "We are a team of industry professionals…" | design (= About us.md) |
 | CTA | "Contact Us for More Information" / "Schedule a viewing today and experience luxury firsthand." | design (= Home.md) |
 | Form | labels/consent verbatim from design | design |
