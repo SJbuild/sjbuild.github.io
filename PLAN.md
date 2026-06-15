@@ -180,6 +180,12 @@ Conventions: Tailwind default breakpoints, mobile-first (`md` first 2-col, `lg` 
 | P7 | Form has no backend: mailto compose + honest status + honeypot; payload logged | TODO(backend) in form.ts + Handover register |
 | plan | Progress tracked in this file only (no harness task list) | Survives session death; single source of truth |
 
+## P12 — design-fidelity fixes (2026-06-15, from client review)
+Two P2 mistakes caught by the client comparing against Figma:
+- **Hero image was wrong.** P2 "layer-order correction" swapped the real fill (`hero-raw3`, 1808×1600, bright daytime villa = the "Image-2 1" node) for `hero-raw1` (dusk row). Reverted to raw3 in both locales; variants + og-image regenerated; srcset capped at 1808, dims 1808×1600, crop `object-[50%_72%]`. The earlier "P2 hero asset fix" Decisions-Log row was itself the bug.
+- **"Learn more" buttons were dark, not coral.** P2 fetched only the "Get a quote" button (dark `#1d1e22`) and wrongly generalized "no coral buttons." The real `Button Learn more` component (170:1171) is `#FF7F50` + white. Added `.btn-coral`; the 4 Learn-more pills now coral in both locales (Get-a-quote/View-all/submit stay dark, per design).
+- **OPEN — contrast tradeoff:** white on `#FF7F50` = 2.5:1, fails WCAG AA → axe now reports 1 serious color-contrast node. Shipped design-exact (coral+white) pending client choice: (A) keep exact, (B) coral bg + stygian text [AA pass, recommended], (C) darken coral + white [AA pass]. **Lesson: never silently deviate from the design to satisfy a gate — surface the conflict instead.**
+
 ## Content Map (final string ← source)
 
 | Location | Copy | Source |

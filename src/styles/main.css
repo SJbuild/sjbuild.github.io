@@ -120,6 +120,17 @@
     @apply bg-stygian/80;
   }
 
+  /* Coral "Learn more" buttons — matches Figma component 170:1171 (#FF7F50 + white).
+     NOTE: white on coral is ~2.5:1, below WCAG AA. Kept for design fidelity at the
+     client's request; switch text to `text-stygian` or darken the coral for AA. */
+  .btn-coral {
+    @apply bg-coral text-white;
+  }
+
+  .btn-coral:hover {
+    @apply brightness-95;
+  }
+
   /* Carousel arrow buttons — design: 35px circle, stygian active / pearl disabled */
   .btn-arrow {
     @apply flex h-9 w-9 items-center justify-center rounded-full bg-stygian text-white transition-colors duration-200;
