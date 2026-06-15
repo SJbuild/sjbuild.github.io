@@ -186,6 +186,8 @@ Conventions: Tailwind default breakpoints, mobile-first (`md` first 2-col, `lg` 
 | P19 | `#contacts` CTA gained a new supporting paragraph (Contacts.md's "Get in Touch" greeting + "Location" blurb + closing line, merged into one) below the existing subtitle, `--reveal-delay: 0.12s`; form delay shifted 0.15s→0.2s | Distributes Contacts.md content without duplication: footer keeps contact details, CTA section gets the welcoming/location copy it previously lacked |
 | P20 | EN intro body "The villas" → "Our villas" (parity w/ BG + Home.md + Content Map) | Drift from documented Content Map string, caught during full content audit |
 | P20 | Community panel 3 heading "More freedom"/"Повече свобода" → "Lifestyle & Investment"/"Начин на живот и инвестиция" | Heading was leftover lorem per `07-community.md`; client chose to replace it now, derived from "A Community Made for Lifestyle & Investment" to match panel body + other headings' length |
+| P21 | JSON-LD `RealEstateAgent` telephone/email/address switched to Contacts.md values (+359 889 173 654 / sgbuildbg@gmail.com / Лозенец, Бургас, BG — no street address); `description` field added from About us.md | Resolves the standing TODO(seo) for structured-data contact info, now that P19 finalized the contact data; old Varna street address had no source after the P19 switch |
+| P21 | Meta-doc entries for About-the-complex/Location/About-us/Contacts/Inquiries left unapplied to the homepage `<head>` | They're per-subpage title/description pairs (Handover #5 stubs); a single page can't carry 5 titles — reserved for those subpages |
 
 ## P12 — design-fidelity fixes (2026-06-15, from client review)
 Two P2 mistakes caught by the client comparing against Figma:
@@ -296,6 +298,38 @@ Inquiries.md's detailed form fields — consistent with Handover #5's subpage st
 
 Verified: `npm run build` clean; `npx html-validate index.html en/index.html` passes.
 
+## P21 — SEO audit vs. Meta Titles/Descriptions/Keywords docs (2026-06-16, client request)
+
+Checked `website-docs/{bg,en}/Meta Titles Meta Descriptions Meta Keywords.md` against both locales'
+`<head>` (title, meta description, meta keywords, OG/Twitter tags) and JSON-LD structured data.
+
+- **Home-page meta (title/description/keywords, OG/Twitter)**: already incorporated — confirmed in P20
+  to match the "Начална страница"/"Home Page" entries (title is an exact match; meta/OG/Twitter
+  descriptions are shortened versions of the .md's longer description, standard practice for SERP
+  snippet length). No further action needed.
+- **The other 5 entries** (About the complex, Location, About us, Contacts, Запитване/Inquiries) are
+  meta title+description pairs pre-written for the future subpages stubbed in Handover #5. A single
+  page can only carry one `<title>`/description, so these can't be applied to the current homepage
+  `<head>` — they're correctly reserved for those subpages' `<head>`s when built.
+- **JSON-LD `RealEstateAgent` had stale contact data** — `telephone`/`email`/`address` still held the
+  pre-P19 design-copy values (`+359897700770` / `sales@sjbuild.bg` / "str. Kiril i Metodii 43, Varna,
+  BG"), flagged by a standing `TODO(seo)` comment since P19. Updated both locales to the P19/Contacts.md
+  values: **`telephone: "+359889173654"`**, **`email: "sgbuildbg@gmail.com"`**, and a `PostalAddress`
+  with `addressLocality`/`addressRegion`/`addressCountry` = "Лозенец"/"Бургас"/"BG" (BG) and
+  "Lozenets"/"Burgas Province"/"BG" (EN) — no street-level address is given in Contacts.md, so
+  `streetAddress` was dropped rather than left pointing at Varna.
+- **Added a `description` field to `RealEstateAgent`** (previously absent) — sourced from the About-Us
+  section's existing copy (= About us.md, already on-page in both locales), giving structured data a
+  real business description for rich results/Knowledge Panel use.
+- Updated the `TODO(seo)` comment: contact data is now resolved, but `name`/`url`/`logo` still say
+  "SJ Build"/`sjbuild.bg` — the open brand-naming (Handover #7) and production-domain (Handover #2)
+  questions still touch this block.
+- **robots.txt / sitemap.xml**: reviewed, both well-formed and consistent with the current 2-page site
+  and hreflang setup (and with the same `sjbuild.bg` domain assumption as everything else, Handover #2).
+  No changes needed.
+
+Verified: `npm run build` clean; `npx html-validate index.html en/index.html` passes.
+
 ## Content Map (final string ← source)
 
 | Location | Copy | Source |
@@ -314,6 +348,7 @@ Verified: `npm run build` clean; `npx html-validate index.html en/index.html` pa
 | Footer | contact = Contacts.md (P19); "© 2025 SJ Build. All rights reserved." | Contacts.md (P19, supersedes design) |
 | Contacts CTA | extra paragraph = "Get in Touch" + "Location" + closing line, merged | Contacts.md (P19) |
 | Meta | Home entries | Meta Titles…md |
+| JSON-LD `RealEstateAgent` | contact = Contacts.md (P19/P21); `description` = About us.md (P21) | Contacts.md / About us.md |
 
 ## Handover register (P10 — every open item, with code locations)
 
@@ -330,4 +365,4 @@ Verified: `npm run build` clean; `npx html-validate index.html en/index.html` pa
 | 9 | Intl phone selector | `index.html:911` | static +359 prefix today |
 | 10 | ~~BG locale~~ ✅ DONE (P11) | `/` = BG, `/en/` = EN | bilingual toggle + hreflang + bilingual form live |
 | 11 | Twitter/X social | dropped | design export empty + absent from Contacts.md; re-add if client provides URL |
-| 12 | JSON-LD telephone/email/address | `index.html`/`en/index.html` `<head>` (TODO(seo) comment before the `application/ld+json` block) | P19 updated the *visible* footer to Contacts.md data but left structured data on the old design-copy values + Varna street address — reconcile together with #2 |
+| 12 | ~~JSON-LD telephone/email/address~~ ✅ DONE (P21) | `index.html`/`en/index.html` `<head>` | Reconciled to Contacts.md: +359 889 173 654 / sgbuildbg@gmail.com / Лозенец, Бургас, BG (Varna street address dropped, no longer sourced) |
