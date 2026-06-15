@@ -8,9 +8,10 @@ Renders + unchosen candidates: `_design/raw-staging/` (gitignored, disposable). 
 | 370:91 (fill "Group 1 copy") | hero.png | 3050×2593 | Hero bg | decorative (alt="") — heading carries meaning | CORRECTED P2: visible layer is the dusk villa row (raw1), not Image-2. White gradient done in CSS |
 | 371:99 (fill "Image-3-1 1") | intro-villa.png | 929×823 | Intro box photo | "Modern villa with natural materials" | only source available; ~1.2× of placed size — slightly soft on retina |
 | 372:94 (fill "Rectangle 17") | complex-bg.png | 1491×1055 | Complex section bg | decorative (alt="") | CORRECTED P3: visible layer is the aerial street view (raw1); pano was covered |
-| 182:34 (fill) | villa-1.png | 556×527 | Villa card 1 | "Beach Lux Villa 1 exterior" | exact design crop, 1× only — soft on retina (no larger source exists) |
-| 182:63 (fill) | villa-2.png | 1552×975 | Villa card 2 | "Villa 2 exterior" | good res |
-| 373:198 (fill) | villa-3.png | 1724×912 | Villa card 3 | "Villa 3 exterior" | good res |
+| 170:1016 (Villa 1) | villa-1.png | 1024×661 | Villa card 1 | "daytime exterior w/ driveway" | client-linked node (P16); replaced 556px dupe |
+| 170:1081 (Villa 2) | villa-2.png | 1724×912 | Villa card 2 | "landscaped frontage" | client-linked node (P16) |
+| 182:100 (Villa 3) | villa-3.png | 1552×975 | Villa card 3 | "terrace seating" | client-linked node (P16) |
+| 170:1086 (Villa 4) | villa-4.png | 1808×845 | Villa card 4 | "exterior at dusk w/ driveway" | NEW in P16 |
 | 182:197 (fill) | arch-1.png | 556×400 | Community panel 1 | "Architectural detail" | 1× only |
 | 182:199 (fill) | arch-2.png | 556×400 | Community panel 2 | 〃 | 1× only |
 | 167:897 (fill) | arch-3.png | 556×400 | Community panel 3 | 〃 | 1× only (render was collapsed 120px state; raw is full) |

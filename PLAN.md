@@ -197,6 +197,14 @@ All four title tokens (`--text-display-2xl/xl/lg/md`) shifted down 0.167rem (2pt
 ## P15 — Location map gap (2026-06-15, client review)
 The Location grid used `lg:items-end`, but the text column is taller than the map at every desktop width, so bottom-aligning dropped the map 57–97px down, leaving a gap above it. The design has the map top level with the title top (the map is the taller element there). Changed to `lg:items-start` in both locales → gap above the map is now 0 at 1440/1024, matching the design.
 
+## P16 — 4th villa added (2026-06-15, client request + 4 Figma node links)
+Gallery had 3 cards; design has 4 (client gave nodes 170:1016 / 170:1081 / 182:100 / 170:1086).
+- Villas track rebuilt **data-driven** (the `villas.ts`-style array I deferred in P4 — now justified) → 4 cards generated for both locales from one template.
+- Images re-sourced per the linked nodes: villa-1 now the 1024px daytime layer (was a 556px dupe); villa-2/3 were swapped vs design — fixed; villa-4 new (1808×845). Regenerated all variants.
+- Inline "Learn more" link corrected to **lagoon `#2774d9`** (design) — was dark. Lagoon-on-white = 4.6:1, passes AA.
+- Card "Get a quote" stays dark, specs 250m²/3/2/1 (all identical per design), descriptions = authored real copy (design is lorem); villa-4 description newly authored in EN+BG.
+- Verified: 4 cards, carousel scrolls start→end (Next disables, villa 4 fully reachable), lagoon links confirmed `rgb(39,116,217)`, html-validate clean, axe unchanged (only the pending coral-button contrast).
+
 ## Content Map (final string ← source)
 
 | Location | Copy | Source |
