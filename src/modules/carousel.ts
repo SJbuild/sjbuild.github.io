@@ -40,7 +40,8 @@ export function initCarousel(): void {
     prev.addEventListener("click", () => scrollByCard(-1));
     next.addEventListener("click", () => scrollByCard(1));
     track.addEventListener("scroll", update, { passive: true });
-    new ResizeObserver(update).observe(track);
+    const ro = new ResizeObserver(update);
+    ro.observe(track);
     update();
   }
 }

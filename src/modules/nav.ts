@@ -33,7 +33,8 @@ export function initNav(): void {
 
   // Anchor navigation inside the drawer closes it
   drawer.addEventListener("click", (event) => {
-    if ((event.target as HTMLElement).closest('a[href^="#"]')) setOpen(false);
+    const t = event.target;
+    if (t instanceof HTMLElement && t.closest('a[href^="#"]')) setOpen(false);
   });
 
   // Esc closes; Tab is trapped within the header while the drawer is open
@@ -77,8 +78,7 @@ export function initScrollspy(): void {
 
   const setActive = (id: string): void => {
     for (const link of links) {
-      if (link.hash === `#${id}`) link.setAttribute("aria-current", "true");
-      else link.removeAttribute("aria-current");
+      link.setAttribute("aria-current", link.hash === `#${id}` ? "true" : "false");
     }
   };
 

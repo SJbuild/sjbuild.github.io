@@ -1,18 +1,7 @@
-/**
- * Contact form: client-side validation with accessible inline errors.
- * Bilingual — strings are picked from `document.documentElement.lang`
- * ("bg" primary, "en" fallback) so the same bundle serves both pages.
- *
- * TODO(backend): there is no server endpoint yet. On valid submit the payload
- * is logged and a prefilled mailto: compose to sales@sjbuild.bg is opened —
- * the success message deliberately does not claim server delivery. Upgrade
- * path: POST the payload to an endpoint (own API / Formspree / Netlify Forms)
- * and replace the mailto branch.
- */
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE_RE = /^[\d\s()/-]{6,15}$/;
-const SALES_EMAIL = "sales@sjbuild.bg";
-const SALES_PHONE = "+359 897 700 770";
+const SALES_EMAIL = "sgbuildbg@gmail.com";
+const FORM_ENDPOINT = "https://api.web3forms.com/submit";
 
 interface Strings {
   name: string;
@@ -20,11 +9,9 @@ interface Strings {
   phone: string;
   message: string;
   consent: string;
-  subject: string;
-  fName: string;
-  fEmail: string;
-  fPhone: string;
-  success: (email: string, phone: string) => string;
+  sending: string;
+  success: string;
+  error: (email: string) => string;
 }
 
 const COPY: Record<"bg" | "en", Strings> = {
@@ -34,13 +21,11 @@ const COPY: Record<"bg" | "en", Strings> = {
     phone: "Моля, въведете валиден телефонен номер.",
     message: "Моля, напишете кратко съобщение.",
     consent: "Моля, приемете Политиката за поверителност, за да продължите.",
-    subject: "Запитване за оферта — вили SJ Build",
-    fName: "Име",
-    fEmail: "Имейл",
-    fPhone: "Телефон",
-    success: (email, phone) =>
-      `Вашето имейл приложение трябва вече да е отворено със съобщението — просто натиснете „изпрати“. ` +
-      `Ако не се е отворило, пишете на ${email} или се обадете на ${phone}.`,
+    sending: "Изпращане…",
+    success:
+      "Вашето запитване беше изпратено успешно. Ще се свържем с Вас в рамките на 1 работен ден.",
+    error: (email) =>
+      `Нещо се обърка при изпращането. Моля, пишете ни директно на ${email}.`,
   },
   en: {
     name: "Please enter your full name.",
@@ -48,13 +33,11 @@ const COPY: Record<"bg" | "en", Strings> = {
     phone: "Please enter a valid phone number.",
     message: "Please write a short message.",
     consent: "Please accept the Privacy Policy to continue.",
-    subject: "Quote request — SJ Build villas",
-    fName: "Name",
-    fEmail: "Email",
-    fPhone: "Phone",
-    success: (email, phone) =>
-      `Your email app should now be open with your message — just press send. ` +
-      `If it didn't open, write to ${email} or call ${phone}.`,
+    sending: "Sending…",
+    success:
+      "Your enquiry has been sent successfully. We'll get back to you within 1 working day.",
+    error: (email) =>
+      `Something went wrong. Please write to us directly at ${email}.`,
   },
 };
 
@@ -65,8 +48,9 @@ interface Field {
 }
 
 export function initForm(): void {
-  const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
-  if (!form) return;
+  const formEl = document.querySelector<HTMLFormElement>("[data-contact-form]");
+  if (!formEl) return;
+  const form: HTMLFormElement = formEl;
 
   const t = document.documentElement.lang === "en" ? COPY.en : COPY.bg;
   const status = form.querySelector<HTMLElement>("[data-form-status]");
@@ -124,27 +108,59 @@ export function initForm(): void {
       return;
     }
 
-    const value = (name: string): string =>
-      form.querySelector<HTMLInputElement | HTMLTextAreaElement>(`[name="${name}"]`)?.value.trim() ?? "";
-    const payload = {
-      name: value("name"),
-      email: value("email"),
-      phone: `+359 ${value("phone")}`,
-      message: value("message"),
-    };
-    console.table(payload);
+    void submit();
+  });
 
-    const subject = encodeURIComponent(t.subject);
-    const body = encodeURIComponent(
-      `${t.fName}: ${payload.name}\n${t.fEmail}: ${payload.email}\n${t.fPhone}: ${payload.phone}\n\n${payload.message}`,
-    );
-    window.location.href = `mailto:${SALES_EMAIL}?subject=${subject}&body=${body}`;
+  async function submit(): Promise<void> {
+    const btn = form.querySelector<HTMLButtonElement>('[type="submit"]');
+    const originalLabel = btn?.textContent ?? "";
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = t.sending;
+    }
 
+    try {
+      const data = new FormData(form);
+      // Prefix phone with country code before sending
+      const phone = data.get("phone");
+      if (typeof phone === "string") data.set("phone", `+359 ${phone}`);
+
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: data,
+      });
+      if (!res.ok) { showError(); return; }
+      const raw: unknown = await res.json();
+      const success =
+        typeof raw === "object" && raw !== null &&
+        (raw as Record<string, unknown>)["success"] === true;
+
+      if (success) {
+        if (status) {
+          status.textContent = t.success;
+          status.classList.remove("hidden");
+        }
+        form.reset();
+      } else {
+        showError();
+      }
+    } catch {
+      showError();
+    } finally {
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = originalLabel;
+      }
+    }
+  }
+
+  function showError(): void {
     if (status) {
-      status.textContent = t.success(SALES_EMAIL, SALES_PHONE);
+      status.textContent = t.error(SALES_EMAIL);
       status.classList.remove("hidden");
     }
-  });
+  }
 
   for (const field of fields) {
     field.input.addEventListener("blur", () => {
@@ -154,4 +170,5 @@ export function initForm(): void {
   consent?.addEventListener("change", () => {
     if (attempted) validateConsent();
   });
+
 }
