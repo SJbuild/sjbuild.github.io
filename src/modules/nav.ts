@@ -12,7 +12,7 @@ export function initNav(): void {
   window.addEventListener("scroll", onScroll, { passive: true });
 
   const toggle = header.querySelector<HTMLButtonElement>("[data-menu-toggle]");
-  const drawer = header.querySelector<HTMLElement>("#mobile-menu");
+  const drawer = document.getElementById("mobile-menu");
   if (!toggle || !drawer) return;
 
   let open = false;
@@ -37,17 +37,18 @@ export function initNav(): void {
     if (t instanceof HTMLElement && t.closest('a[href^="#"]')) setOpen(false);
   });
 
-  // Esc closes; Tab is trapped within the header while the drawer is open
-  header.addEventListener("keydown", (event) => {
+  // Esc closes; Tab is trapped within header + drawer while the menu is open
+  document.addEventListener("keydown", (event) => {
     if (!open) return;
     if (event.key === "Escape") {
       setOpen(false);
       return;
     }
     if (event.key !== "Tab") return;
-    const focusable = [...header.querySelectorAll<HTMLElement>(FOCUSABLE)].filter(
-      (el) => el.offsetParent !== null,
-    );
+    const focusable = [
+      ...header.querySelectorAll<HTMLElement>(FOCUSABLE),
+      ...drawer.querySelectorAll<HTMLElement>(FOCUSABLE),
+    ].filter((el) => el.offsetParent !== null);
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
     if (!first || !last) return;
