@@ -75,9 +75,6 @@
 @layer base {
   html {
     scroll-padding-top: calc(var(--spacing-header) + 1rem);
-    /* Decorative bleeds (carousel track, map, about-us photo) must never
-       create page-level horizontal scroll; clip keeps sticky/snap intact. */
-    overflow-x: clip;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -87,6 +84,9 @@
   }
 
   body {
+    /* overflow-x on body (not html) prevents decorative bleeds from causing
+       horizontal scroll without breaking position:fixed on mobile browsers. */
+    overflow-x: clip;
     @apply bg-sand font-sans text-nevada antialiased;
   }
 
