@@ -9,9 +9,11 @@ import { initNav, initScrollspy } from "./modules/nav";
 import { initCarousel } from "./modules/carousel";
 import { initForm } from "./modules/form";
 import { initReveal } from "./modules/reveal";
+import { initParallax } from "./modules/parallax";
 
 initNav();
 initScrollspy();
 initCarousel();
 initForm();
 initReveal();
+initParallax();
