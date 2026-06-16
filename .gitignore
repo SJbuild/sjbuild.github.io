@@ -1,6 +1,32 @@
+# Dependencies
 node_modules/
+
+# Build output
 dist/
-.DS_Store
+
+# Vite cache
+.vite/
+
+# TypeScript incremental build info
+*.tsbuildinfo
+
+# Environment / local config
+.env
+.env.local
+.env.*.local
+*.local
+
+# Logs
 *.log
+npm-debug.log*
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Claude Code memory
+.claude/
+
+# Project-specific staging / scratch folders
 _design/verify/
 raw-staging/
