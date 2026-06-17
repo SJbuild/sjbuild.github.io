@@ -53,6 +53,7 @@
   --container-box: 83.375rem; /* 1334px intro box */
   --container-card: 40.625rem; /* 650px frosted card */
   --spacing-gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --bleed-pad: max(var(--spacing-gutter), calc((100vw - var(--container-content)) / 2));
   --spacing-section: clamp(4rem, 2.4rem + 4.4vw, 5.75rem); /* Figma ~92px rhythm */
   --spacing-header: 6rem; /* 43px offset + 55px bar */
   --hero-h: clamp(42rem, 72.25vw, 65rem); /* 1040/1440 */
@@ -74,7 +75,12 @@
 
 @media (min-width: 64rem) {
   :root {
-    /* desktop: exactly 2 cards fill the visible track area (50% minus half gap-7) */
+    /* desktop: exactly 2 cards + gap fill the clipped track area. The track
+       itself carries no padding of its own (page-gutter alignment lives on
+       its wrapping div instead), so 50% of its content box is already the
+       true clip width — just subtract half the gap-7 column gap. This exact
+       fit is required for the sliding-window fade in carousel.ts: every
+       single-card step must land flush with no partial card peeking. */
     --villa-card-w: calc(50% - 0.875rem);
   }
 }
@@ -149,8 +155,8 @@
 
   /* Full-bleed scroll track whose content aligns with the page container */
   .bleed-track {
-    padding-inline: max(var(--spacing-gutter), calc((100vw - var(--container-content)) / 2));
-    scroll-padding-inline: max(var(--spacing-gutter), calc((100vw - var(--container-content)) / 2));
+    padding-inline: var(--bleed-pad);
+    scroll-padding-inline: var(--bleed-pad);
   }
 
   .no-scrollbar {
