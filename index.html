@@ -316,7 +316,8 @@
       </section>
       <!-- @section:intro -->
       <section id="intro" aria-labelledby="intro-title" class="mt-section px-4 sm:px-6 xl:px-13">
-        <div data-reveal class="mx-auto grid max-w-(--container-box) overflow-hidden rounded-box bg-linear-to-l from-peach to-ice lg:grid-cols-[1.08fr_1fr]">
+        <div class="mx-auto max-w-(--container-box) lg:overflow-visible">
+        <div data-reveal class="grid overflow-hidden rounded-box bg-linear-to-l from-peach to-ice lg:grid-cols-[1.08fr_1fr] lg:overflow-visible">
           <div class="order-2 px-6 pt-8 pb-10 sm:px-10 lg:order-1 lg:py-14 lg:pr-8 lg:pl-23">
             <h2 id="intro-title" class="relative z-10 max-w-[15ch] text-display-xl lg:w-[120%] lg:max-w-none">
               Където уединението среща модерния лукс
@@ -327,8 +328,8 @@
             </p>
             <a href="#contact-form" class="btn btn-dark mt-7">Заявка за оферта</a>
           </div>
-          <div class="order-1 lg:order-2">
-            <picture>
+          <div class="order-1 lg:order-2 lg:relative lg:h-full lg:[clip-path:inset(0_-140px_0_0)]">
+            <picture class="lg:absolute lg:inset-0">
               <source
                 type="image/avif"
                 srcset="/images/intro-villa-480.avif 480w, /images/intro-villa-768.avif 768w, /images/intro-villa-929.avif 929w"
@@ -348,10 +349,11 @@
                 height="823"
                 loading="lazy"
                 decoding="async"
-                class="h-full max-h-72 w-full -scale-x-100 object-cover object-[70%_55%] sm:max-h-96 lg:max-h-none"
+                class="h-full max-h-72 w-full -scale-x-100 object-cover object-[85%_75%] sm:max-h-96 lg:max-h-none lg:translate-x-[140px] lg:translate-y-[160px]"
               />
             </picture>
           </div>
+        </div>
         </div>
       </section>
       <!-- @section:villas -->
