@@ -5,6 +5,9 @@
  * state and hides the controls when nothing overflows. Supports any number
  * of [data-carousel-controls] blocks; each is wired to the track named by
  * its buttons' aria-controls.
+ *
+ * [data-carousel-fade] on the controls block enables fade mode: the track
+ * fades out, jumps instantly to the next page of cards, then fades back in.
  */
 export function initCarousel(): void {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -16,11 +19,20 @@ export function initCarousel(): void {
     const track = trackId ? document.getElementById(trackId) : null;
     if (!track || !prev || !next) continue;
 
-    const step = (): number => {
+    const isFade = controls.hasAttribute("data-carousel-fade");
+    let fading = false;
+
+    const cardStep = (): number => {
       const card = track.querySelector<HTMLElement>("li");
       if (!card) return track.clientWidth;
       const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
       return card.getBoundingClientRect().width + gap;
+    };
+
+    // How many cards fit in the visible track area (used for page-at-a-time fade)
+    const perPage = (): number => {
+      const s = cardStep();
+      return s > 0 ? Math.max(1, Math.floor(track.clientWidth / s)) : 1;
     };
 
     const update = (): void => {
@@ -30,15 +42,35 @@ export function initCarousel(): void {
       next.disabled = track.scrollLeft >= maxScroll - 1;
     };
 
-    const scrollByCard = (direction: -1 | 1): void => {
-      track.scrollBy({
-        left: direction * step(),
-        behavior: reducedMotion.matches ? "auto" : "smooth",
-      });
+    const navigate = (direction: -1 | 1): void => {
+      if (isFade && fading) return;
+
+      const distance = direction * cardStep() * (isFade ? perPage() : 1);
+
+      if (!isFade || reducedMotion.matches) {
+        track.scrollBy({ left: distance, behavior: reducedMotion.matches ? "auto" : "smooth" });
+        return;
+      }
+
+      fading = true;
+      track.style.transition = "opacity 220ms ease";
+      track.style.opacity = "0";
+
+      setTimeout(() => {
+        track.scrollBy({ left: distance, behavior: "instant" });
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            track.style.opacity = "1";
+            setTimeout(() => {
+              fading = false;
+            }, 220);
+          });
+        });
+      }, 220);
     };
 
-    prev.addEventListener("click", () => scrollByCard(-1));
-    next.addEventListener("click", () => scrollByCard(1));
+    prev.addEventListener("click", () => navigate(-1));
+    next.addEventListener("click", () => navigate(1));
     track.addEventListener("scroll", update, { passive: true });
     const ro = new ResizeObserver(update);
     ro.observe(track);
