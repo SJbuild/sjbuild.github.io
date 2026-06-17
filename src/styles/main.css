@@ -58,7 +58,7 @@
   --spacing-header: 6rem; /* 43px offset + 55px bar */
   --hero-h: clamp(42rem, 72.25vw, 65rem); /* 1040/1440 */
   --villa-card-w: min(34.75rem, 85vw); /* mobile: 1 card with peek */
-  --gallery-card-w: min(34.75rem, 85vw); /* ~556px community card, same size as villa card */
+  --gallery-card-w: min(34.75rem, 85vw); /* mobile: 1 card with peek, same size as villa card */
   --aboutus-h: 60rem; /* about-us photo zone (design 1076px, tail hidden under CTA) */
 
   /* ── Shape & media ─────────────────────────────────────────────── */
@@ -82,6 +82,7 @@
        fit is required for the sliding-window fade in carousel.ts: every
        single-card step must land flush with no partial card peeking. */
     --villa-card-w: calc(50% - 0.875rem);
+    --gallery-card-w: calc(50% - 0.875rem);
   }
 }
 
