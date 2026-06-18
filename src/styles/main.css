@@ -266,6 +266,20 @@
       transition: none;
     }
   }
+
+  /* Villa gallery: hand cursor on anything that opens the lightbox */
+  [data-gallery-trigger] {
+    @apply cursor-pointer;
+  }
+
+  /* Villa gallery lightbox thumbnails */
+  [data-gallery-thumbs] button[aria-current="true"] {
+    @apply outline-2 outline-offset-2 outline-coral;
+  }
+
+  .thumb-pdf-badge {
+    @apply absolute right-1 bottom-1 rounded bg-stygian px-1 text-[0.625rem] font-bold text-white;
+  }
 }
 
 /* Pull an element to the right viewport edge from inside the page container */
