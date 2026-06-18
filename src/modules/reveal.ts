@@ -23,4 +23,28 @@ export function initReveal(): void {
     { threshold: 0.15, rootMargin: "0px 0px -40px" },
   );
   for (const el of items) observer.observe(el);
+
+  // A same-page anchor (e.g. the "Get a quote" CTAs targeting #contact-form)
+  // jumps straight past the normal scroll-triggered threshold, so the
+  // destination would otherwise sit at opacity:0 until the observer catches
+  // up — reveal its whole section immediately instead, with no slide/fade
+  // transition (it should already look "settled" the instant we land there).
+  const revealHashTarget = (): void => {
+    const section = document.getElementById(location.hash.slice(1))?.closest("section");
+    if (!section) return;
+    for (const el of section.querySelectorAll<HTMLElement>("[data-reveal]")) {
+      el.style.transition = "none";
+      el.classList.add("is-visible");
+      observer.unobserve(el);
+    }
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        for (const el of section.querySelectorAll<HTMLElement>("[data-reveal]")) {
+          el.style.transition = "";
+        }
+      });
+    });
+  };
+  if (location.hash) revealHashTarget();
+  window.addEventListener("hashchange", revealHashTarget);
 }
