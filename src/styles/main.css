@@ -89,6 +89,13 @@
 @layer base {
   html {
     scroll-padding-top: calc(var(--spacing-header) + 1rem);
+    /* Stops mobile browsers from chaining a horizontal swipe (e.g. one that
+       starts on the villa/community carousels or gallery thumbnails) into a
+       page-level scroll/bounce that reveals whitespace past the viewport edge.
+       Inner overflow-x-auto containers keep scrolling normally — this only
+       blocks escalation past their own edges. */
+    overflow-x: clip;
+    overscroll-behavior-x: none;
   }
 
   @media (prefers-reduced-motion: no-preference) {
