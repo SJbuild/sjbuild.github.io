@@ -657,15 +657,29 @@
               <a href="#" class="btn btn-coral mt-6">Научете повече</a>
             </div>
             <div data-reveal style="--reveal-delay: 0.15s" class="mt-10 lg:mt-0 lg:bleed-right">
-              <img
-                src="/images/map.svg"
-                alt="Илюстрирана карта на крайбрежието на Лозенец на Черно море: комплексът на SJ Build се намира на 1 км югозападно от центъра на Лозенец, между Централния плаж и плаж Оазис"
-                width="738"
-                height="616"
-                loading="lazy"
-                decoding="async"
-                class="h-auto w-full"
-              />
+              <picture>
+                <source
+                  type="image/avif"
+                  srcset="/images/location-map-480.avif 480w, /images/location-map-768.avif 768w, /images/location-map-1024.avif 1024w, /images/location-map-1103.avif 1103w"
+                  sizes="(min-width: 64rem) 55vw, 100vw"
+                />
+                <source
+                  type="image/webp"
+                  srcset="/images/location-map-480.webp 480w, /images/location-map-768.webp 768w, /images/location-map-1024.webp 1024w, /images/location-map-1103.webp 1103w"
+                  sizes="(min-width: 64rem) 55vw, 100vw"
+                />
+                <img
+                  src="/images/location-map-1103.jpg"
+                  srcset="/images/location-map-480.jpg 480w, /images/location-map-768.jpg 768w, /images/location-map-1024.jpg 1024w, /images/location-map-1103.jpg 1103w"
+                  sizes="(min-width: 64rem) 55vw, 100vw"
+                  alt="Илюстрирана карта на крайбрежието на Лозенец на Черно море: комплексът на SJ Build се намира на 1 км югозападно от центъра на Лозенец, между Централния плаж и плаж Оазис"
+                  width="1103"
+                  height="924"
+                  loading="lazy"
+                  decoding="async"
+                  class="h-auto w-full"
+                />
+              </picture>
             </div>
           </div>
         </div>
