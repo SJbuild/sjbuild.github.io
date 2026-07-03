@@ -59,7 +59,7 @@
   --hero-h: clamp(42rem, 72.25vw, 65rem); /* 1040/1440 */
   --villa-card-w: min(34.75rem, 85vw); /* mobile: 1 card with peek */
   --gallery-card-w: min(34.75rem, 85vw); /* mobile: 1 card with peek, same size as villa card */
-  --aboutus-h: 60rem; /* about-us photo zone (design 1076px, tail hidden under CTA) */
+  --aboutus-h: 47.75rem; /* about-us photo zone, sized to the wider/shorter combined image */
 
   /* ── Shape & media ─────────────────────────────────────────────── */
   --radius-box: clamp(1.75rem, 4.25vw, 3.8125rem); /* intro box 61px */
