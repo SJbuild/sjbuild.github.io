@@ -175,21 +175,6 @@
     display: none;
   }
 
-  /* Scrollspy active states: subtle underline in the header pill,
-     the design's bold coral in the footer */
-  [data-nav-link][aria-current="true"] {
-    @apply underline decoration-stygian/40 underline-offset-8;
-  }
-
-  footer [data-nav-link][aria-current="true"] {
-    @apply font-bold text-coral no-underline;
-  }
-
-  /* Fixed header: transparent over hero, solid once scrolled */
-  #site-header.is-scrolled {
-    @apply bg-sand/90 shadow-md backdrop-blur-md;
-  }
-
   /* Hamburger → X */
   [data-menu-toggle] span[aria-hidden] {
     @apply h-0.5 w-6 bg-stygian;
@@ -286,6 +271,28 @@
 
   .thumb-pdf-badge {
     @apply absolute right-1 bottom-1 rounded bg-stygian px-1 text-[0.625rem] font-bold text-white;
+  }
+}
+
+@layer utilities {
+  /* Scrollspy active state: bold coral highlight, header and footer alike.
+     Layered as a utility so it outranks the text-stygian/text-sand utility
+     classes already on the nav links (components-layer rules lose to those). */
+  [data-nav-link][aria-current="true"] {
+    @apply font-bold text-coral;
+  }
+
+  /* Fixed header: transparent over hero, frosted glass once scrolled. Layered
+     as a utility so it outranks the lg:bg-transparent utility class on the
+     header itself (components-layer rules lose to those at lg+). */
+  #site-header.is-scrolled {
+    @apply bg-sand/50 shadow-md backdrop-blur-frost;
+  }
+
+  /* Language switch always gets a solid circle for contrast, over the hero
+     and once the header goes frosted glass alike. */
+  #site-header a[hreflang] {
+    @apply flex size-9 shrink-0 items-center justify-center rounded-full bg-white shadow-sm;
   }
 }
 
