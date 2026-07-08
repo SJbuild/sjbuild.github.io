@@ -357,7 +357,8 @@
     transition: opacity 0.15s ease;
   }
 
-  html.js [data-villa-tooltip].is-active {
+  html.js [data-villa-tooltip].is-active,
+  html.js [data-villa-tooltip].is-current {
     opacity: 1;
   }
 

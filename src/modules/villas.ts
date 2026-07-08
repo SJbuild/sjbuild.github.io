@@ -24,15 +24,10 @@ export function initVillas(): void {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let selectedId: string | null = null; // touch only: id awaiting a confirming second tap
 
-  const showTooltip = (id: string, show: boolean): void => {
-    const el = tooltips.get(id);
-    if (!el) return;
-    el.classList.toggle("is-active", show);
-    hotspotsById.get(id)?.classList.toggle("is-active", show);
+  // Clamp inside the map container so a fixed-width tooltip near an edge
+  // (mainly on narrow screens) never overflows the viewport.
+  const clampTooltip = (el: HTMLElement): void => {
     el.style.transform = "";
-    if (!show) return;
-    // Clamp inside the map container so a fixed-width tooltip near an edge
-    // (mainly on narrow screens) never overflows the viewport.
     const mapBounds = map.getBoundingClientRect();
     const box = el.getBoundingClientRect();
     const pad = 8;
@@ -42,13 +37,33 @@ export function initVillas(): void {
     if (dx) el.style.transform = `translateX(${dx}px)`;
   };
 
+  const showTooltip = (id: string, show: boolean): void => {
+    const el = tooltips.get(id);
+    if (!el) return;
+    el.classList.toggle("is-active", show);
+    hotspotsById.get(id)?.classList.toggle("is-active", show);
+    // Leave a stale transform in place on hide — harmless (opacity:0 hides
+    // it), and preserves the clamp if `.is-current` is keeping it visible.
+    if (show) clampTooltip(el);
+  };
+
+  // Persistent state for whichever villa's panel is currently shown —
+  // independent of `.is-active` above (the transient hover/touch-preview
+  // state, cleared on pointerleave/blur): both the hotspot tint and its
+  // tooltip stay visible until a different villa is activated.
+  const setCurrentVilla = (id: string): void => {
+    for (const [hotId, el] of hotspotsById) el.classList.toggle("is-current", hotId === id);
+    for (const [tipId, el] of tooltips) {
+      const isCurrent = tipId === id;
+      el.classList.toggle("is-current", isCurrent);
+      if (isCurrent) clampTooltip(el);
+    }
+  };
+
   const activateVilla = (id: string): void => {
     for (const [detailId, el] of details) el.classList.toggle("is-active", detailId === id);
     for (const [tipId] of tooltips) showTooltip(tipId, tipId === id);
-    // Persistent highlight for whichever villa's panel is currently shown —
-    // independent of `.is-active` above, which is the transient hover/touch-
-    // preview state and gets cleared on pointerleave/blur.
-    for (const [hotId, el] of hotspotsById) el.classList.toggle("is-current", hotId === id);
+    setCurrentVilla(id);
     const detail = details.get(id);
     detail?.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth", block: "start" });
     detail?.focus({ preventScroll: true });
@@ -58,7 +73,15 @@ export function initVillas(): void {
   // document order (Villa 1), matching the map's own reading order.
   const defaultId = [...details.keys()][0] ?? "";
   details.get(defaultId)?.classList.add("is-active");
-  hotspotsById.get(defaultId)?.classList.add("is-current");
+  setCurrentVilla(defaultId);
+
+  // The current tooltip's clamp offset depends on viewport width; keep it
+  // correct if the window is resized while it's showing.
+  window.addEventListener("resize", () => {
+    for (const el of tooltips.values()) {
+      if (el.classList.contains("is-current")) clampTooltip(el);
+    }
+  });
 
   for (const hotspot of hotspots) {
     const id = hotspot.dataset.villaId;
