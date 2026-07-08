@@ -45,6 +45,10 @@ export function initVillas(): void {
   const activateVilla = (id: string): void => {
     for (const [detailId, el] of details) el.classList.toggle("is-active", detailId === id);
     for (const [tipId] of tooltips) showTooltip(tipId, tipId === id);
+    // Persistent highlight for whichever villa's panel is currently shown —
+    // independent of `.is-active` above, which is the transient hover/touch-
+    // preview state and gets cleared on pointerleave/blur.
+    for (const [hotId, el] of hotspotsById) el.classList.toggle("is-current", hotId === id);
     const detail = details.get(id);
     detail?.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth", block: "start" });
     detail?.focus({ preventScroll: true });
@@ -52,7 +56,9 @@ export function initVillas(): void {
 
   // Default panel shown before any interaction: the first detail block in
   // document order (Villa 1), matching the map's own reading order.
-  details.get([...details.keys()][0] ?? "")?.classList.add("is-active");
+  const defaultId = [...details.keys()][0] ?? "";
+  details.get(defaultId)?.classList.add("is-active");
+  hotspotsById.get(defaultId)?.classList.add("is-current");
 
   for (const hotspot of hotspots) {
     const id = hotspot.dataset.villaId;

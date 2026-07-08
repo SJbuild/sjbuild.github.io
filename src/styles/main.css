@@ -293,7 +293,8 @@
 
   [data-villa-hotspot]:hover path,
   [data-villa-hotspot]:focus-visible path,
-  [data-villa-hotspot].is-active path {
+  [data-villa-hotspot].is-active path,
+  [data-villa-hotspot].is-current path {
     fill-opacity: 0.45;
   }
 
