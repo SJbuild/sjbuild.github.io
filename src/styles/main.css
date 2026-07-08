@@ -16,6 +16,8 @@
   --color-slate: #54565c; /* form field labels */
   --color-ash: #757575; /* consent fine print */
   --color-error: #c2410c; /* form validation errors (5.4:1 on white) */
+  --color-available: #32c22d; /* villa map hotspot + tooltip band — available */
+  --color-sold: #c22d2f; /* villa map hotspot + tooltip band — sold */
 
   /* ── Typography ────────────────────────────────────────────────── */
   --font-display: "PT Serif", Georgia, "Times New Roman", serif;
@@ -272,6 +274,44 @@
   .thumb-pdf-badge {
     @apply absolute right-1 bottom-1 rounded bg-stygian px-1 text-[0.625rem] font-bold text-white;
   }
+
+  /* Villa map hotspots: filled polygons over the site-plan image, tinted by
+     availability. Invisible at rest (per Figma: the tint is a hover-only
+     highlight, not a permanent overlay) and revealed on hover/focus/selection —
+     `.is-active` covers the touch first-tap preview, kept in sync with the
+     tooltip by villas.ts. Hidden default text/dimension styling isn't needed
+     here — the shape itself IS the hit target (fill-only, no stroke). */
+  [data-villa-hotspot] path {
+    fill: var(--color-available);
+    fill-opacity: 0;
+    transition: fill-opacity 0.2s ease;
+  }
+
+  [data-villa-hotspot][data-status="sold"] path {
+    fill: var(--color-sold);
+  }
+
+  [data-villa-hotspot]:hover path,
+  [data-villa-hotspot]:focus-visible path,
+  [data-villa-hotspot].is-active path {
+    fill-opacity: 0.45;
+  }
+
+  .villa-tooltip-band {
+    @apply bg-available;
+  }
+
+  [data-villa-tooltip][data-status="sold"] .villa-tooltip-band {
+    @apply bg-sold;
+  }
+
+  .plan-dot {
+    @apply block h-2 w-2 rounded-full bg-pearl transition-colors duration-200;
+  }
+
+  .plan-dot.is-active {
+    @apply bg-coral;
+  }
 }
 
 @layer utilities {
@@ -293,6 +333,39 @@
      and once the header goes frosted glass alike. */
   #site-header a[hreflang] {
     @apply flex size-9 shrink-0 items-center justify-center rounded-full bg-white shadow-sm;
+  }
+
+  [data-villa-tooltip][data-status="sold"] [data-status-available] {
+    @apply hidden;
+  }
+
+  /* Layered as a utility so it outranks the `hidden` utility already on this
+     element by default in the HTML (components-layer rules lose to those). */
+  [data-villa-tooltip][data-status="sold"] [data-status-sold] {
+    @apply block;
+  }
+
+  /* Tooltip visibility and detail-block switching are JS-driven, so both
+     only hide behind `html.js` — without JS every villa's info stays visible
+     (matches the [data-reveal] no-JS fallback convention in reveal.ts).
+     Layered as a utility so it outranks the `grid` utility already on the
+     detail blocks (components-layer rules lose to those). */
+  html.js [data-villa-tooltip] {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+  }
+
+  html.js [data-villa-tooltip].is-active {
+    opacity: 1;
+  }
+
+  html.js [data-villa-detail] {
+    display: none;
+  }
+
+  html.js [data-villa-detail].is-active {
+    display: block;
   }
 }
 

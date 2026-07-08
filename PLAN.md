@@ -188,6 +188,12 @@ Conventions: Tailwind default breakpoints, mobile-first (`md` first 2-col, `lg` 
 | P20 | Community panel 3 heading "More freedom"/"Повече свобода" → "Lifestyle & Investment"/"Начин на живот и инвестиция" | Heading was leftover lorem per `07-community.md`; client chose to replace it now, derived from "A Community Made for Lifestyle & Investment" to match panel body + other headings' length |
 | P21 | JSON-LD `RealEstateAgent` telephone/email/address switched to Contacts.md values (+359 889 173 654 / sgbuildbg@gmail.com / Лозенец, Бургас, BG — no street address); `description` field added from About us.md | Resolves the standing TODO(seo) for structured-data contact info, now that P19 finalized the contact data; old Varna street address had no source after the P19 switch |
 | P21 | Meta-doc entries for About-the-complex/Location/About-us/Contacts/Inquiries left unapplied to the homepage `<head>` | They're per-subpage title/description pairs (Handover #5 stubs); a single page can't carry 5 titles — reserved for those subpages |
+| P22 | Villa↔building map position assigned from the architect's site plan (`villa-1/site-plan.pdf`): TL=4, TR=1, BL=3, BR=2 | Figma's own hover-frame layer names and tooltip copy disagree with each other (looks like designer copy-paste slips); the site plan is the authoritative source. **Client should confirm** before launch |
+| P22 | Map tooltip + detail-block specs standardized to 170 m² / 3 bed / 3 bath / 1 garage for all 4 villas | Matches the main page's existing per-villa cards (identical specs there too); Figma's example tooltip (355–583 m², 3–4 bed) reads as placeholder data, inconsistent with itself across villas |
+| P22 | Floor-plan carousel uses 2 shared rendered images (`villa-floor-1`/`villa-floor-2`, Figma nodes `382:453`/`382:473`) identical across all 4 villas, not per-villa architectural PDFs | User-directed correction mid-build; consistent with all 4 villas sharing identical specs — implies one shared house type |
+| P22 | Villa 2–4 detail-block bullet descriptions drafted from their existing main-page blurbs; Villa 1 uses Figma's copy (translated to BG) | Figma only had copy for Villa 1; **client should review** villas 2–4 drafts |
+| P22 | Villa hover-highlight polygons + tooltips are JS-driven and only hidden behind `html.js` (no-JS shows all 4 detail blocks + tooltips permanently, degraded but fully readable) | Matches the `[data-reveal]` no-JS fallback convention already established in `reveal.ts` |
+| P22 | New `--color-available`/`--color-sold` tokens + sold-state CSS toggle via one `data-status="sold"` attribute pair (hotspot `<a>` + its tooltip `<div>`), no JS/config needed to mark a villa sold | YAGNI — a manual per-villa HTML attribute is simpler than any admin/config layer for 4 static flags |
 
 ## P12 — design-fidelity fixes (2026-06-15, from client review)
 Two P2 mistakes caught by the client comparing against Figma:
@@ -330,6 +336,56 @@ Checked `website-docs/{bg,en}/Meta Titles Meta Descriptions Meta Keywords.md` ag
 
 Verified: `npm run build` clean; `npx html-validate index.html en/index.html` passes.
 
+## P22 — Villas listing sub-page, BG (2026-07-08, client request)
+
+First sub-page on the site (previously single-page-with-sections only). Opens from the main page's
+"Explore Our Luxury Villas" section (that section itself intentionally untouched — wiring its CTA to
+this page is a follow-up, not part of this phase). Design: Figma `cUJa6dWkSDI8eq5jgrs93p`, node `263:108`
+("SJ-Build-Villas-Page", desktop-only comp, responsive derived mobile-first same as the homepage).
+
+**Built:** `villas/index.html` — shared header/footer/SVG-icon-sprite copied from `index.html` with every
+nav/logo hash anchor rewritten to point back at the homepage (`#x` → `/#x`); hero band; an interactive
+site-plan map (`[data-villa-map]`) with 4 SVG polygon hotspots (`src/modules/villas.ts`) that highlight
+green/red (available/sold) and show a tooltip card on hover/focus/tap; 4 pre-rendered villa detail blocks
+(floor-plan carousel reusing `carousel.ts`'s `initScrollCarousel` unmodified + description + specs + CTA)
+that switch on hotspot activation; a CTA/contact-form section reusing the homepage's `#contact-form`
+markup verbatim so `form.ts` needed zero changes.
+
+**Interaction model** (`villas.ts`, ~110 lines): desktop = CSS `:hover`/`:focus-visible` reveals the
+tooltip, click/Enter switches the detail panel and smooth-scrolls to it. Touch (`pointer: coarse`) is a
+two-tap sequence: first tap previews the tooltip only, second tap on the same hotspot activates it —
+implemented as one `click` handler branching on the media query, not separate touch/mouse code paths.
+Tooltips are pure CSS-positioned (percentage coordinates converted from the Figma comp) with a small JS
+clamp so a fixed-width tooltip near an edge never overflows on narrow viewports.
+
+**Three real bugs caught and fixed during build** (all via direct browser verification, not just
+`tsc`/build passing):
+1. The map image rendered fully green — an inline Tailwind utility (`[&_path]:[fill-opacity:.45]`) on the
+   SVG wrapper was overriding the intended default-invisible hover-only highlight. Same root cause hit the
+   villa-detail-block `display:none/block` toggle (beaten by the `grid` utility already on that element)
+   and the sold-status text swap (beaten by HTML's own `hidden` utility) — all three fixed by moving the
+   toggle rules into `@layer utilities`, the same precedence fix already documented and in production use
+   for `#site-header.is-scrolled` (see the comment in `main.css`).
+2. The tooltip intercepted the second tap on touch (sat on top of its own hotspot with `pointer-events:
+   auto`) — tooltips have no interactive content, so they're `pointer-events: none` unconditionally now.
+3. axe flagged `aria-hidden-focus`: the map `<svg>` was marked `aria-hidden="true"` while containing real
+   focusable `<a>` hotspots — removed; each hotspot's own `aria-label` now surfaces correctly.
+
+**Known pre-existing tradeoff, not fixed:** axe also flags the active "Вили" nav-link color-contrast
+(coral text ~2.5:1) — this is the *same* documented, client-accepted coral contrast tradeoff already
+noted in `main.css` for `.btn-coral`, just newly visible here because this page hardcodes the active state
+instead of it being transient via scrollspy. Not silently changed; flagged for the same client decision.
+
+**Verified:** `npm run build` (tsc gate) clean; `npx html-validate villas/index.html` — 0 errors; axe run
+at 1440/390 — 0 critical/serious findings after fixes (the 1 remaining is the pre-existing contrast note
+above); Playwright-driven hover/click/two-tap-touch/sold-state/no-JS-fallback all manually exercised and
+confirmed correct.
+
+**Not yet done:** `en/villas/index.html` (EN mirror + reciprocal hreflang) — planned as the final step
+once the BG page above is reviewed, per the "refine BG first, clone EN last" decision. Client should also
+confirm: the villa↔building site-plan mapping, the drafted villa 2-4 descriptions, and which (if any)
+villas launch marked sold.
+
 ## Content Map (final string ← source)
 
 | Location | Copy | Source |
@@ -356,7 +412,7 @@ Verified: `npm run build` clean; `npx html-validate index.html en/index.html` pa
 |---|---|---|---|
 | 1 | **Form backend** | `src/modules/form.ts:4` | Currently console.table + prefilled mailto + honest status. Upgrade: POST endpoint / Formspree / Netlify Forms |
 | 2 | Production domain | `index.html:15` (canonical, OG, JSON-LD, sitemap, robots) | `sjbuild.bg` assumed from sales@ email — confirm before launch |
-| 3 | Villas listing page | `index.html:382` ("View all Villas") | stub `href="#"` |
+| 3 | Villas listing page | `villas/index.html` | ✅ BG built (P22, 2026-07-08): interactive site-map w/ 4 hotspots + tooltips (available/sold), per-villa floor-plan carousel + detail + CTA form. **EN mirror (`en/villas/`) not yet built.** Main page's "Вижте всички вили" stub (`index.html:378-379`) intentionally left unwired — out of scope per user request |
 | 4 | Villa detail pages ×3 | `index.html:427/480/533` ("Learn more") | stubs |
 | 5 | Complex / Location / About-us subpages | `index.html:609/626/809` | stubs; long-form copy ready in `website-docs/en/` |
 | 6 | Privacy + Cookie policy pages | `index.html:963/1025` | legally required before the form goes live |
