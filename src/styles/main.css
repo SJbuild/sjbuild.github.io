@@ -331,9 +331,13 @@
   }
 
   /* Language switch always gets a solid circle for contrast, over the hero
-     and once the header goes frosted glass alike. */
+     and once the header goes frosted glass alike. `hidden lg:flex` (not the
+     plain `flex` this replaced) because this ID-scoped rule's specificity
+     otherwise beats the link's own `hidden lg:block` utility classes,
+     keeping it visible even below the lg breakpoint where the hamburger
+     menu — which already repeats this link — has taken over. */
   #site-header a[hreflang] {
-    @apply flex size-9 shrink-0 items-center justify-center rounded-full bg-white shadow-sm;
+    @apply hidden size-9 shrink-0 items-center justify-center rounded-full bg-white shadow-sm lg:flex;
   }
 
   [data-villa-tooltip][data-status="sold"] [data-status-available] {
