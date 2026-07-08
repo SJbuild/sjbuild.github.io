@@ -364,8 +364,11 @@
     display: none;
   }
 
+  /* `grid` (not `block`) so it doesn't clobber the `grid lg:grid-cols-2` utility
+     already on this element — that's what puts the floor-plan carousel and the
+     info panel side by side at the lg breakpoint. */
   html.js [data-villa-detail].is-active {
-    display: block;
+    display: grid;
   }
 }
 
