@@ -63,6 +63,13 @@ export function initVillas(): void {
     }
   };
 
+  // Keeps the language-switch links (BG/EN) pointed at the currently
+  // selected villa, so switching language doesn't reset back to Villa 1.
+  const langSwitchLinks = [...document.querySelectorAll<HTMLAnchorElement>("[data-lang-switch]")];
+  const syncLangSwitch = (): void => {
+    for (const el of langSwitchLinks) el.href = el.pathname + location.hash;
+  };
+
   const activateVilla = (id: string): void => {
     for (const [detailId, el] of details) el.classList.toggle("is-active", detailId === id);
     for (const [tipId] of tooltips) showTooltip(tipId, tipId === id);
@@ -70,6 +77,8 @@ export function initVillas(): void {
     const detail = details.get(id);
     detail?.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth", block: "start" });
     detail?.focus({ preventScroll: true });
+    history.replaceState(null, "", `#villa-${id}-detail`);
+    syncLangSwitch();
   };
 
   // Map-only embeds (the homepage teaser) ship no detail blocks — skip
