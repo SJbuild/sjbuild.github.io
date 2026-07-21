@@ -376,6 +376,13 @@
   html.js [data-villa-detail].is-active {
     display: grid;
   }
+
+  /* villas.ts programmatically focuses the activated detail block so screen
+     readers land on it — it's not an interactive element, so skip the
+     visible focus ring that'd otherwise box the whole floor-plan section. */
+  [data-villa-detail]:focus-visible {
+    outline: none;
+  }
 }
 
 /* Pull an element to the right viewport edge from inside the page container */
