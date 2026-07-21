@@ -10,6 +10,7 @@ export default defineConfig({
         main: resolve(import.meta.dirname, "index.html"),
         en: resolve(import.meta.dirname, "en/index.html"),
         villas: resolve(import.meta.dirname, "villas/index.html"),
+        enVillas: resolve(import.meta.dirname, "en/villas/index.html"),
         privacy: resolve(import.meta.dirname, "privacy/index.html"),
         enPrivacy: resolve(import.meta.dirname, "en/privacy/index.html"),
       },
