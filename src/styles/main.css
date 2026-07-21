@@ -59,8 +59,7 @@
   --spacing-section: clamp(4rem, 2.4rem + 4.4vw, 5.75rem); /* Figma ~92px rhythm */
   --spacing-header: 6rem; /* 43px offset + 55px bar */
   --hero-h: clamp(42rem, 72.25vw, 65rem); /* 1040/1440 */
-  --villa-card-w: min(34.75rem, 85vw); /* mobile: 1 card with peek */
-  --gallery-card-w: min(34.75rem, 85vw); /* mobile: 1 card with peek, same size as villa card */
+  --gallery-card-w: min(34.75rem, 85vw); /* mobile: 1 card with peek */
   --aboutus-h: 47.75rem; /* about-us photo zone, sized to the wider/shorter combined image */
 
   /* ── Shape & media ─────────────────────────────────────────────── */
@@ -69,7 +68,6 @@
   --radius-area: 1.625rem; /* textarea 26px */
   --blur-frost: 1.875rem; /* 30px frosted-glass backdrop blur */
   --aspect-hero: 1440 / 1040;
-  --aspect-card-img: 556 / 527;
 
   /* ── Motion ────────────────────────────────────────────────────── */
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
@@ -83,7 +81,6 @@
        true clip width — just subtract half the gap-7 column gap. This exact
        fit is required for the sliding-window fade in carousel.ts: every
        single-card step must land flush with no partial card peeking. */
-    --villa-card-w: calc(50% - 0.875rem);
     --gallery-card-w: calc(50% - 0.875rem);
   }
 }
@@ -287,8 +284,11 @@
     transition: fill-opacity 0.2s ease;
   }
 
+  /* Sold stays tinted at rest — unlike available villas, this isn't a
+     hover-only highlight. */
   [data-villa-hotspot][data-status="sold"] path {
     fill: var(--color-sold);
+    fill-opacity: 0.45;
   }
 
   [data-villa-hotspot]:hover path,

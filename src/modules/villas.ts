@@ -1,10 +1,13 @@
 /**
- * Villas listing page: interactive site-map hotspots + per-villa detail
- * switching. Hover/focus shows a villa's tooltip; activating a hotspot
- * (click, Enter, or a second tap on touch) swaps in that villa's detail
- * block and scrolls to it. Touch gets an extra "select" step (matched via
+ * Site-map hotspots, shared by the villas listing page and the homepage
+ * teaser embed. Hover/focus shows a villa's tooltip everywhere. Where detail
+ * blocks are also present (the listing page), activating a hotspot (click,
+ * Enter, or a second tap on touch) swaps in that villa's detail block and
+ * scrolls to it — touch gets an extra "select" step (matched via
  * `pointer: coarse`) so a first tap previews the tooltip instead of jumping
- * straight to the detail section.
+ * straight to the detail section. Where they aren't (the homepage), a
+ * hotspot is just a link to `/villas/#villa-N-detail` — clicks fall through
+ * to native navigation instead.
  */
 export function initVillas(): void {
   const map = document.querySelector<HTMLElement>("[data-villa-map]");
@@ -18,7 +21,7 @@ export function initVillas(): void {
   const details = new Map(
     [...document.querySelectorAll<HTMLElement>("[data-villa-detail]")].map((el) => [el.dataset.villaId ?? "", el]),
   );
-  if (hotspots.length === 0 || details.size === 0) return;
+  if (hotspots.length === 0) return;
 
   const coarsePointer = window.matchMedia("(pointer: coarse)");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -69,11 +72,21 @@ export function initVillas(): void {
     detail?.focus({ preventScroll: true });
   };
 
-  // Default panel shown before any interaction: the first detail block in
-  // document order (Villa 1), matching the map's own reading order.
-  const defaultId = [...details.keys()][0] ?? "";
-  details.get(defaultId)?.classList.add("is-active");
-  setCurrentVilla(defaultId);
+  // Map-only embeds (the homepage teaser) ship no detail blocks — skip
+  // defaulting a "current" villa there so nothing looks pre-selected.
+  if (details.size > 0) {
+    // `/villas/#villa-3-detail` (as linked from the homepage) activates that
+    // villa; otherwise default to the first detail block in document order
+    // (Villa 1), matching the map's own reading order.
+    const hashId = location.hash.match(/^#villa-(\d+)-detail$/)?.[1];
+    if (hashId && details.has(hashId)) {
+      activateVilla(hashId);
+    } else {
+      const defaultId = [...details.keys()][0] ?? "";
+      details.get(defaultId)?.classList.add("is-active");
+      setCurrentVilla(defaultId);
+    }
+  }
 
   // The current tooltip's clamp offset depends on viewport width; keep it
   // correct if the window is resized while it's showing.
@@ -101,6 +114,7 @@ export function initVillas(): void {
     });
 
     hotspot.addEventListener("click", (event) => {
+      if (details.size === 0) return; // map-only mode: let the hotspot's own link navigate
       if (!coarsePointer.matches) {
         event.preventDefault();
         activateVilla(id);
