@@ -263,6 +263,11 @@
     @apply cursor-pointer;
   }
 
+  /* Villa floor-plan/render images: hand cursor to hint they open fullscreen */
+  [data-villa-detail] [data-carousel-track] img {
+    @apply cursor-pointer;
+  }
+
   /* Villa gallery lightbox thumbnails */
   [data-gallery-thumbs] button[aria-current="true"] {
     @apply outline-2 outline-offset-2 outline-coral;

@@ -11,6 +11,7 @@ import { initForm } from "./modules/form";
 import { initReveal } from "./modules/reveal";
 import { initParallax } from "./modules/parallax";
 import { initGallery } from "./modules/gallery";
+import { initImageLightbox } from "./modules/lightbox";
 import { initVillas, initFloorplanDots } from "./modules/villas";
 
 initNav();
@@ -20,5 +21,6 @@ initForm();
 initReveal();
 initParallax();
 initGallery();
+initImageLightbox();
 initVillas();
 initFloorplanDots();
