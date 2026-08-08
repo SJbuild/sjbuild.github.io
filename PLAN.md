@@ -386,6 +386,72 @@ once the BG page above is reviewed, per the "refine BG first, clone EN last" dec
 confirm: the villa↔building site-plan mapping, the drafted villa 2-4 descriptions, and which (if any)
 villas launch marked sold.
 
+## P25 — Location sub-page, BG + EN (2026-08-08, client request via Figma link)
+
+Second sub-page (after P22's `/villas/`). Design: Figma `cUJa6dWkSDI8eq5jgrs93p`, node `224:90`
+("SJ-Builld-Location-Page"). Built BG (`location/index.html`) and its EN mirror
+(`en/location/index.html`) together in one pass — P24's memory note flagged that shipping `/villas/`
+BG-only first caused a live bug (EN switcher linked to a page that didn't exist yet), so this time both
+locales shipped together; `vite.config.ts` got both `location`/`enLocation` entries from the start.
+
+**Reused verbatim, per client instruction:** top nav/header chrome and mobile menu (logo, pill nav, EN/BG
+switch, hamburger drawer) from `villas/index.html`'s pattern, hash targets rewritten to `/#x`; the
+`#contacts` CTA + contact-form block, using the **homepage's** `cta-bg-*` image set (not villas' own
+`villas-cta-bg-*`) since the client said this section is "practically the same as in the main page"; the
+footer; and the existing `location-map-*` image/alt already used in the homepage's `#location` section
+(same asset, no new download). Nav order was normalized to the site's established
+Home→Villas→About-complex→Location→About-us→Contacts (Figma's own mockup has Villas/About-complex
+swapped — a one-off inconsistency in that comp, not followed).
+
+**Content decisions (none of these were literal Figma text — resolved from `website-docs/{bg,en}/Location.md`,
+the only page-specific approved-copy source):**
+- Hero H1 "Location with Breathtaking Sea Views" and the intro section both map cleanly to the doc's own
+  headings/body — used verbatim (translated for BG).
+- The "Close to Everything That Matters" 3-card carousel: Figma's card **titles/body copy were stale**
+  (literally the homepage's "Architectural Excellence"/"Exclusive Amenities" strings + a generic Lorem
+  Ipsum third card) — the same "leftover placeholder text" pattern already caught once before in P20's
+  Community panel 3. The card **images** are real and on-theme (airport / coastal cliffs / restaurant
+  patio), so titles were rewritten to match each image using the doc's own bullet list ("International
+  airports and major highways", "Marinas and coastal attractions", "Fine dining restaurants and beach
+  bars"); card body sentences are newly drafted (not in any doc) and flagged `TODO(copy)` inline in both
+  HTML files for client confirmation.
+- The "Ideal Balance" feature grid: Figma's 4 cards read "Feature 1"–"Feature 4" but each layer is named
+  for its real concept (Integrity / Craftsmanship / Innovation / Client-Centricity) with real body copy
+  already attached — used the layer names as the visible titles rather than shipping literal "Feature N".
+
+**Assets:** hero photo, 3 carousel photos, and 4 feature icons downloaded fresh from Figma and run through
+`scripts/optimize-images.mjs` as `location-*`. One exception: the "Ideal Balance" decorative villa cutout
+(`location-balance-villa.png`) has a transparent background — the optimize pipeline's JPEG output flattens
+alpha to black, so that one asset is committed as a plain PNG straight from `_design/raw-assets/manual/`
+(desktop-only decorative image, `hidden lg:block`, no responsive srcset needed) instead of extending the
+shared script for a single-use case. `TODO(assets)`: the Figma hero export is capped at 1024px wide
+(lower-res than the other page heroes' 2880px sources) — flagged inline, ask the client for higher-res
+photography if it looks soft on large screens.
+
+**Also fixed in this pass:** both homepages' `#location` section had a `<!-- TODO(page): location subpage
+-->` stub Learn-more button pointing at `#` — now wired to `/location/` (BG) and `/en/location/` (EN).
+
+**Post-review polish (client feedback round, same day):** hero height matched to the homepage's own
+`--hero-h` token (was previously sized by its own padding, cropping the villa render); the white top-fade
+gradient over the hero photo removed per client request; hero photo given the same `data-parallax-bg`
+treatment as the homepage hero/CTA (`top-[-10%] h-[120%]` + `will-change-transform`, no edge gaps on
+scroll); the gray strip between hero and the intro section closed by switching `mt-section` (margin, which
+exposed the sand-colored `body` background) to `pt-section` (padding, part of the white section's own box);
+the location-map image pulled up flush with the hero's bottom edge via a `-1 × --spacing-section` negative
+margin on its column only (desktop), canceling just that column's share of the section's top padding; the
+"Close to Everything" carousel changed from a 3-up/peek layout to exactly 2 cards per view
+(`md:w-[calc(50%-0.875rem)]`, no partial third card) with each card's title+body and image manually
+alternating above/below per card index (1st/3rd = text above image, 2nd = image above text) to match the
+client's requested rhythm — `carousel.ts` needed no changes, `cardStep()` already measures the actual
+rendered card width.
+
+**Verified:** `npm run build` clean (4 new rollup inputs); Playwright screenshots at 1440/390 for both
+locales, visually reviewed section-by-section against the Figma screenshot, plus targeted re-checks after
+each polish request (hero/gap/map-alignment/carousel).
+
+**Not yet done:** client has not reviewed the drafted carousel-card copy or confirmed higher-res hero
+photography is available.
+
 ## Content Map (final string ← source)
 
 | Location | Copy | Source |
@@ -412,9 +478,9 @@ villas launch marked sold.
 |---|---|---|---|
 | 1 | **Form backend** | `src/modules/form.ts:4` | Currently console.table + prefilled mailto + honest status. Upgrade: POST endpoint / Formspree / Netlify Forms |
 | 2 | Production domain | `index.html:15` (canonical, OG, JSON-LD, sitemap, robots) | `sjbuild.bg` assumed from sales@ email — confirm before launch |
-| 3 | Villas listing page | `villas/index.html` | ✅ BG built (P22, 2026-07-08): interactive site-map w/ 4 hotspots + tooltips (available/sold), per-villa floor-plan carousel + detail + CTA form. **EN mirror (`en/villas/`) not yet built.** Main page's "Вижте всички вили" stub (`index.html:378-379`) intentionally left unwired — out of scope per user request |
+| 3 | ~~Villas listing page~~ ✅ DONE (P22 BG, P24 EN) | `villas/index.html`, `en/villas/index.html` | Interactive site-map w/ 4 hotspots + tooltips (available/sold), per-villa floor-plan carousel + detail + CTA form, both locales live |
 | 4 | Villa detail pages ×3 | `index.html:427/480/533` ("Learn more") | stubs |
-| 5 | Complex / Location / About-us subpages | `index.html:609/626/809` | stubs; long-form copy ready in `website-docs/en/` |
+| 5 | Complex / About-us subpages | `index.html:609/809` | stubs; long-form copy ready in `website-docs/en/`. Location subpage ✅ DONE — see #13 |
 | 6 | Privacy + Cookie policy pages | `index.html:963/1025` | legally required before the form goes live |
 | 7 | Social profile URLs | `index.html:1073-1087` | P19: `aria-label`s now use Contacts.md's names (SG Build Villas / @sgbuild_villas / SG Build); `href="#"` still needs real URLs — **client must also resolve the wider SJ/SG site-brand naming** |
 | 8 | ~~Contact data conflict~~ ✅ DONE (P19) | footer vs `Contacts.md` | Resolved in favor of Contacts.md: +359 889 173 654 / sgbuildbg@gmail.com / с. Лозенец, обл. Бургас, България |
@@ -422,3 +488,4 @@ villas launch marked sold.
 | 10 | ~~BG locale~~ ✅ DONE (P11) | `/` = BG, `/en/` = EN | bilingual toggle + hreflang + bilingual form live |
 | 11 | Twitter/X social | dropped | design export empty + absent from Contacts.md; re-add if client provides URL |
 | 12 | ~~JSON-LD telephone/email/address~~ ✅ DONE (P21) | `index.html`/`en/index.html` `<head>` | Reconciled to Contacts.md: +359 889 173 654 / sgbuildbg@gmail.com / Лозенец, Бургас, BG (Varna street address dropped, no longer sourced) |
+| 13 | ~~Location subpage~~ ✅ DONE (P25, 2026-08-08) | `location/index.html`, `en/location/index.html` | Both locales live. Open: client hasn't confirmed the drafted "Close to Everything" carousel-card copy (see P25 `TODO(copy)`), or whether higher-res hero photography exists (see P25 `TODO(assets)`) |
