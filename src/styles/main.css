@@ -52,9 +52,10 @@
   --container-content: 71.25rem; /* 1140px = 1440 − 2×150 design margins */
   --container-hero-title: 60rem; /* 958px H1 measure */
   --container-measure: 34rem; /* 540px subtitle measure */
-  /* Hero-only wide measures (≥1536px): the BG H1 needs 1248px for a balanced
-     2-line wrap and the lead needs 800px. At 2xl the hero copy is allowed to
-     exceed the 1140px content grid (centered text; header grid unchanged). */
+  /* Hero-only wide measures (≥1024px): the BG H1 needs up to 1248px for a
+     balanced 2-line wrap and the lead needs 800px. From lg the hero copy is
+     allowed to exceed the 1140px content grid (centered text; header grid
+     unchanged). */
   --container-hero-copy-wide: 84rem; /* 1344px wrapper incl. 40px gutters */
   --container-hero-title-wide: 78rem; /* 1248px — 2-line BG H1 */
   --container-hero-measure-wide: 50rem; /* 800px — 2-line BG hero lead */
@@ -88,6 +89,19 @@
        fit is required for the sliding-window fade in carousel.ts: every
        single-card step must land flush with no partial card peeking. */
     --gallery-card-w: calc(50% - 0.875rem);
+  }
+}
+
+/* BG hero headline: it needs ~7% of its available measure per line to wrap
+   into 2 balanced rows. From lg upward, cap the fluid type scale to that
+   width so the title drops from 3 rows to 2 as soon as the layout widens,
+   instead of waiting for the 1248px max-width at ~1316px viewport. */
+@media (min-width: 64rem) {
+  html[lang="bg"] #hero-title {
+    font-size: min(
+      var(--text-display-2xl),
+      calc(0.0695 * min(100vw - 5rem, 78rem))
+    );
   }
 }
 
