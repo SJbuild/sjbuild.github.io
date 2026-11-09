@@ -16,7 +16,8 @@ export function initParallax(): void {
       if (!section) continue;
       const rect = section.getBoundingClientRect();
       const mid = rect.top + rect.height / 2 - window.innerHeight / 2;
-      img.style.transform = `translate3d(0, ${mid * 0.1}px, 0)`;
+      const strength = Number(img.dataset.parallaxStrength) || 0.1;
+      img.style.transform = `translate3d(0, ${mid * strength}px, 0)`;
     }
     ticking = false;
   };

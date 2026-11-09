@@ -52,6 +52,12 @@
   --container-content: 71.25rem; /* 1140px = 1440 − 2×150 design margins */
   --container-hero-title: 60rem; /* 958px H1 measure */
   --container-measure: 34rem; /* 540px subtitle measure */
+  /* Hero-only wide measures (≥1536px): the BG H1 needs 1248px for a balanced
+     2-line wrap and the lead needs 800px. At 2xl the hero copy is allowed to
+     exceed the 1140px content grid (centered text; header grid unchanged). */
+  --container-hero-copy-wide: 84rem; /* 1344px wrapper incl. 40px gutters */
+  --container-hero-title-wide: 78rem; /* 1248px — 2-line BG H1 */
+  --container-hero-measure-wide: 50rem; /* 800px — 2-line BG hero lead */
   --container-box: 83.375rem; /* 1334px intro box */
   --container-card: 40.625rem; /* 650px frosted card */
   --spacing-gutter: clamp(1.25rem, 4vw, 2.5rem);
